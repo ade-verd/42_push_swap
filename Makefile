@@ -6,12 +6,15 @@
 #    By: ade-verd <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/05 13:46:57 by ade-verd          #+#    #+#              #
-#    Updated: 2017/12/15 16:37:58 by ade-verd         ###   ########.fr        #
+#    Updated: 2017/12/20 17:07:10 by ade-verd         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # Binary
 NAME = ProjectName
+
+# Compiler
+CC = gcc
 
 # Directories
 SRC_PATH = ./
@@ -35,21 +38,23 @@ OBJ_NAME = $(SRC_NAME:.c=.o)
 SRC = $(addprefix $(SRC_PATH)/,$(SRC_NAME))
 OBJ = $(addprefix $(OBJ_PATH), $(OBJ_NAME))
 
-# Compilation with OS Compatibiliy
+# Flags with OS Compatibiliy
 OS = $(shell uname)
 ifeq ($(OS), Darwin)
-	CC := gcc
-	CFLAGS += -Werror -Wall -Wextra
-	ADDFLAGS += 
+	FLAGS_DEFAULT = -Werror -Wall -Wextra
 endif
 ifeq ($(OS), Linux)
-	ifeq (, $(shell which clang))
-		CC := gcc
-	else
-		CC := clang
+	FLAGS_DEFAULT = -Wno-unused-result
+endif
+ifdef FLAGS
+	ifeq ($(FLAGS), no)
+		CFLAGS := $(ADDFLAGS)
 	endif
-	CFLAGS += -Wno-unused-result
-	ADDFLAGS +=
+	ifeq ($(FLAGS), debug)
+		CFLAGS := $(FLAGS_DEFAULT) -ansi -pedantic -g $(ADDFLAGS)
+	endif
+else
+	CFLAGS := $(FLAGS_DEFAULT) $(ADDFLAGS)
 endif
 
 # **************************************************************************** #
@@ -100,7 +105,7 @@ $(OBJ_PATH):
 	@mkdir -p $(OBJ_PATH)
 
 $(OBJ_PATH)%.o: $(SRC_PATH)%.c
-	@$(CC) $(CFLAGS) $(ADDFLAGS) $(CPPFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
 	@echo -e $(LINKING)
 
 clean:
