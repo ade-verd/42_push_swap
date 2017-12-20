@@ -6,7 +6,7 @@
 #    By: ade-verd <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/05 13:46:57 by ade-verd          #+#    #+#              #
-#    Updated: 2017/12/20 17:07:10 by ade-verd         ###   ########.fr        #
+#    Updated: 2017/12/20 17:21:02 by ade-verd         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -101,7 +101,7 @@ libft_make:
 	@make -C $(LIB_PATH)
 
 $(OBJ_PATH):
-	@echo -e "$(TITLE)build $(NAME)$(END_TITLE)"
+	@echo -e "$(TITLE)build $(NAME)$(END_TITLE) (Flags : $(CFLAGS))"
 	@mkdir -p $(OBJ_PATH)
 
 $(OBJ_PATH)%.o: $(SRC_PATH)%.c
