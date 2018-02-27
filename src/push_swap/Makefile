@@ -6,20 +6,55 @@
 #    By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/05 13:46:57 by ade-verd          #+#    #+#              #
-#    Updated: 2018/02/27 18:59:58 by ade-verd         ###   ########.fr        #
+#    Updated: 2018/02/27 19:03:25 by ade-verd         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # Binary
-NAME = push_swap_and_checker
-NAME_SWP = push_swap
-NAME_CHK = checker
+NAME = push_swap
+
+# Compiler
+CC = gcc
 
 # Directories
-SRC_PATH = src
-SWP_PATH = $(SRC_PATH)/$(NAME_SWP)
-CHK_PATH = $(SRC_PATH)/$(NAME_CHK)
-LIB_PATH = libft
+SRC_PATH = ./
+OBJ_PATH = ../../obj/$(NAME)/
+LIB_PATH = ../../libft/
+INC_PATH = ../../includes/ \
+		   $(LIB_PATH)/includes/
+
+# Includes & libraries
+CPPFLAGS = $(addprefix -I ,$(INC_PATH))
+LDFLAGS = -L $(LIB_PATH)
+LDLIBS = -lft
+
+# Sources
+SRC_NAME = \
+		   main.c\
+
+OBJ_NAME = $(SRC_NAME:.c=.o)
+
+SRC = $(addprefix $(SRC_PATH),$(SRC_NAME))
+OBJ = $(addprefix $(OBJ_PATH),$(OBJ_NAME))
+
+# Flags with OS Compatibiliy
+OS = $(shell uname)
+ifeq ($(OS), Darwin)
+	FLAGS_DEFAULT = -Werror -Wall -Wextra
+endif
+ifeq ($(OS), Linux)
+	FLAGS_DEFAULT = -Wno-unused-result
+endif
+ifdef FLAGS
+	ifeq ($(FLAGS), no)
+		CFLAGS := $(ADDFLAGS)
+	endif
+	ifeq ($(FLAGS), debug)
+		CFLAGS := $(FLAGS_DEFAULT) -ansi -pedantic -g $(ADDFLAGS)
+	endif
+else
+	CFLAGS := $(FLAGS_DEFAULT) $(ADDFLAGS)
+endif
 
 # **************************************************************************** #
 # SPECIALS CHARS                                                               #
@@ -53,42 +88,45 @@ BIN_DEL = "--$(LOG_CLEAR)$(LOG_YELLOW)Binary$(LOG_NOCOLOR) deletion " \
 # **************************************************************************** #
 # RULES                                                                        #
 # **************************************************************************** #
-.PHONY: all, clean, fclean, re, norme, push_swap, checker
+.PHONY: all, clean, fclean, re, norme
 
-all: $(NAME)
+all: libft.a $(NAME)
 
-$(NAME): push_swap checker
-
-$(NAME_SWP): libft.a
-	@make -C $(SWP_PATH) $@
-	@if [ -h $@ ]; then rm -f $@; fi;
-	@ln -s $(SWP_PATH)/$@ .
-
-$(NAME_CHK): libft.a 
-	@make -C $(CHK_PATH) $@
-	@if [ -h $@ ]; then rm -f $@; fi;
-	@ln -s $(CHK_PATH)/$@ .
+$(NAME): $(OBJ_PATH) $(OBJ)
+	@$(CC) $(OBJ) $(LDFLAGS) $(LDLIBS) -o $(NAME)
+	@echo -e $(ASSEMBLING)
 
 libft.a:
 	@make -C $(LIB_PATH) $@
 
+$(OBJ_PATH):
+	@echo -e "$(TITLE)build $(NAME)$(END_TITLE)"
+	@echo -e "--$(LOG_CLEAR)Flags : $(CFLAGS)"
+	@mkdir -p $(OBJ_PATH)
+
+$(OBJ_PATH)%.o: $(SRC_PATH)%.c
+	@$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
+	@echo -e $(LINKING)
+
 clean:
-	@make -C $(SWP_PATH) clean
-	@make -C $(CHK_PATH) clean
+	@echo -e "$(TITLE)clean $(NAME)$(END_TITLE)"
+	@echo -e $(OBJECTS_DEL)
+	@rm -Rf $(OBJ_PATH)
+	@make -C $(LIB_PATH) clean_quiet
 
 fclean:
-	@make -C $(SWP_PATH) fclean
-	@make -C $(CHK_PATH) fclean
-	@if [ -h $(NAME_SWP) ]; then rm -f $(NAME_SWP); fi;
-	@if [ -h $(NAME_CHK) ]; then rm -f $(NAME_CHK); fi;
+	@echo -e "$(TITLE)fclean $(NAME)$(END_TITLE)"
+	@echo -e $(OBJECTS_DEL)
+	@rm -Rf $(OBJ_PATH)
+	@echo -e $(BIN_DEL)
+	@rm -f $(NAME)
+	@make -C $(LIB_PATH) fclean_quiet
 
 re: fclean all
 
 norme:
-	@echo -e "$(TITLE)Norminette: $(NAME_SWP)$(END_TITLE)"
-	@make -C $(SWP_PATH) norme
-	@echo -e "$(TITLE)Norminette: $(NAME_CHK)$(END_TITLE)"
-	@make -C $(CHK_PATH) norme
+	norminette $(SRC)
+	norminette $(addprefix $(INC_PATH), *.h)
 
 # **************************************************************************** #
 # Personal notes :                                                             #
