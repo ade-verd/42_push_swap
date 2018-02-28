@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 11:54:35 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/02/28 18:57:11 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/02/28 19:51:12 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,19 @@ void	ft_heaps_del(t_heaps **ab)
 void	ft_heaps_display(t_heaps **ab, unsigned char c)
 {
 	if (c == 'a')
+	{
 		ft_stackdisplay(&(*ab)->a, c);
+		ft_putstr("___\n");
+	}
 	else if (c == 'b')
+	{
 		ft_stackdisplay(&(*ab)->b, c);
+		ft_putstr("___\n");
+	}
 	else
 	{
 		ft_stackdisplay(&(*ab)->a, 'a');
 		ft_stackdisplay(&(*ab)->b, 'b');
+		ft_putstr("___\n");
 	}
 }
