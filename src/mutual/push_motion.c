@@ -1,34 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   swap_motion.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/27 17:28:18 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/02/28 18:28:25 by ade-verd         ###   ########.fr       */
+/*   Created: 2018/02/28 17:48:51 by ade-verd          #+#    #+#             */
+/*   Updated: 2018/02/28 18:08:50 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int		main(int ac, char **av)
+void 	ft_swap_motion(t_stack **stack)
 {
-	t_heaps		*ab;
+	if (ft_stacklen(*stack) > 1)
+		ft_swap(&(*stack)->nb, &(*stack)->previous->nb);
+}
 
-	if (ac > 1)
-	{
-		ft_init_heaps(&ab);
-		if (!(ft_read_and_fillstack(ac, av, &ab->a)))
-			return (0);
-		ft_stackdisplay(&stack);
-		ft_swap_motion(&stack);
-		ft_stackdisplay(&stack);
-		ft_swap_motion(&stack);
-		ft_stackdisplay(&stack);
-		ft_stackdel(&stack);
-	}
-	else
-		ft_error(&stack);
-	return (0);
+void 	ft_2swap_motion(t_stack **stack_a, t_stack **stack_b)
+{
+	ft_swap(&(*stack_a)->nb, &(*stack_a)->previous->nb);
+	ft_swap(&(*stack_b)->nb, &(*stack_b)->previous->nb);
 }

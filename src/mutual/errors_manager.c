@@ -1,34 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   errors_manager.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/27 17:28:18 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/02/28 18:28:25 by ade-verd         ###   ########.fr       */
+/*   Created: 2018/02/28 17:35:03 by ade-verd          #+#    #+#             */
+/*   Updated: 2018/02/28 17:41:21 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int		main(int ac, char **av)
+void	ft_error(t_stack **stack)
 {
-	t_heaps		*ab;
 
-	if (ac > 1)
-	{
-		ft_init_heaps(&ab);
-		if (!(ft_read_and_fillstack(ac, av, &ab->a)))
-			return (0);
-		ft_stackdisplay(&stack);
-		ft_swap_motion(&stack);
-		ft_stackdisplay(&stack);
-		ft_swap_motion(&stack);
-		ft_stackdisplay(&stack);
-		ft_stackdel(&stack);
-	}
-	else
-		ft_error(&stack);
-	return (0);
+	ft_putstr("Error\n");
+	ft_stackdel(stack);
+	exit (0);
 }
