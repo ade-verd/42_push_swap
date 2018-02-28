@@ -6,11 +6,11 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/27 17:28:18 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/02/28 11:19:48 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/02/28 15:22:11 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	ft_putstr(char const *s);
+#include "libft.h"
 
 int		main(void)
 {
