@@ -6,7 +6,7 @@
 #    By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/05 13:46:57 by ade-verd          #+#    #+#              #
-#    Updated: 2018/02/27 18:59:58 by ade-verd         ###   ########.fr        #
+#    Updated: 2018/02/28 11:16:47 by ade-verd         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,7 @@ SRC_PATH = src
 SWP_PATH = $(SRC_PATH)/$(NAME_SWP)
 CHK_PATH = $(SRC_PATH)/$(NAME_CHK)
 LIB_PATH = libft
+OBJ_PATH = obj
 
 # **************************************************************************** #
 # SPECIALS CHARS                                                               #
@@ -75,10 +76,13 @@ libft.a:
 clean:
 	@make -C $(SWP_PATH) clean
 	@make -C $(CHK_PATH) clean
+	@rm -Rf $(OBJ_PATH)
+
 
 fclean:
 	@make -C $(SWP_PATH) fclean
 	@make -C $(CHK_PATH) fclean
+	@rm -Rf $(OBJ_PATH)
 	@if [ -h $(NAME_SWP) ]; then rm -f $(NAME_SWP); fi;
 	@if [ -h $(NAME_CHK) ]; then rm -f $(NAME_CHK); fi;
 

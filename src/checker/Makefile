@@ -6,7 +6,7 @@
 #    By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/05 13:46:57 by ade-verd          #+#    #+#              #
-#    Updated: 2018/02/27 19:03:28 by ade-verd         ###   ########.fr        #
+#    Updated: 2018/02/28 11:35:49 by ade-verd         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,7 @@ CC = gcc
 
 # Directories
 SRC_PATH = ./
+SRC_PATH_MUTUAL = ../mutual/
 OBJ_PATH = ../../obj/$(NAME)/
 LIB_PATH = ../../libft/
 INC_PATH = ../../includes/ \
@@ -32,10 +33,16 @@ LDLIBS = -lft
 SRC_NAME = \
 		   main.c\
 
-OBJ_NAME = $(SRC_NAME:.c=.o)
+SRC_NAME_MUTUAL = \
+		   ft_putstr.c
 
-SRC = $(addprefix $(SRC_PATH),$(SRC_NAME))
-OBJ = $(addprefix $(OBJ_PATH),$(OBJ_NAME))
+OBJ_NAME = $(SRC_NAME:.c=.o)
+OBJ_NAME_MUTUAL = $(SRC_NAME_MUTUAL:.c=.o)
+
+SRC = $(addprefix $(SRC_PATH),$(SRC_NAME)) \
+	  $(addprefix $(SRC_PATH_MUTUAL),$(SRC_NAME_MUTUAL))
+OBJ = $(addprefix $(OBJ_PATH),$(OBJ_NAME)) \
+	  $(addprefix $(OBJ_PATH)/$(SRC_PATH_MUTUAL),$(OBJ_NAME_MUTUAL))
 
 # Flags with OS Compatibiliy
 OS = $(shell uname)
@@ -103,6 +110,7 @@ $(OBJ_PATH):
 	@echo -e "$(TITLE)build $(NAME)$(END_TITLE)"
 	@echo -e "--$(LOG_CLEAR)Flags : $(CFLAGS)"
 	@mkdir -p $(OBJ_PATH)
+	@mkdir -p $(OBJ_PATH)/$(SRC_PATH_MUTUAL)
 
 $(OBJ_PATH)%.o: $(SRC_PATH)%.c
 	@$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
