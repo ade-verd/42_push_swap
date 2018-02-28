@@ -1,25 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   swap_motion.c                                      :+:      :+:    :+:   */
+/*   push_motion.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 17:48:51 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/02/28 18:08:50 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/02/28 19:13:44 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void 	ft_swap_motion(t_stack **stack)
+void 	ft_push_a(t_heaps **ab)
 {
-	if (ft_stacklen(*stack) > 1)
-		ft_swap(&(*stack)->nb, &(*stack)->previous->nb);
+	if ((*ab)->b)
+	{
+		ft_stackpush(&(*ab)->a, (*ab)->b->nb);
+		ft_stackpop(&(*ab)->b);
+		ft_putstr("pa\n");
+	}
 }
 
-void 	ft_2swap_motion(t_stack **stack_a, t_stack **stack_b)
+void 	ft_push_b(t_heaps **ab)
 {
-	ft_swap(&(*stack_a)->nb, &(*stack_a)->previous->nb);
-	ft_swap(&(*stack_b)->nb, &(*stack_b)->previous->nb);
+	if ((*ab)->a)
+	{
+		ft_stackpush(&(*ab)->b, (*ab)->a->nb);
+		ft_stackpop(&(*ab)->a);
+		ft_putstr("pb\n");
+	}
 }

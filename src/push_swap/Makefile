@@ -6,7 +6,7 @@
 #    By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/05 13:46:57 by ade-verd          #+#    #+#              #
-#    Updated: 2018/02/28 17:52:41 by ade-verd         ###   ########.fr        #
+#    Updated: 2018/02/28 19:35:50 by ade-verd         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,10 +35,12 @@ SRC_NAME = \
 
 SRC_NAME_MUTUAL = \
 		   reader.c\
+		   heaps_basics.c\
 		   stack_basics.c\
 		   errors_manager.c\
 		   \
 		   swap_motion.c\
+		   push_motion.c\
 
 OBJ_NAME = $(SRC_NAME:.c=.o)
 OBJ_NAME_MUTUAL = $(SRC_NAME_MUTUAL:.c=.o)

@@ -6,16 +6,16 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 17:35:03 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/02/28 17:41:21 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/02/28 18:50:59 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ft_error(t_stack **stack)
+void	ft_error(t_heaps **ab)
 {
 
 	ft_putstr("Error\n");
-	ft_stackdel(stack);
+	ft_heaps_del(ab);
 	exit (0);
 }

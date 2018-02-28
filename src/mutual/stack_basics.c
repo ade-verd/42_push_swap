@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 11:54:35 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/02/28 18:02:53 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/02/28 19:00:22 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,14 +38,16 @@ int		ft_stackpop(t_stack **stack)
 	return (nb);
 }
 
-void	ft_stackdisplay(t_stack **stack)
+void	ft_stackdisplay(t_stack **stack, unsigned char c)
 {
 	t_stack		*cpy;
 
+	ft_putchar(ft_toupper(c));
+	ft_putstr(":\t");
 	if (*stack)
 	{
-		ft_putstr("Heap:\t(top) ");
 		cpy = *stack;
+		ft_putstr("(top) ");
 		while (cpy)
 		{
 			ft_putnbr(cpy->nb);

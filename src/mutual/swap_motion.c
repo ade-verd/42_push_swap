@@ -6,20 +6,45 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 17:48:51 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/02/28 18:12:49 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/02/28 19:27:01 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void 	ft_swap_motion(t_stack **stack)
+int 	ft_swap_motion(t_stack **stack)
 {
 	if (ft_stacklen(*stack) > 1)
+	{
 		ft_swap(&(*stack)->nb, &(*stack)->previous->nb);
+		return (1);
+	}
+	return (0);
 }
 
-void 	ft_2swap_motion(t_stack **stack_a, t_stack **stack_b)
+void 	ft_swap_a(t_stack **stack)
 {
-	ft_swap(&(*stack_a)->nb, &(*stack_a)->previous->nb);
-	ft_swap(&(*stack_b)->nb, &(*stack_b)->previous->nb);
+	if (ft_swap_motion(stack))
+		ft_putstr("sa\n");
+}
+
+void 	ft_swap_b(t_stack **stack)
+{
+	if (ft_swap_motion(stack))
+		ft_putstr("sb\n");
+}
+
+void 	ft_swap_ab(t_heaps **ab)
+{
+	int		ret_a;
+	int		ret_b;
+
+	ret_a = ft_swap_motion(&(*ab)->a);
+	ret_b = ft_swap_motion(&(*ab)->b);
+	if (ret_a && ret_b)
+		ft_putstr("ss\n");
+	else if (ret_a)
+		ft_putstr("sa\n");
+	else if (ret_b)
+		ft_putstr("sb\n");
 }
