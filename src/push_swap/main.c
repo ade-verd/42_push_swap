@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/27 17:28:18 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/02/28 19:41:01 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/03/01 12:55:49 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,12 @@
 **		ft_swap_ab(ab);
 **		ft_push_a(ab);
 **		ft_push_b(ab);
+**		ft_rotate_a(&(*ab)->a);
+**		ft_rotate_b(&(*ab)->b);
+**		ft_rotate_ab(ab);
+**		ft_rrotate_a(&(*ab)->a);
+**		ft_rrotate_b(&(*ab)->b);
+**		ft_rrotate_ab(ab);
 */
 
 void	ft_motions(t_heaps **ab)
@@ -34,7 +40,13 @@ void	ft_motions(t_heaps **ab)
 		ft_heaps_display(ab, 'a' + 'b');
 		ft_push_a(ab);
 		ft_heaps_display(ab, 'a' + 'b');
-		ft_push_a(ab);
+		ft_rrotate_b(&(*ab)->b);
+		ft_heaps_display(ab, 'a' + 'b');
+		ft_rrotate_b(&(*ab)->b);
+		ft_heaps_display(ab, 'a' + 'b');
+		ft_rrotate_b(&(*ab)->b);
+		ft_heaps_display(ab, 'a' + 'b');
+		ft_rrotate_b(&(*ab)->b);
 		ft_heaps_display(ab, 'a' + 'b');
 }
 
