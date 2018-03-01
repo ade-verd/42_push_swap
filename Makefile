@@ -6,7 +6,7 @@
 #    By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/05 13:46:57 by ade-verd          #+#    #+#              #
-#    Updated: 2018/02/28 11:16:47 by ade-verd         ###   ########.fr        #
+#    Updated: 2018/03/01 17:34:12 by ade-verd         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,7 +54,7 @@ BIN_DEL = "--$(LOG_CLEAR)$(LOG_YELLOW)Binary$(LOG_NOCOLOR) deletion " \
 # **************************************************************************** #
 # RULES                                                                        #
 # **************************************************************************** #
-.PHONY: all, clean, fclean, re, norme, push_swap, checker
+.PHONY: all, clean, fclean, re, norme, norm, push_swap, checker
 
 all: $(NAME)
 
@@ -93,6 +93,10 @@ norme:
 	@make -C $(SWP_PATH) norme
 	@echo -e "$(TITLE)Norminette: $(NAME_CHK)$(END_TITLE)"
 	@make -C $(CHK_PATH) norme
+
+normadev: 
+	sh ~/Projects/support/Normadev/normadev.sh **/*.[ch]
+#	norminette **/*.[ch] | grep -B 1 "Error\|Warning" || echo "norme OK"
 
 # **************************************************************************** #
 # Personal notes :                                                             #

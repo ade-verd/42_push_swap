@@ -6,7 +6,7 @@
 #    By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/05 13:46:57 by ade-verd          #+#    #+#              #
-#    Updated: 2018/03/01 12:08:37 by ade-verd         ###   ########.fr        #
+#    Updated: 2018/03/01 17:33:29 by ade-verd         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -103,7 +103,7 @@ BIN_DEL = "--$(LOG_CLEAR)$(LOG_YELLOW)Binary$(LOG_NOCOLOR) deletion " \
 # **************************************************************************** #
 # RULES                                                                        #
 # **************************************************************************** #
-.PHONY: all, clean, fclean, re, norme
+.PHONY: all, clean, fclean, re, norme, normadev
 
 all: libft.a $(NAME)
 
@@ -143,6 +143,9 @@ re: fclean all
 norme:
 	norminette $(SRC)
 	norminette $(addprefix $(INC_PATH), *.h)
+
+normadev: 
+	~/Projects/Normadev/normadev.sh **/*.[ch]
 
 # **************************************************************************** #
 # Personal notes :                                                             #
