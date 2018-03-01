@@ -6,13 +6,13 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 17:48:51 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/02/28 19:27:01 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/03/01 13:02:25 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int 	ft_swap_motion(t_stack **stack)
+int		ft_swap_motion(t_stack **stack)
 {
 	if (ft_stacklen(*stack) > 1)
 	{
@@ -22,19 +22,19 @@ int 	ft_swap_motion(t_stack **stack)
 	return (0);
 }
 
-void 	ft_swap_a(t_stack **stack)
+void	ft_swap_a(t_stack **stack)
 {
 	if (ft_swap_motion(stack))
 		ft_putstr("sa\n");
 }
 
-void 	ft_swap_b(t_stack **stack)
+void	ft_swap_b(t_stack **stack)
 {
 	if (ft_swap_motion(stack))
 		ft_putstr("sb\n");
 }
 
-void 	ft_swap_ab(t_heaps **ab)
+void	ft_swap_ab(t_heaps **ab)
 {
 	int		ret_a;
 	int		ret_b;

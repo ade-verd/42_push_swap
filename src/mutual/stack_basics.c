@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 11:54:35 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/02/28 19:00:22 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/03/01 13:14:02 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int		ft_stackpush(t_stack **current_link, int new_nb)
 
 int		ft_stackpop(t_stack **stack)
 {
-	int 		nb;
+	int			nb;
 	t_stack		*cpy;
 
 	if (!(*stack))
@@ -63,10 +63,10 @@ void	ft_stackdisplay(t_stack **stack, unsigned char c)
 
 int		ft_stacklen(t_stack *stack)
 {
-	int 		i;
+	int			i;
 
 	i = 0;
-	while(stack)
+	while (stack)
 	{
 		stack = stack->previous;
 		i++;
@@ -76,9 +76,9 @@ int		ft_stacklen(t_stack *stack)
 
 void	ft_stackdel(t_stack **stack)
 {
-	t_stack	 	*cpy;
+	t_stack		*cpy;
 
-	while(*stack)
+	while (*stack)
 	{
 		cpy = *stack;
 		*stack = (*stack)->previous;

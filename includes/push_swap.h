@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 11:37:19 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/03/01 12:08:12 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/03/01 13:00:23 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ typedef struct	s_heaps
 /*
 ** Read and fill stack
 */
-int 			ft_read_and_fillstack(int ac, char **av, t_stack **stack);
+int				ft_read_and_fillstack(int ac, char **av, t_stack **stack);
 
 /*
 ** Heaps tools (A and B)
@@ -55,17 +55,17 @@ void			ft_stackdel(t_stack **stack);
 /*
 ** Motions
 */
-void 			ft_swap_a(t_stack **stack);
-void 			ft_swap_b(t_stack **stack);
-void 			ft_swap_ab(t_heaps **ab);
-void 			ft_push_a(t_heaps **ab);
-void 			ft_push_b(t_heaps **ab);
-void 			ft_rotate_a(t_stack **stack);
-void 			ft_rotate_b(t_stack **stack);
-void 			ft_rotate_ab(t_heaps **ab);
-void 			ft_rrotate_a(t_stack **stack);
-void 			ft_rrotate_b(t_stack **stack);
-void 			ft_rrotate_ab(t_heaps **ab);
+void			ft_swap_a(t_stack **stack);
+void			ft_swap_b(t_stack **stack);
+void			ft_swap_ab(t_heaps **ab);
+void			ft_push_a(t_heaps **ab);
+void			ft_push_b(t_heaps **ab);
+void			ft_rotate_a(t_stack **stack);
+void			ft_rotate_b(t_stack **stack);
+void			ft_rotate_ab(t_heaps **ab);
+void			ft_rrotate_a(t_stack **stack);
+void			ft_rrotate_b(t_stack **stack);
+void			ft_rrotate_ab(t_heaps **ab);
 
 /*
 ** Errors

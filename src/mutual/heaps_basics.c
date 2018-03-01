@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 11:54:35 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/02/28 19:51:12 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/03/01 13:09:18 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	ft_heaps_init(t_heaps **ab)
 	if (!(*ab = (t_heaps*)malloc(sizeof(t_heaps))))
 	{
 		ft_putstr("Error\n");
-		exit (0);
+		exit(0);
 	}
 	(*ab)->a = NULL;
 	(*ab)->b = NULL;
