@@ -6,7 +6,7 @@
 #    By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/05 13:46:57 by ade-verd          #+#    #+#              #
-#    Updated: 2018/03/01 17:34:43 by ade-verd         ###   ########.fr        #
+#    Updated: 2018/03/06 12:51:39 by ade-verd         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,6 @@ SRC_NAME = \
 		   main.c\
 
 SRC_NAME_MUTUAL = \
-		   ft_putstr.c
 
 OBJ_NAME = $(SRC_NAME:.c=.o)
 OBJ_NAME_MUTUAL = $(SRC_NAME_MUTUAL:.c=.o)
@@ -42,7 +41,7 @@ OBJ_NAME_MUTUAL = $(SRC_NAME_MUTUAL:.c=.o)
 SRC = $(addprefix $(SRC_PATH),$(SRC_NAME)) \
 	  $(addprefix $(SRC_PATH_MUTUAL),$(SRC_NAME_MUTUAL))
 OBJ = $(addprefix $(OBJ_PATH),$(OBJ_NAME)) \
-	  $(addprefix $(OBJ_PATH)/$(SRC_PATH_MUTUAL),$(OBJ_NAME_MUTUAL))
+	  $(addprefix $(OBJ_PATH)$(SRC_PATH_MUTUAL),$(OBJ_NAME_MUTUAL))
 
 # Flags with OS Compatibiliy
 OS = $(shell uname)

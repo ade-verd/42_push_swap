@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 11:37:19 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/03/01 13:00:23 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/03/06 13:24:22 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,12 @@
 # include <stdio.h> /* A SUPPRIMER */
 # include <stdlib.h>
 # include "libft.h"
+
+typedef struct	s_buff
+{
+	char 			move[4];
+	struct s_buff	*next;
+}				t_buff;
 
 typedef struct	s_stack
 {
@@ -28,12 +34,15 @@ typedef struct	s_heaps
 {
 	t_stack			*a;
 	t_stack			*b;
+	int 			count_a;
+	int 			count_b;
+
 }				t_heaps;
 
 /*
 ** Read and fill stack
 */
-int				ft_read_and_fillstack(int ac, char **av, t_stack **stack);
+int				ft_read_and_fillstack(int ac, char **av, t_heaps **ab);
 
 /*
 ** Heaps tools (A and B)

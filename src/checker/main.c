@@ -6,14 +6,25 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/27 17:28:18 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/02/28 15:22:11 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/03/06 12:12:15 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "push_swap.h"
 
-int		main(void)
+int		main(int ac, char **av)
 {
-	ft_putstr("Checker OK\n");
-	return (0);
+/*	t_heaps		*ab;
+
+	if (ac > 1)
+	{
+		ft_heaps_init(&ab);
+		if (!(ft_read_and_fillstack(ac, av, &ab->a)))
+			return (0);
+		ft_motions(&ab);
+		ft_heaps_del(&ab);
+	}
+	else
+		ft_error(&ab);
+*/	return (ac + ft_atoi(av[0]));
 }

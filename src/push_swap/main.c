@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/27 17:28:18 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/03/01 12:57:05 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/03/06 13:17:07 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int		main(int ac, char **av)
 	if (ac > 1)
 	{
 		ft_heaps_init(&ab);
-		if (!(ft_read_and_fillstack(ac, av, &ab->a)))
+		if (!(ft_read_and_fillstack(ac, av, &ab)))
 			return (0);
 		ft_motions(&ab);
 		ft_heaps_del(&ab);

@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 17:38:06 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/03/01 13:08:30 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/03/06 13:16:52 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,15 +28,15 @@ int		ft_isnumber(char *str)
 	return (1);
 }
 
-int		ft_read_and_fillstack(int ac, char **av, t_stack **stack)
+int		ft_read_and_fillstack(int ac, char **av, t_heaps **ab)
 {
 	while (ac > 1)
 	{
 		ac--;
 		if (ft_isnumber(av[ac]))
-			ft_stackpush(stack, ft_atoi(av[ac]));
+			ft_stackpush(&(*ab)->a, ft_atoi(av[ac]));
 		else
-			ft_error(stack);
+			ft_error(ab);
 	}
 	return (1);
 }
