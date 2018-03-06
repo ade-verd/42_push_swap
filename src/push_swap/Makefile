@@ -6,7 +6,7 @@
 #    By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/05 13:46:57 by ade-verd          #+#    #+#              #
-#    Updated: 2018/03/01 17:33:29 by ade-verd         ###   ########.fr        #
+#    Updated: 2018/03/06 17:57:45 by ade-verd         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,8 +35,9 @@ SRC_NAME = \
 
 SRC_NAME_MUTUAL = \
 		   reader.c\
-		   heaps_basics.c\
-		   stack_basics.c\
+		   heaps_manager.c\
+		   stack_manager.c\
+		   buffer_manager.c\
 		   errors_manager.c\
 		   \
 		   swap_motion.c\

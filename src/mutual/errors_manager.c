@@ -6,15 +6,21 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 17:35:03 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/03/01 12:57:48 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/03/06 18:01:44 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ft_error(t_heaps **ab)
+void	ft_error(t_heaps **ab, char *precision)
 {
+	if (precision)
+	{
+		ft_putstr(precision);
+		ft_putstr("() ");
+	}
 	ft_putstr("Error\n");
-	ft_heaps_del(ab);
+	if (*ab)
+		ft_heaps_del(ab);
 	exit(0);
 }

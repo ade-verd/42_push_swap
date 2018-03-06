@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 17:48:51 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/03/01 13:14:17 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/03/06 18:04:08 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,16 +37,16 @@ int		ft_rrotate_motion(t_stack **stack)
 	return (0);
 }
 
-void	ft_rrotate_a(t_stack **stack)
+void	ft_rrotate_a(t_heaps **ab)
 {
-	if (ft_rrotate_motion(stack))
-		ft_putstr("rra\n");
+	if (ft_rrotate_motion(&(*ab)->a))
+		ft_moveappend(ab, "rra");
 }
 
-void	ft_rrotate_b(t_stack **stack)
+void	ft_rrotate_b(t_heaps **ab)
 {
-	if (ft_rrotate_motion(stack))
-		ft_putstr("rrb\n");
+	if (ft_rrotate_motion(&(*ab)->b))
+		ft_moveappend(ab, "rrb");
 }
 
 void	ft_rrotate_ab(t_heaps **ab)
@@ -57,9 +57,9 @@ void	ft_rrotate_ab(t_heaps **ab)
 	ret_a = ft_rrotate_motion(&(*ab)->a);
 	ret_b = ft_rrotate_motion(&(*ab)->b);
 	if (ret_a && ret_b)
-		ft_putstr("rrr\n");
+		ft_moveappend(ab, "rrr");
 	else if (ret_a)
-		ft_putstr("rra\n");
+		ft_moveappend(ab, "rra");
 	else if (ret_b)
-		ft_putstr("rrb\n");
+		ft_moveappend(ab, "rrb");
 }

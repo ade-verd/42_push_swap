@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 17:38:06 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/03/06 13:16:52 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/03/06 17:50:55 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int		ft_read_and_fillstack(int ac, char **av, t_heaps **ab)
 		if (ft_isnumber(av[ac]))
 			ft_stackpush(&(*ab)->a, ft_atoi(av[ac]));
 		else
-			ft_error(ab);
+			ft_error(ab, 0);
 	}
 	return (1);
 }

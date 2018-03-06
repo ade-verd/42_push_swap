@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 17:48:51 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/03/06 13:15:29 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/03/06 18:02:47 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	ft_push_a(t_heaps **ab)
 	{
 		ft_stackpush(&(*ab)->a, (*ab)->b->nb);
 		ft_stackpop(&(*ab)->b);
-		ft_putstr("pa\n");
+		ft_moveappend(ab, "pa");
 	}
 }
 
@@ -28,6 +28,6 @@ void	ft_push_b(t_heaps **ab)
 	{
 		ft_stackpush(&(*ab)->b, (*ab)->a->nb);
 		ft_stackpop(&(*ab)->a);
-		ft_putstr("pb\n");
+		ft_moveappend(ab, "pb");
 	}
 }

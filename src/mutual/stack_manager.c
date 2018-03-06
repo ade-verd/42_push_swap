@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stack_basics.c                                     :+:      :+:    :+:   */
+/*   stack_manager.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 11:54:35 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/03/06 13:15:08 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/03/06 17:57:18 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,10 @@ int		ft_stackpush(t_stack **current_link, int new_nb)
 	t_stack		*new_link;
 
 	if (!(new_link = (t_stack*)malloc(sizeof(t_stack))))
+	{
+		ft_putstr("malloc() error\n");
 		return (-1);
+	}
 	new_link->nb = new_nb;
 	new_link->previous = *current_link;
 	*current_link = new_link;
