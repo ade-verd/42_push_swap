@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/27 17:28:18 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/03/07 12:38:01 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/03/07 14:20:39 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,17 +40,26 @@ void	ft_motions(t_heaps **ab)
 	ft_heaps_display(ab, 'a' + 'b');
 	ft_push_b(ab);
 	ft_heaps_display(ab, 'a' + 'b');
+	ft_swap_a(ab);
+	ft_heaps_display(ab, 'a' + 'b');
+	ft_swap_b(ab);
+	ft_heaps_display(ab, 'a' + 'b');
+	ft_swap_ab(ab);
+	ft_heaps_display(ab, 'a' + 'b');
 	ft_push_a(ab);
 	ft_heaps_display(ab, 'a' + 'b');
-	ft_rrotate_b(ab);
+	ft_push_b(ab);
+	ft_heaps_display(ab, 'a' + 'b');
+	ft_rotate_a(ab);
+	ft_heaps_display(ab, 'a' + 'b');
+	ft_rotate_b(ab);
+	ft_heaps_display(ab, 'a' + 'b');
+	ft_rotate_ab(ab);
+	ft_heaps_display(ab, 'a' + 'b');
+	ft_rrotate_a(ab);
 	ft_heaps_display(ab, 'a' + 'b');
 	ft_rrotate_b(ab);
 	ft_heaps_display(ab, 'a' + 'b');
-	ft_rrotate_b(ab);
-	ft_heaps_display(ab, 'a' + 'b');
-	ft_rrotate_ab(ab);
-	ft_heaps_display(ab, 'a' + 'b');
-	ft_del_allmoves(ab);
 	ft_rrotate_ab(ab);
 	ft_heaps_display(ab, 'a' + 'b');
 }
@@ -65,7 +74,7 @@ int		main(int ac, char **av)
 		if (!(ft_read_and_fillstack(ac, av, &ab)))
 			return (0);
 		ft_motions(&ab);
-		ft_displaymoves(&ab);
+		//ft_displaymoves(&ab);
 		ft_heaps_del(&ab);
 	}
 	else

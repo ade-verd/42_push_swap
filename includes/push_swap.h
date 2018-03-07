@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 11:37:19 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/03/06 19:04:32 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/03/07 14:19:24 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ typedef struct	s_buff
 typedef struct	s_stack
 {
 	int				nb;
+	int				index;
 	struct s_stack	*previous;
 
 }				t_stack;
@@ -53,6 +54,7 @@ void			ft_heaps_display(t_heaps **ab, unsigned char c);
 ** Print moves in a buffer
 */
 void			ft_moveappend(t_heaps **ab, char *s);
+void			ft_display_lastmove(t_heaps **ab);
 void			ft_displaymoves(t_heaps **ab);
 void			ft_del_lastmove(t_heaps **ab);
 void			ft_del_allmoves(t_heaps **ab);

@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 11:54:35 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/03/06 17:57:18 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/03/07 14:08:30 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,10 @@ int		ft_stackpush(t_stack **current_link, int new_nb)
 		return (-1);
 	}
 	new_link->nb = new_nb;
+	if (!(*current_link))
+		new_link->index = 1;
+	else
+		new_link->index = (*current_link)->index + 1;
 	new_link->previous = *current_link;
 	*current_link = new_link;
 	return (0);
@@ -54,6 +58,9 @@ void	ft_stackdisplay(t_stack **stack, unsigned char c)
 		while (cpy)
 		{
 			ft_putnbr(cpy->nb);
+			ft_putstr("\033[36m #");
+			ft_putnbr(cpy->index);
+			ft_putstr("\033[0m");
 			if (cpy->previous)
 				ft_putstr(", ");
 			cpy = cpy->previous;

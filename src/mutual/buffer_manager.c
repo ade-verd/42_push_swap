@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/06 14:35:21 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/03/06 19:04:18 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/03/07 14:16:35 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,23 @@ void	ft_displaymoves(t_heaps **ab)
 			ft_putstr(current->move);
 			ft_putchar('\n');
 			current = current->next;
+		}
+	}
+}
+
+void	ft_display_lastmove(t_heaps **ab)
+{
+	t_buff		*current;
+	
+	if ((*ab) && (*ab)->buff)
+	{
+		current = (*ab)->buff;
+		while (current && current->next)
+			current = current->next;
+		if (current)
+		{
+			ft_putstr(current->move);
+			ft_putchar('\n');
 		}
 	}
 }
