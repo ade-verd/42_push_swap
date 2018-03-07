@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 11:54:35 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/03/07 14:08:30 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/03/07 17:46:28 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,8 @@ void	ft_stackdisplay(t_stack **stack, unsigned char c)
 		ft_putstr("(top) ");
 		while (cpy)
 		{
+			ft_putstr("\033[36m");
 			ft_putnbr(cpy->nb);
-			ft_putstr("\033[36m #");
-			ft_putnbr(cpy->index);
 			ft_putstr("\033[0m");
 			if (cpy->previous)
 				ft_putstr(", ");

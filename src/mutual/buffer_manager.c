@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/06 14:35:21 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/03/07 14:16:35 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/03/07 18:58:52 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,9 @@ void	ft_display_lastmove(t_heaps **ab)
 		if (current)
 		{
 			ft_putstr(current->move);
+			ft_putchar('\t');
+			ft_putstr("pivot: ");
+			ft_putnbr((*ab)->pivot);
 			ft_putchar('\n');
 		}
 	}

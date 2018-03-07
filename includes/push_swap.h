@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 11:37:19 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/03/07 14:19:24 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/03/07 18:32:05 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,10 @@ typedef struct	s_heaps
 	t_stack			*a;
 	t_stack			*b;
 	t_buff			*buff;
+	int 			count;
+	int				min;
+	int				max;
+	int				pivot;
 }				t_heaps;
 
 /*
@@ -87,5 +91,10 @@ void			ft_rrotate_ab(t_heaps **ab);
 ** Errors
 */
 void			ft_error(t_heaps **ab, char *precision);
+
+/*
+** Sort
+*/
+void 			ft_sorter(t_heaps **ab);
 
 #endif

@@ -6,7 +6,7 @@
 #    By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/05 13:46:57 by ade-verd          #+#    #+#              #
-#    Updated: 2018/03/06 17:57:45 by ade-verd         ###   ########.fr        #
+#    Updated: 2018/03/07 16:10:43 by ade-verd         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,6 +44,8 @@ SRC_NAME_MUTUAL = \
 		   push_motion.c\
 		   rotate_motion.c\
 		   reverse_rotate_motion.c\
+		   \
+		   sorter.c
 
 OBJ_NAME = $(SRC_NAME:.c=.o)
 OBJ_NAME_MUTUAL = $(SRC_NAME_MUTUAL:.c=.o)
