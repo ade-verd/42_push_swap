@@ -6,64 +6,11 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/27 17:28:18 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/03/08 19:11:55 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/03/12 15:25:07 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-/*
-**		ft_heaps_display(ab, 'a' + 'b');
-**		ft_heaps_display(ab, 'a');
-**		ft_heaps_display(ab, 'b');
-**		ft_swap_a(ab);
-**		ft_swap_b(ab);
-**		ft_swap_ab(ab);
-**		ft_push_a(ab);
-**		ft_push_b(ab);
-**		ft_rotate_a(ab);
-**		ft_rotate_b(ab);
-**		ft_rotate_ab(ab);
-**		ft_rrotate_a(ab);
-**		ft_rrotate_b(ab);
-**		ft_rrotate_ab(ab);
-*/
-
-void	ft_motions(t_heaps **ab)
-{
-	ft_heaps_display(ab, 'a' + 'b');
-	ft_sorter(ab);
-	/*ft_push_b(ab);
-	ft_heaps_display(ab, 'a' + 'b');
-	ft_push_b(ab);
-	ft_heaps_display(ab, 'a' + 'b');
-	ft_push_b(ab);
-	ft_heaps_display(ab, 'a' + 'b');
-	ft_push_b(ab);
-	ft_heaps_display(ab, 'a' + 'b');
-	ft_swap_a(ab);
-	ft_heaps_display(ab, 'a' + 'b');
-	ft_swap_b(ab);
-	ft_heaps_display(ab, 'a' + 'b');
-	ft_swap_ab(ab);
-	ft_heaps_display(ab, 'a' + 'b');
-	ft_push_a(ab);
-	ft_heaps_display(ab, 'a' + 'b');
-	ft_push_b(ab);
-	ft_heaps_display(ab, 'a' + 'b');
-	ft_rotate_a(ab);
-	ft_heaps_display(ab, 'a' + 'b');
-	ft_rotate_b(ab);
-	ft_heaps_display(ab, 'a' + 'b');
-	ft_rotate_ab(ab);
-	ft_heaps_display(ab, 'a' + 'b');
-	ft_rrotate_a(ab);
-	ft_heaps_display(ab, 'a' + 'b');
-	ft_rrotate_b(ab);
-	ft_heaps_display(ab, 'a' + 'b');
-	ft_rrotate_ab(ab);*/
-	//ft_heaps_display(ab, 'a' + 'b');
-}
 
 int		main(int ac, char **av)
 {
@@ -74,8 +21,10 @@ int		main(int ac, char **av)
 		ft_heaps_init(&ab);
 		if (!(ft_read_and_fillstack(ac, av, &ab)))
 			return (0);
-		ft_motions(&ab);
+		ft_heaps_display(&ab, 'a' + 'b');
+		ft_sorter(&ab, ab->pivot_pos);
 		ft_displaymoves(&ab);
+		ft_heaps_display(&ab, 'a' + 'b');
 		ft_heaps_del(&ab);
 	}
 	else

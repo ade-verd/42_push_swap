@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 11:54:35 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/03/07 18:56:52 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/03/12 15:29:09 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	ft_heaps_init(t_heaps **ab)
 	(*ab)->a = NULL;
 	(*ab)->b = NULL;
 	(*ab)->pivot = 0;
+	(*ab)->pivot_pos = 1;
 }
 
 void	ft_heaps_del(t_heaps **ab)
