@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/07 13:24:56 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/03/12 18:13:11 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/03/12 18:50:14 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,10 @@ int		ft_count_bad(t_stack *stack, int pivot, int pos)
 			count++;
 		stack = stack->previous;
 	}
+	if (count == 0)
+		printf("%d est bien placé\t(bad:%d)\n", pivot, count);
+	else
+		printf("%d est mal placé\t(bad:%d)\n", pivot, count);
 	return (count);
 }
 
@@ -59,18 +63,20 @@ int		ft_count_bad(t_stack *stack, int pivot, int pos)
 
 void 	ft_rsorter(t_heaps **ab, int pivot_pos)
 {
-	if (pivot_pos <= 0)
+	if (pivot_pos < 1)
 		return ;
 	if ((*ab)->count > 2)
 	{
 		ft_pivot_value(ab, pivot_pos);
-		ft_interject_pivot(ab);
-		ft_heaps_display(ab, 'a' + 'b');
 		printf("REVERSE SORT pos:%d\n", pivot_pos);
-		if ((ft_count_bad((*ab)->a, (*ab)->pivot, pivot_pos)) == 0)
-			ft_rsorter(ab, pivot_pos - 1);
-		else
+		if ((ft_count_bad((*ab)->a, (*ab)->pivot, pivot_pos)) != 0)
+		{
+			ft_interject_pivot(ab);
+			ft_heaps_display(ab, 'a' + 'b');
 			ft_rsorter(ab, pivot_pos);
+		}
+		else
+			ft_rsorter(ab, pivot_pos - 1);
 	}
 	else if ((*ab)->count == 2 && ((*ab)->a->nb > (*ab)->a->previous->nb))
 		ft_swap_a(ab);
@@ -79,18 +85,20 @@ void 	ft_rsorter(t_heaps **ab, int pivot_pos)
 void 	ft_sorter(t_heaps **ab, int pivot_pos)
 {
 	if (pivot_pos > (*ab)->a->index)
-	//	ft_rsorter(ab, (*ab)->a->index);
-		return ;
+		ft_rsorter(ab, (*ab)->a->index);
+	//	return ;
 	if ((*ab)->count > 2)
 	{
 		ft_pivot_value(ab, pivot_pos);
-		ft_interject_pivot(ab);
-		ft_heaps_display(ab, 'a' + 'b');
 		printf("SORT pos:%d\n", pivot_pos);
-		if ((ft_count_bad((*ab)->a, (*ab)->pivot, pivot_pos)) == 0)
-			ft_sorter(ab, pivot_pos + 1);
-		else
+		if ((ft_count_bad((*ab)->a, (*ab)->pivot, pivot_pos)) != 0)
+		{
+			ft_interject_pivot(ab);
+			ft_heaps_display(ab, 'a' + 'b');
 			ft_sorter(ab, pivot_pos);
+		}
+		else
+			ft_sorter(ab, pivot_pos + 1);
 	}
 	else if ((*ab)->count == 2 && ((*ab)->a->nb > (*ab)->a->previous->nb))
 		ft_swap_a(ab);

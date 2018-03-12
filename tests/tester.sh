@@ -6,7 +6,7 @@
 #    By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/07/26 18:08:32 by aroulin           #+#    #+#              #
-#    Updated: 2018/03/12 14:11:26 by ade-verd         ###   ########.fr        #
+#    Updated: 2018/03/12 18:43:01 by ade-verd         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,5 +28,6 @@ then
 	((NBRCOUP--))
 fi
 #TEST=$(./push_swap $ARG | ./checker $ARG);
+echo "List: $ARG"
 ./push_swap $ARG
 echo "Number of movements: $NBRCOUP"

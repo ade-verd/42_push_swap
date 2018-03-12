@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/02 17:21:44 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/03/12 18:06:56 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/03/12 18:52:19 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ void 	ft_pivot_value(t_heaps **ab, int pivot_index)
 			(*ab)->pivot = current->nb;
 			(*ab)->pivot_pos = pivot_index;
 		}
-		printf("pivot:%d\n", (*ab)->pivot);
 	}
 }
 
@@ -45,9 +44,6 @@ void	ft_place_pivot_on_bottop(t_heaps **ab, int offset, int target)
 			ft_rotate_a(ab);
 			ft_heaps_display(ab, 'a' + 'b');
 			pivot_pos = pivot_pos == (*ab)->a->index ? 1 : pivot_pos + 1;
-			printf("ab->->index:%d\t", (*ab)->a->index);
-			printf("target:%d\t", target);
-			printf("pivot_pos:%d\n", pivot_pos);
 		}
 		else
 		{
@@ -66,7 +62,6 @@ void	ft_interject_pivot_pushinf(t_heaps **ab)
 	int 	pivot;
 	int 	offset;
 
-	printf("INF\n");
 	count = ft_count_val((*ab)->a, (*ab)->pivot, "<=");
 	pivot = (*ab)->pivot;
 	offset = 0;
@@ -100,7 +95,6 @@ void	ft_interject_pivot_pushsup(t_heaps **ab)
 	int		offset;
 	int 	pivot;
 
-	printf("SUP\n");
 	count = ft_count_val((*ab)->a, (*ab)->pivot, ">=");
 	offset = 0;
 	pivot = (*ab)->pivot;
