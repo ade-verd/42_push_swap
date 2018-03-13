@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/07 13:24:56 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/03/12 18:50:14 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/03/13 18:28:54 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,9 @@ int		ft_count_bad(t_stack *stack, int pivot, int pos)
 		stack = stack->previous;
 	}
 	if (count == 0)
-		printf("%d est bien placé\t(bad:%d)\n", pivot, count);
+		printf("%s%d est bien placé\t(bad:%d)%s\n", "\033[1;32m", pivot, count, "\033[0m");
 	else
-		printf("%d est mal placé\t(bad:%d)\n", pivot, count);
+		printf("%s%d est mal placé\t(bad:%d)%s\n", "\033[1;31m", pivot, count, "\033[0m");
 	return (count);
 }
 
@@ -72,7 +72,6 @@ void 	ft_rsorter(t_heaps **ab, int pivot_pos)
 		if ((ft_count_bad((*ab)->a, (*ab)->pivot, pivot_pos)) != 0)
 		{
 			ft_interject_pivot(ab);
-			ft_heaps_display(ab, 'a' + 'b');
 			ft_rsorter(ab, pivot_pos);
 		}
 		else
@@ -84,9 +83,9 @@ void 	ft_rsorter(t_heaps **ab, int pivot_pos)
 
 void 	ft_sorter(t_heaps **ab, int pivot_pos)
 {
-	if (pivot_pos > (*ab)->a->index)
-		ft_rsorter(ab, (*ab)->a->index);
-	//	return ;
+	if (pivot_pos > (*ab)->a->index || pivot_pos > 3)
+	//	ft_rsorter(ab, (*ab)->a->index);
+		return ;
 	if ((*ab)->count > 2)
 	{
 		ft_pivot_value(ab, pivot_pos);
@@ -94,7 +93,6 @@ void 	ft_sorter(t_heaps **ab, int pivot_pos)
 		if ((ft_count_bad((*ab)->a, (*ab)->pivot, pivot_pos)) != 0)
 		{
 			ft_interject_pivot(ab);
-			ft_heaps_display(ab, 'a' + 'b');
 			ft_sorter(ab, pivot_pos);
 		}
 		else
