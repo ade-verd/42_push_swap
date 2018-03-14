@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/06 14:35:21 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/03/13 18:28:30 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/03/14 17:35:06 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,18 +37,21 @@ void	ft_moveappend(t_heaps **ab, char *s)
 	}
 	else
 		(*ab)->buff = new;
-	ft_heaps_display(ab, 'a' + 'b');
+	//ft_heaps_display(ab, 'a' + 'b');
 }
 
-void	ft_displaymoves(t_heaps **ab)
+void	ft_displaymoves(t_heaps **ab, int display_number_moves)
 {
 	t_buff		*current;
+	int 		nb;
 	
+	nb = 0;
 	if ((*ab) && (*ab)->buff)
 	{
 		current = (*ab)->buff;
 		while (current)
 		{
+			nb++;
 			ft_putstr(current->move);
 			if (current->next) //A supprimer
 				ft_putstr(", "); //A supprimer
@@ -56,6 +59,12 @@ void	ft_displaymoves(t_heaps **ab)
 			current = current->next;
 		}
 		ft_putchar('\n'); //A supprimer
+	}
+	if (display_number_moves == 1)
+	{
+		ft_putstr("Number of movements: ");
+		ft_putnbr(nb);
+		ft_putchar('\n');
 	}
 }
 

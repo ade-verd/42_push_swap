@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/02 17:21:44 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/03/14 14:44:51 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/03/14 17:36:16 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,25 +32,23 @@ void 	ft_pivot_value(t_heaps **ab, int pivot_index)
 void	ft_place_on_target(t_heaps **ab, int toplace_index, int target_index)
 {
 	float	median_index;
+	int 	sens;
 
-	printf("START REPLACE\n");
 	median_index = (*ab)->a->index / 2;
+	sens = toplace_index > median_index ? 1 : -1;
 	while (toplace_index != target_index)
 	{
-		if (toplace_index > median_index)
+		if (sens == 1)
 		{
 			ft_rotate_a(ab);
-			toplace_index = (*ab)->a->index ? 1 : toplace_index + 1;
-			printf("(*ab)->pivot_pos:%d\n", (*ab)->pivot_pos);
+			toplace_index = toplace_index == (*ab)->a->index ? 1 : toplace_index + 1;
 		}
 		else
 		{
 			ft_rrotate_a(ab);
-			toplace_index = 1 ? (*ab)->a->index : toplace_index - 1;
-			printf("(*ab)->pivot_pos:%d\n", (*ab)->pivot_pos);
+			toplace_index = toplace_index == 1 ? (*ab)->a->index : toplace_index - 1;
 		}
 	}
-	printf("END REPLACE\n");
 }
 
 void	ft_interject_pivot_pushinf(t_heaps **ab)
@@ -58,7 +56,6 @@ void	ft_interject_pivot_pushinf(t_heaps **ab)
 	int		count;
 	int 	pivot;
 
-	printf("%s\n", __FUNCTION__);
 	count = ft_count_val((*ab)->a, (*ab)->pivot, "<");
 	pivot = (*ab)->pivot;
 	while ((*ab) && (*ab)->a && count)
@@ -66,19 +63,20 @@ void	ft_interject_pivot_pushinf(t_heaps **ab)
 		if ((*ab)->a->nb < pivot)
 		{
 			ft_push_b(ab);
+			if ((*ab)->b->previous && (*ab)->b->nb < (*ab)->b->previous->nb)
+				ft_swap_b(ab);
 			count--;
 		}
 		else
-		{
 			ft_rrotate_a(ab);
-			printf("(*ab)->pivot_pos:%d\n", (*ab)->pivot_pos);
-		}
 	}
 	ft_place_on_target(ab, (*ab)->pivot_pos, (*ab)->a->index);
 	while ((*ab) && (*ab)->b)
 	{
-		ft_push_a(ab);
-		printf("(*ab)->pivot_pos:%d\n", (*ab)->pivot_pos);
+		if ((*ab)->b->previous && (*ab)->b->nb < (*ab)->b->previous->nb)
+			ft_swap_b(ab);
+		else
+			ft_push_a(ab);
 	}
 }
 
@@ -87,7 +85,6 @@ void	ft_interject_pivot_pushsup(t_heaps **ab)
 	int 	count;
 	int 	pivot;
 
-	printf("%s\n", __FUNCTION__);
 	count = ft_count_val((*ab)->a, (*ab)->pivot, ">");
 	pivot = (*ab)->pivot;
 	while ((*ab) && (*ab)->a && count)
@@ -95,22 +92,24 @@ void	ft_interject_pivot_pushsup(t_heaps **ab)
 		if ((*ab)->a->nb > pivot)
 		{
 			ft_push_b(ab);
+			if ((*ab)->b->previous && (*ab)->b->nb < (*ab)->b->previous->nb)
+				ft_swap_b(ab);
 			count--;
 		}
 		else
-		{
 			ft_rotate_a(ab);
-			printf("(*ab)->pivot_pos:%d\n", (*ab)->pivot_pos);
-		}
 	}
 	ft_place_on_target(ab, (*ab)->pivot_pos, 1);
 	while ((*ab) && (*ab)->b)
 	{
-		ft_push_a(ab);
-		ft_rotate_a(ab);
-		printf("(*ab)->pivot_pos:%d\n", (*ab)->pivot_pos);
+		if ((*ab)->b->previous && (*ab)->b->nb < (*ab)->b->previous->nb)
+			ft_swap_b(ab);
+		else
+		{
+			ft_push_a(ab);
+			ft_rotate_a(ab);
+		}
 	}
-	printf("fin\n");
 }
 
 int		ft_find_index(t_stack *stack, int nb)
@@ -133,17 +132,14 @@ void	ft_interject_pivot(t_heaps **ab)
 
 	if ((*ab)->pivot == (*ab)->min && (*ab)->pivot_pos != (*ab)->a->index)
 	{
-		printf("MIN\n");
 		ft_place_on_target(ab, (*ab)->pivot_pos,(*ab)->a->index);
 		ft_push_b(ab);
 		if ((max_index = ft_find_index((*ab)->a, (*ab)->max)) > 1)
 			ft_place_on_target(ab, max_index, 1);
-		printf("(*ab)->pivot_pos:%d\n", (*ab)->pivot_pos);
 		ft_push_a(ab);
 	}
 	else
 	{
-		printf("ELSE\n");
 		if (ft_count_val((*ab)->a, (*ab)->pivot, "<")
 			<= (ft_count_val((*ab)->a, (*ab)->pivot, ">") + 1))
 			ft_interject_pivot_pushinf(ab);
