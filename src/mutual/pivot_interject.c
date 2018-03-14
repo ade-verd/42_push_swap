@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/02 17:21:44 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/03/13 18:46:34 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/03/14 14:44:51 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,41 +29,38 @@ void 	ft_pivot_value(t_heaps **ab, int pivot_index)
 	}
 }
 
-void	ft_place_pivot_on_bottop(t_heaps **ab, int pivot_pos, int target)
+void	ft_place_on_target(t_heaps **ab, int toplace_index, int target_index)
 {
-	float	median;
+	float	median_index;
 
-	printf("START OFFSET REPLACE\n");
-	median = (*ab)->a->index / 2;
-	while (pivot_pos != target)
+	printf("START REPLACE\n");
+	median_index = (*ab)->a->index / 2;
+	while (toplace_index != target_index)
 	{
-		printf("pivot_pos:%d\ttarget:%d\n", pivot_pos, target);
-		if (pivot_pos > median)
+		if (toplace_index > median_index)
 		{
 			ft_rotate_a(ab);
-			pivot_pos = pivot_pos == (*ab)->a->index ? 1 : pivot_pos + 1;
+			toplace_index = (*ab)->a->index ? 1 : toplace_index + 1;
+			printf("(*ab)->pivot_pos:%d\n", (*ab)->pivot_pos);
 		}
 		else
 		{
 			ft_rrotate_a(ab);
-			pivot_pos = pivot_pos == 1 ? (*ab)->a->index : pivot_pos - 1;
+			toplace_index = 1 ? (*ab)->a->index : toplace_index - 1;
+			printf("(*ab)->pivot_pos:%d\n", (*ab)->pivot_pos);
 		}
-		printf("pivot_pos:%d\ttarget:%d\n", pivot_pos, target);
 	}
-	(*ab)->pivot_pos = target; 
-	printf("END OFFSET REPLACE\n");
+	printf("END REPLACE\n");
 }
 
 void	ft_interject_pivot_pushinf(t_heaps **ab)
 {
 	int		count;
 	int 	pivot;
-	int 	pos;
 
 	printf("%s\n", __FUNCTION__);
 	count = ft_count_val((*ab)->a, (*ab)->pivot, "<");
 	pivot = (*ab)->pivot;
-	pos = (*ab)->pivot_pos;
 	while ((*ab) && (*ab)->a && count)
 	{
 		if ((*ab)->a->nb < pivot)
@@ -74,16 +71,14 @@ void	ft_interject_pivot_pushinf(t_heaps **ab)
 		else
 		{
 			ft_rrotate_a(ab);
-			pos = (pos == 1) ? (*ab)->a->index : pos - 1;
+			printf("(*ab)->pivot_pos:%d\n", (*ab)->pivot_pos);
 		}
-		printf("pos:%d\n", pos);
 	}
-	ft_place_pivot_on_bottop(ab, pos, (*ab)->a->index);
+	ft_place_on_target(ab, (*ab)->pivot_pos, (*ab)->a->index);
 	while ((*ab) && (*ab)->b)
 	{
 		ft_push_a(ab);
-		(*ab)->pivot_pos = (*ab)->pivot_pos == 1
-			? (*ab)->a->index : (*ab)->pivot_pos - 1; 
+		printf("(*ab)->pivot_pos:%d\n", (*ab)->pivot_pos);
 	}
 }
 
@@ -91,12 +86,10 @@ void	ft_interject_pivot_pushsup(t_heaps **ab)
 {
 	int 	count;
 	int 	pivot;
-	int		pos;
 
 	printf("%s\n", __FUNCTION__);
 	count = ft_count_val((*ab)->a, (*ab)->pivot, ">");
 	pivot = (*ab)->pivot;
-	pos = (*ab)->pivot_pos;
 	while ((*ab) && (*ab)->a && count)
 	{
 		if ((*ab)->a->nb > pivot)
@@ -107,16 +100,15 @@ void	ft_interject_pivot_pushsup(t_heaps **ab)
 		else
 		{
 			ft_rotate_a(ab);
-			pos = (pos == (*ab)->a->index) ? 1 : pos + 1;
+			printf("(*ab)->pivot_pos:%d\n", (*ab)->pivot_pos);
 		}
 	}
-	ft_place_pivot_on_bottop(ab, pos, 1);
+	ft_place_on_target(ab, (*ab)->pivot_pos, 1);
 	while ((*ab) && (*ab)->b)
 	{
 		ft_push_a(ab);
 		ft_rotate_a(ab);
-		(*ab)->pivot_pos = (*ab)->pivot_pos == (*ab)->a->index 
-			? 1 : (*ab)->pivot_pos + 1; 
+		printf("(*ab)->pivot_pos:%d\n", (*ab)->pivot_pos);
 	}
 	printf("fin\n");
 }
@@ -137,23 +129,18 @@ int		ft_find_index(t_stack *stack, int nb)
 
 void	ft_interject_pivot(t_heaps **ab)
 {
-	int 	pos;
+	int 	max_index;
 
 	if ((*ab)->pivot == (*ab)->min && (*ab)->pivot_pos != (*ab)->a->index)
 	{
 		printf("MIN\n");
-		ft_place_pivot_on_bottop(ab, (*ab)->pivot_pos, (*ab)->a->index);
+		ft_place_on_target(ab, (*ab)->pivot_pos,(*ab)->a->index);
 		ft_push_b(ab);
-		if ((pos = ft_find_index((*ab)->a, (*ab)->max)) > 1)
-			ft_place_pivot_on_bottop(ab, pos, 1);
+		if ((max_index = ft_find_index((*ab)->a, (*ab)->max)) > 1)
+			ft_place_on_target(ab, max_index, 1);
 		printf("(*ab)->pivot_pos:%d\n", (*ab)->pivot_pos);
 		ft_push_a(ab);
 	}
-	/*else if ((*ab)->pivot == (*ab)->max && (*ab)->pivot_pos != 1)
-	{
-		printf("MAX\n");
-		ft_place_pivot_on_bottop(ab, (*ab)->pivot_pos - 1, 1);
-	}*/
 	else
 	{
 		printf("ELSE\n");

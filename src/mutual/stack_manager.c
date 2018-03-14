@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 11:54:35 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/03/13 12:27:52 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/03/14 12:38:54 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,20 +49,23 @@ int		ft_stackpop(t_stack **stack)
 void	ft_stackdisplay(t_stack **stack, unsigned char c)
 {
 	t_stack		*cpy;
+	int 		next;
 
 	ft_putchar(ft_toupper(c));
 	ft_putstr(":\t");
 	if (*stack)
 	{
 		cpy = *stack;
+		next = cpy->nb;
 		ft_putstr("(top) ");
 		while (cpy)
 		{
-			ft_putstr("\033[36m");
+			cpy->nb < next ? ft_putstr("\033[31m") : ft_putstr("\033[36m");
 			ft_putnbr(cpy->nb);
 			ft_putstr("\033[0m");
 			if (cpy->previous)
 				ft_putstr(", ");
+			next = cpy->nb;
 			cpy = cpy->previous;
 		}
 		ft_putstr(" (end)\n");

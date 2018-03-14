@@ -6,11 +6,19 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 17:48:51 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/03/13 14:54:34 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/03/14 13:18:20 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+static void	ft_adjust_pivot_pos(t_heaps **ab)
+{
+	if ((*ab)->pivot_pos == (*ab)->a->index)
+		(*ab)->pivot_pos = 1;
+	else
+		(*ab)->pivot_pos++;
+}
 
 static int	ft_rotate_motion(t_stack **stack)
 {
@@ -35,7 +43,10 @@ static int	ft_rotate_motion(t_stack **stack)
 void		ft_rotate_a(t_heaps **ab)
 {
 	if (ft_rotate_motion(&(*ab)->a))
+	{
 		ft_moveappend(ab, "ra");
+		ft_adjust_pivot_pos(ab);
+	}
 }
 
 void		ft_rotate_b(t_heaps **ab)
@@ -52,9 +63,15 @@ void		ft_rotate_ab(t_heaps **ab)
 	ret_a = ft_rotate_motion(&(*ab)->a);
 	ret_b = ft_rotate_motion(&(*ab)->b);
 	if (ret_a && ret_b)
+	{
 		ft_moveappend(ab, "rr");
+		ft_adjust_pivot_pos(ab);
+	}
 	else if (ret_a)
+	{
 		ft_moveappend(ab, "ra");
+		ft_adjust_pivot_pos(ab);
+	}
 	else if (ret_b)
 		ft_moveappend(ab, "rb");
 }
