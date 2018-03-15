@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 17:48:51 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/03/15 13:35:45 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/03/15 17:38:57 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,22 +40,23 @@ static int	ft_rotate_motion(t_stack **stack)
 	return (0);
 }
 
-void		ft_rotate_a(t_heaps **ab)
+void		ft_rotate_a(t_heaps **ab, int apply)
 {
 	if (ft_rotate_motion(&(*ab)->a))
 	{
-		ft_moveappend(ab, "ra");
+		if (apply == 1)
+			ft_moveappend(ab, "ra");
 		ft_adjust_pivot_pos(ab);
 	}
 }
 
-void		ft_rotate_b(t_heaps **ab)
+void		ft_rotate_b(t_heaps **ab, int apply)
 {
-	if (ft_rotate_motion(&(*ab)->b))
+	if (ft_rotate_motion(&(*ab)->b) && apply == 1)
 		ft_moveappend(ab, "rb");
 }
 
-void		ft_rotate_ab(t_heaps **ab)
+void		ft_rotate_ab(t_heaps **ab, int apply)
 {
 	int		ret_a;
 	int		ret_b;
@@ -64,14 +65,16 @@ void		ft_rotate_ab(t_heaps **ab)
 	ret_b = ft_rotate_motion(&(*ab)->b);
 	if (ret_a && ret_b)
 	{
-		ft_moveappend(ab, "rr");
+		if (apply == 1)
+			ft_moveappend(ab, "rr");
 		ft_adjust_pivot_pos(ab);
 	}
 	else if (ret_a)
 	{
-		ft_moveappend(ab, "ra");
+		if (apply == 1)
+			ft_moveappend(ab, "ra");
 		ft_adjust_pivot_pos(ab);
 	}
-	else if (ret_b)
+	else if (ret_b && apply == 1)
 		ft_moveappend(ab, "rb");
 }

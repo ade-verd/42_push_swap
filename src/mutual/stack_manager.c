@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 11:54:35 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/03/15 13:27:45 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/03/15 16:30:44 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,13 @@ int		ft_stackpush(t_stack **current_link, int new_nb, char id)
 	if (!(*current_link))
 		new_link->index = 1;
 	else
+	{
 		new_link->index = (*current_link)->index + 1;
+		(*current_link)->prev = new_link;
+	}
 	new_link->id = id;
 	new_link->next = *current_link;
+	new_link->prev = NULL;
 	*current_link = new_link;
 	return (0);
 }

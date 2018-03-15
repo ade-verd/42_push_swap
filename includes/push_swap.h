@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 11:37:19 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/03/15 13:23:43 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/03/15 18:03:52 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 typedef struct	s_buff
 {
 	char 			move[4];
+	int				index;
 	struct s_buff	*next;
 	struct s_buff	*prev;
 }				t_buff;
@@ -79,17 +80,25 @@ void			ft_stackdel(t_stack **stack);
 /*
 ** Motions
 */
-void			ft_swap_a(t_heaps **ab);
-void			ft_swap_b(t_heaps **ab);
-void			ft_swap_ab(t_heaps **ab);
-void			ft_push_a(t_heaps **ab);
-void			ft_push_b(t_heaps **ab);
-void			ft_rotate_a(t_heaps **ab);
-void			ft_rotate_b(t_heaps **ab);
-void			ft_rotate_ab(t_heaps **ab);
-void			ft_rrotate_a(t_heaps **ab);
-void			ft_rrotate_b(t_heaps **ab);
-void			ft_rrotate_ab(t_heaps **ab);
+void			ft_swap_a(t_heaps **ab, int apply);
+void			ft_swap_b(t_heaps **ab, int apply);
+void			ft_swap_ab(t_heaps **ab, int apply);
+void			ft_push_a(t_heaps **ab, int apply);
+void			ft_push_b(t_heaps **ab, int apply);
+void			ft_rotate_a(t_heaps **ab, int apply);
+void			ft_rotate_b(t_heaps **ab, int apply);
+void			ft_rotate_ab(t_heaps **ab, int apply);
+void			ft_rrotate_a(t_heaps **ab, int apply);
+void			ft_rrotate_b(t_heaps **ab, int apply);
+void			ft_rrotate_ab(t_heaps **ab, int apply);
+void			ft_reverse_motion(t_heaps **ab, char *move);
+
+typedef struct	s_ft
+{
+	char		move[4];
+	char		rmove[4];
+	void		(*f)(t_heaps **ab, int apply);
+}				t_ft;
 
 /*
 ** Errors
