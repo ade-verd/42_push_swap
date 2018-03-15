@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/02 17:21:44 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/03/15 12:27:10 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/03/15 13:04:24 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void	ft_place_on_target(t_heaps **ab, int toplace_index, int target_index)
 	float	median_index;
 	int 	sens;
 
+	printf("START REPLACE\n___\n");
 	median_index = (*ab)->a->index / 2;
 	sens = toplace_index > median_index ? 1 : -1;
 	while (toplace_index != target_index)
@@ -32,6 +33,7 @@ void	ft_place_on_target(t_heaps **ab, int toplace_index, int target_index)
 			toplace_index = toplace_index == 1 ? (*ab)->a->index : toplace_index - 1;
 		}
 	}
+	printf("END REPLACE\n___\n");
 }
 
 void	ft_interject_pivot_pushinf(t_heaps **ab)
@@ -75,7 +77,7 @@ void	ft_interject_pivot_pushsup(t_heaps **ab)
 		if ((*ab)->a->nb > pivot)
 		{
 			ft_push_b(ab);
-			if ((*ab)->b->previous && (*ab)->b->nb < (*ab)->b->previous->nb)
+			if ((*ab)->b->previous && (*ab)->b->nb > (*ab)->b->previous->nb)
 				ft_swap_b(ab);
 			count--;
 		}
@@ -85,7 +87,7 @@ void	ft_interject_pivot_pushsup(t_heaps **ab)
 	ft_place_on_target(ab, (*ab)->pivot_pos, 1);
 	while ((*ab) && (*ab)->b)
 	{
-		if ((*ab)->b->previous && (*ab)->b->nb < (*ab)->b->previous->nb)
+		if ((*ab)->b->previous && (*ab)->b->nb > (*ab)->b->previous->nb)
 			ft_swap_b(ab);
 		else
 		{
@@ -111,8 +113,8 @@ void	ft_interject_pivot(t_heaps **ab)
 	{
 		if (ft_count_val((*ab)->a, (*ab)->pivot, "<")
 			<= (ft_count_val((*ab)->a, (*ab)->pivot, ">") + 1))
-			ft_interject_pivot_pushinf(ab);
+			ft_interject_pivot_pushsup(ab);
 		else
-			ft_interject_pivot_pushinf(ab);
+			ft_interject_pivot_pushsup(ab);
 	}
 }
