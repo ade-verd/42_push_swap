@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 17:48:51 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/03/14 12:53:34 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/03/15 13:35:20 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static int	ft_swap_motion(t_stack **stack)
 {
 	if (ft_stacklen(*stack) > 1)
 	{
-		ft_swap(&(*stack)->nb, &(*stack)->previous->nb);
+		ft_swap(&(*stack)->nb, &(*stack)->next->nb);
 		return (1);
 	}
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 11:37:19 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/03/15 12:28:18 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/03/15 13:23:43 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ typedef struct	s_buff
 {
 	char 			move[4];
 	struct s_buff	*next;
+	struct s_buff	*prev;
 }				t_buff;
 
 typedef struct	s_stack
@@ -28,7 +29,8 @@ typedef struct	s_stack
 	char			id;
 	int				nb;
 	int				index;
-	struct s_stack	*previous;
+	struct s_stack	*next;
+	struct s_stack	*prev;
 
 }				t_stack;
 

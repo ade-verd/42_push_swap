@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/15 12:25:12 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/03/15 12:26:18 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/03/15 13:37:48 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int		ft_count_val(t_stack *stack, int val, char *sign)
 			count++;
 		else if (ft_strchr(sign, '=') && stack->nb == val)
 			count++;
-		stack = stack->previous;
+		stack = stack->next;
 	}
 	return (count);
 }
@@ -41,7 +41,7 @@ int		ft_count_bad(t_stack *stack, int pivot, int pos)
 			count++;
 		if (stack->nb < pivot && stack->index < pos)
 			count++;
-		stack = stack->previous;
+		stack = stack->next;
 	}
 	return (count);
 }
@@ -55,7 +55,7 @@ int		ft_find_index(t_stack *stack, int nb)
 	{
 		if (stack->nb == nb)
 			return (stack->index);
-		stack = stack->previous;
+		stack = stack->next;
 	}
 	return (-1);
 }

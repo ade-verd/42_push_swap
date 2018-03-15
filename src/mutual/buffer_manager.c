@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/06 14:35:21 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/03/15 12:42:35 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/03/15 16:14:54 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ void	ft_moveappend(t_heaps **ab, char *s)
 {
 	int 	i;
 	t_buff	*new;
-	t_buff	*current;
 
 	i = 0;
 	if (!(new = (t_buff*)malloc(sizeof(t_buff))))
@@ -27,16 +26,11 @@ void	ft_moveappend(t_heaps **ab, char *s)
 		i++;
 	}
 	new->move[i] = '\0';
-	new->next = NULL;
-	current = (*ab)->buff;
-	if (current)
-	{
-		while (current->next)
-			current = current->next;
-		current->next = new;
-	}
-	else
-		(*ab)->buff = new;
+	new->prev = NULL; 
+	new->next = (*ab)->buff;
+	if ((*ab)->buff)
+		(*ab)->buff->prev = new;
+	(*ab)->buff = new;
 	ft_heaps_display(ab, 'a' + 'b');
 }
 
@@ -49,14 +43,16 @@ void	ft_displaymoves(t_heaps **ab, int display_number_moves)
 	if ((*ab) && (*ab)->buff)
 	{
 		current = (*ab)->buff;
+		while (current && current->next)
+			current = current->next;
 		while (current)
 		{
 			nb++;
 			ft_putstr(current->move);
-			if (current->next) //A supprimer
+			if (current->prev) //A supprimer
 				ft_putstr(", "); //A supprimer
 			//ft_putchar('\n'); //A afficher
-			current = current->next;
+			current = current->prev;
 		}
 		ft_putchar('\n'); //A supprimer
 	}
@@ -70,43 +66,32 @@ void	ft_displaymoves(t_heaps **ab, int display_number_moves)
 
 void	ft_display_lastmove(t_heaps **ab)
 {
-	t_buff		*current;
-	
 	if ((*ab) && (*ab)->buff)
 	{
-		current = (*ab)->buff;
-		while (current && current->next)
-			current = current->next;
-		if (current)
-		{
-			ft_putstr(current->move);
-			ft_putchar('\t');
-			ft_putstr("pivot: ");
-			ft_putnbr((*ab)->pivot);
-			ft_putchar('\n');
-		}
+		ft_putstr((*ab)->buff->move);
+		ft_putchar('\t');
+		ft_putstr("pivot: ");
+		ft_putnbr((*ab)->pivot);
+		ft_putchar('\n');
 	}
 }
 
 void	ft_del_lastmove(t_heaps **ab)
 {
-	t_buff		*current;
-	
-	if ((*ab) && (*ab)->buff)
+	t_buff	*cpy;
+
+	if ((*ab) && (*ab)->buff && (*ab)->buff->next)
 	{
-		current = (*ab)->buff;
-		while (current && current->next && current->next->next)
-			current = current->next;
-		if (current->next)
-		{
-			ft_memdel((void**)&current->next);
-			current->next = NULL;
-		}
-		else if (current)
-		{
-			ft_memdel((void**)&current);
-			(*ab)->buff = NULL;
-		}
+		cpy = (*ab)->buff;
+		(*ab)->buff = (*ab)->buff->next;
+		(*ab)->buff->prev = NULL;
+		ft_memdel((void**)&cpy);
+	}
+	else if ((*ab) && (*ab)->buff)
+	{
+		cpy = (*ab)->buff;
+		(*ab)->buff = NULL;
+		ft_memdel((void**)&cpy);
 	}
 }
 

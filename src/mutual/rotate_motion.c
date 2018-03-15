@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 17:48:51 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/03/14 13:18:20 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/03/15 13:35:45 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,10 @@ static int	ft_rotate_motion(t_stack **stack)
 	if (ft_stacklen(cpy) > 1)
 	{
 		first = cpy->nb;
-		while (cpy->previous)
+		while (cpy->next)
 		{
-			cpy->nb = cpy->previous->nb;
-			cpy = cpy->previous;
+			cpy->nb = cpy->next->nb;
+			cpy = cpy->next;
 		}
 		cpy->nb = first;
 		return (1);

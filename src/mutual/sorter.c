@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/07 13:24:56 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/03/15 12:27:07 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/03/15 13:36:14 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void 	ft_pivot_value(t_heaps **ab, int pivot_index)
 	{
 		current = (*ab)->a;
 		while (current && current->index > pivot_index)
-			current = current->previous;
+			current = current->next;
 		if (current->index == pivot_index)
 		{
 			(*ab)->pivot = current->nb;
@@ -55,7 +55,7 @@ void 	ft_rsorter(t_heaps **ab, int pivot_pos)
 		else
 			ft_rsorter(ab, pivot_pos - 1);
 	}
-	else if ((*ab)->count == 2 && ((*ab)->a->nb > (*ab)->a->previous->nb))
+	else if ((*ab)->count == 2 && ((*ab)->a->nb > (*ab)->a->next->nb))
 		ft_swap_a(ab);
 }
 
@@ -77,6 +77,6 @@ void 	ft_sorter(t_heaps **ab, int pivot_pos)
 		else
 			ft_sorter(ab, pivot_pos + 1);
 	}
-	else if ((*ab)->count == 2 && ((*ab)->a->nb > (*ab)->a->previous->nb))
+	else if ((*ab)->count == 2 && ((*ab)->a->nb > (*ab)->a->next->nb))
 		ft_swap_a(ab);
 }
