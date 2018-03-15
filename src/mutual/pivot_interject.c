@@ -6,28 +6,11 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/02 17:21:44 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/03/14 17:36:16 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/03/15 12:27:10 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-void 	ft_pivot_value(t_heaps **ab, int pivot_index)
-{
-	t_stack	*current;
-
-	if ((*ab) && (*ab)->a)
-	{
-		current = (*ab)->a;
-		while (current && current->index > pivot_index)
-			current = current->previous;
-		if (current->index == pivot_index)
-		{
-			(*ab)->pivot = current->nb;
-			(*ab)->pivot_pos = pivot_index;
-		}
-	}
-}
 
 void	ft_place_on_target(t_heaps **ab, int toplace_index, int target_index)
 {
@@ -110,20 +93,6 @@ void	ft_interject_pivot_pushsup(t_heaps **ab)
 			ft_rotate_a(ab);
 		}
 	}
-}
-
-int		ft_find_index(t_stack *stack, int nb)
-{
-	int 	index;
-
-	index = stack->index;
-	while (stack->index > 0)
-	{
-		if (stack->nb == nb)
-			return (stack->index);
-		stack = stack->previous;
-	}
-	return (-1);
 }
 
 void	ft_interject_pivot(t_heaps **ab)

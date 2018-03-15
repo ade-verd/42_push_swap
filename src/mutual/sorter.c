@@ -6,44 +6,27 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/07 13:24:56 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/03/14 17:35:55 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/03/15 12:27:07 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int		ft_count_val(t_stack *stack, int val, char *sign)
+void 	ft_pivot_value(t_heaps **ab, int pivot_index)
 {
-	int		count;
+	t_stack	*current;
 
-	count = ft_strchr(sign, '=') ? -1 : 0;
-	while (stack)
+	if ((*ab) && (*ab)->a)
 	{
-		if (sign[0] == '>' && stack->nb > val)
-			count++;
-		else if (sign[0] == '<' && stack->nb < val)
-			count++;
-		else if (ft_strchr(sign, '=') && stack->nb == val)
-			count++;
-		stack = stack->previous;
+		current = (*ab)->a;
+		while (current && current->index > pivot_index)
+			current = current->previous;
+		if (current->index == pivot_index)
+		{
+			(*ab)->pivot = current->nb;
+			(*ab)->pivot_pos = pivot_index;
+		}
 	}
-	return (count);
-}
-
-int		ft_count_bad(t_stack *stack, int pivot, int pos)
-{
-	int		count;
-
-	count = 0;
-	while (stack)
-	{
-		if (stack->nb > pivot && stack->index > pos)
-			count++;
-		if (stack->nb < pivot && stack->index < pos)
-			count++;
-		stack = stack->previous;
-	}
-	return (count);
 }
 
 /*

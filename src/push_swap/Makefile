@@ -46,6 +46,7 @@ SRC_NAME_MUTUAL = \
 		   reverse_rotate_motion.c\
 		   \
 		   sorter.c\
+		   counter_tools.c\
 		   pivot_interject.c\
 
 OBJ_NAME = $(SRC_NAME:.c=.o)
