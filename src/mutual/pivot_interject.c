@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/02 17:21:44 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/03/15 18:18:00 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/03/16 16:52:21 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,15 @@ void	ft_place_on_target(t_heaps **ab, int toplace_index, int target_index)
 	float	median_index;
 	int 	sens;
 
-	//printf("START REPLACE\n___\n");
+	printf("START REPLACE\n___\n");
 	median_index = (*ab)->a->index / 2;
 	sens = toplace_index > median_index ? 1 : -1;
 	while (toplace_index != target_index)
 	{
+		printf("Target:%d\t", target_index);
+		printf("AV: toplace_index:%d\t", toplace_index);
+		printf("(*ab)->a->index:%d\n", (*ab)->a->index);
+		fflush(stdout);
 		if (sens == 1)
 		{
 			ft_rotate_a(ab, 1);
@@ -32,8 +36,14 @@ void	ft_place_on_target(t_heaps **ab, int toplace_index, int target_index)
 			ft_rrotate_a(ab, 1);
 			toplace_index = toplace_index == 1 ? (*ab)->a->index : toplace_index - 1;
 		}
+		printf("Target:%d\t", target_index);
+		printf("AP: toplace_index:%d\t", toplace_index);
+		printf("(*ab)->a->index:%d\n", (*ab)->a->index);
+		fflush(stdout);
+		if (toplace_index > (*ab)->a->index)
+			exit(0);
 	}
-	//printf("END REPLACE\n___\n");
+	printf("END REPLACE\n___\n");
 }
 
 void	ft_interject_pivot_pushinf(t_heaps **ab)
@@ -101,14 +111,14 @@ void	ft_interject_pivot_pushsup(t_heaps **ab)
 
 int		ft_count_moves(t_heaps **ab, void (*f)(t_heaps**))
 {
-	int 	ref_buffindex;
+	t_heaps	*tmp;
 	int 	count;
 
-	ref_buffindex = (*ab)->buff->index;
+	ft_heaps_init(&tmp);
+	ft_heaps_cpy(tmp, *ab);
 	f(ab);
-	count = (*ab)->buff->index - ref_buffindex;
-	while ((*ab)->buff->index > ref_buffindex)
-		ft_del_lastmove(ab);
+	count = tmp->buff->index;
+	ft_heaps_del(&tmp);
 	return (count);
 }
 

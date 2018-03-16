@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 17:48:51 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/03/15 17:37:57 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/03/16 14:31:36 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,12 +47,17 @@ static int	ft_rrotate_motion(t_stack **stack)
 
 void		ft_rrotate_a(t_heaps **ab, int apply)
 {
+	int		ref;
+
+	ref = (*ab)->pivot_pos;
+	ft_adjust_pivot_pos(ab);
 	if (ft_rrotate_motion(&(*ab)->a))
 	{
 		if (apply == 1)
 			ft_moveappend(ab, "rra");
-		ft_adjust_pivot_pos(ab);
 	}
+	else
+		(*ab)->pivot_pos = ref;
 }
 
 void		ft_rrotate_b(t_heaps **ab, int apply)
@@ -65,20 +70,23 @@ void		ft_rrotate_ab(t_heaps **ab, int apply)
 {
 	int		ret_a;
 	int		ret_b;
+	int		ref;
 
+	ref = (*ab)->pivot_pos;
+	ft_adjust_pivot_pos(ab);
 	ret_a = ft_rrotate_motion(&(*ab)->a);
 	ret_b = ft_rrotate_motion(&(*ab)->b);
+	if (!ret_a)
+		(*ab)->pivot_pos = ref;
 	if (ret_a && ret_b)
 	{
 		if (apply == 1)
 			ft_moveappend(ab, "rrr");
-		ft_adjust_pivot_pos(ab);
 	}
 	else if (ret_a)
 	{
 		if (apply == 1)
 			ft_moveappend(ab, "rra");
-		ft_adjust_pivot_pos(ab);
 	}
 	else if (ret_b && apply == 1)
 		ft_moveappend(ab, "rrb");

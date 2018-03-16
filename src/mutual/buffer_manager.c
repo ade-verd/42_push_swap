@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/06 14:35:21 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/03/15 18:43:43 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/03/16 16:54:37 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	ft_moveappend(t_heaps **ab, char *s)
 	else
 		new->index = 1;
 	(*ab)->buff = new;
-	//ft_heaps_display(ab, 'a' + 'b');
+	ft_heaps_display(ab, 'a' + 'b');
 }
 
 void	ft_displaymoves(t_heaps **ab, int display_number_moves)
@@ -46,7 +46,7 @@ void	ft_displaymoves(t_heaps **ab, int display_number_moves)
 	if ((*ab) && (*ab)->buff)
 	{
 		current = (*ab)->buff;
-		while (current && current->next)
+		while (current && current->next && current->next->index > 0)
 			current = current->next;
 		while (current)
 		{
@@ -74,6 +74,9 @@ void	ft_display_lastmove(t_heaps **ab)
 		ft_putchar('\t');
 		ft_putstr("pivot: ");
 		ft_putnbr((*ab)->pivot);
+		ft_putchar('\t');
+		ft_putstr("index: ");
+		ft_putnbr((*ab)->pivot_pos);
 		ft_putchar('\n');
 	}
 }
@@ -95,15 +98,12 @@ void	ft_del_lastmove(t_heaps **ab)
 	{
 		ft_strcpy(move, (*ab)->buff->move);
 		cpy = (*ab)->buff;
-		cpy->move[0] = '\0';
-		//ft_memdel((void**)&cpy);
+		ft_memdel((void**)&cpy);
 	}
-	ft_reverse_motion(ab, move);
 }
 
 void	ft_del_allmoves(t_heaps **ab)
 {
-	while ((*ab)->buff->index > 0)
+	while ((*ab)->buff && (*ab)->buff->index > 0)
 		ft_del_lastmove(ab);
-	//ft_memdel((void**)&(*ab)->buff);	
 }

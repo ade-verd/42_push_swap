@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 11:37:19 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/03/15 18:03:52 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/03/16 16:50:45 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ int				ft_read_and_fillstack(int ac, char **av, t_heaps **ab);
 void			ft_heaps_init(t_heaps **ab);
 void			ft_heaps_del(t_heaps **ab);
 void			ft_heaps_display(t_heaps **ab, unsigned char c);
+void			ft_heaps_cpy(t_heaps *dest, t_heaps *src);
 
 /*
 ** Print moves in a buffer
