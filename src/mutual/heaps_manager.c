@@ -6,65 +6,63 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 11:54:35 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/03/16 16:50:38 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/03/19 13:26:20 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ft_buffer_init(t_heaps **ab)
+void	ft_buffer_init(t_heaps *ab)
 {
-	if (!((*ab)->buff = (t_buff*)malloc(sizeof(t_buff))))
+	if (!(ab->buff = (t_buff*)malloc(sizeof(t_buff))))
 		ft_error(ab, "malloc");
-	(*ab)->buff->index = 0;
+	ab->buff->index = 0;
 }
 
-void	ft_heaps_init(t_heaps **ab)
+void	ft_heaps_init(t_heaps *ab)
 {
-	if (!(*ab = (t_heaps*)malloc(sizeof(t_heaps))))
+	if (!(ab = (t_heaps*)malloc(sizeof(t_heaps))))
 		ft_error(ab, "malloc");
 	ft_buffer_init(ab);
-	(*ab)->a = NULL;
-	(*ab)->b = NULL;
-	(*ab)->pivot = 0;
-	(*ab)->pivot_pos = 1;
+	ab->a = NULL;
+	ab->b = NULL;
 }
 
-void	ft_heaps_del(t_heaps **ab)
+void	ft_heaps_del(t_heaps *ab)
 {
-	if ((*ab) && (*ab)->a)
-		ft_stackdel(&(*ab)->a);
-	if ((*ab) && (*ab)->b)
-		ft_stackdel(&(*ab)->b);
+	if (ab && ab->a)
+		ft_stackdel(&ab->a);
+	if (ab && ab->b)
+		ft_stackdel(&ab->b);
 	ft_del_allmoves(ab);
-	if ((*ab) && (*ab)->buff)
-		ft_memdel((void**)&(*ab)->buff);
-	if ((*ab))
-		ft_memdel((void**)ab);
+	if (ab && ab->buff)
+		ft_memdel((void**)&ab->buff);
+	if (ab)
+		ft_memdel((void**)&ab);
 }
 
-void	ft_heaps_display(t_heaps **ab, unsigned char c)
+void	ft_heaps_display(t_heaps *ab, unsigned char c)
 {
 	ft_display_lastmove(ab);
 	if (c == 'a')
 	{
-		ft_stackdisplay(&(*ab)->a, c);
+		ft_stackdisplay(ab->a, c);
 		ft_putstr("___\n");
 	}
 	else if (c == 'b')
 	{
-		ft_stackdisplay(&(*ab)->b, c);
+		ft_stackdisplay(ab->b, c);
 		ft_putstr("___\n");
 	}
 	else
 	{
-		ft_stackdisplay(&(*ab)->a, 'a');
-		ft_stackdisplay(&(*ab)->b, 'b');
+		ft_stackdisplay(ab->a, 'a');
+		ft_stackdisplay(ab->b, 'b');
 		ft_putstr("___\n");
 	}
 }
 
-void	ft_heaps_cpy(t_heaps *dest, t_heaps *src)
+/*void	ft_heaps_cpy(t_heaps *dest, t_heaps *src)
 {
 	if (src && dest)
 	{
@@ -91,4 +89,4 @@ void	ft_heaps_cpy(t_heaps *dest, t_heaps *src)
 		dest->min = src->pivot;
 		dest->max = src->pivot;
 	}
-}
+}*/

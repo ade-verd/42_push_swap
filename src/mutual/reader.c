@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 17:38:06 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/03/13 11:40:27 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/03/19 13:23:58 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	ft_ab_minmax(t_heaps **ab, int nb)
 	}
 }
 
-int		ft_read_and_fillstack(int ac, char **av, t_heaps **ab)
+int		ft_read_and_fillstack(int ac, char **av, t_heaps *ab)
 {
 	int		nb;
 
@@ -55,11 +55,11 @@ int		ft_read_and_fillstack(int ac, char **av, t_heaps **ab)
 		{
 			nb = ft_atoi(av[ac]);
 			ft_ab_minmax(ab, nb);
-			ft_stackpush(&(*ab)->a, nb, 'a');
+			ft_stackpush(ab->a, nb, 'a');
 		}
 		else
 			ft_error(ab, 0);
 	}
-	(*ab)->count = (*ab)->a->index;
+	ab->count = ab->a->index;
 	return (1);
 }

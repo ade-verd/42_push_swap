@@ -6,13 +6,13 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/15 17:24:17 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/03/16 14:57:07 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/03/19 13:33:45 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ft_reverse_motion(t_heaps **ab, char *move)
+void	ft_reverse_motion(t_heaps *ab, char *move)
 {
 	int			i;
 	const t_ft	tab[] = { { "sa", "sb", ft_swap_b },

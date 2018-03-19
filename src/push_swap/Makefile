@@ -20,14 +20,14 @@ CC = gcc
 SRC_PATH = ./
 SRC_PATH_MUTUAL = ../mutual/
 OBJ_PATH = ../../obj/$(NAME)/
-LIB_PATH = ../../libft/
+LIB_PATH = ../../libft/ ../../ft_printf
 INC_PATH = ../../includes/ \
 		   $(LIB_PATH)/includes/
 
 # Includes & libraries
 CPPFLAGS = $(addprefix -I ,$(INC_PATH))
-LDFLAGS = -L $(LIB_PATH)
-LDLIBS = -lft
+LDFLAGS = $(addprefix -L ,$(LIB_PATH))
+LDLIBS = -lft -lftprintf
 
 # Sources
 SRC_NAME = \
@@ -46,9 +46,9 @@ SRC_NAME_MUTUAL = \
 		   reverse_rotate_motion.c\
 		   reverse_motion.c\
 		   \
-		   sorter.c\
 		   counter_tools.c\
-		   pivot_interject.c\
+		   sorter_method1.c\
+		   pivot_interject_method1.c\
 
 OBJ_NAME = $(SRC_NAME:.c=.o)
 OBJ_NAME_MUTUAL = $(SRC_NAME_MUTUAL:.c=.o)
