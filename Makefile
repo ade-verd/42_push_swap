@@ -6,7 +6,7 @@
 #    By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/05 13:46:57 by ade-verd          #+#    #+#              #
-#    Updated: 2018/03/01 17:34:12 by ade-verd         ###   ########.fr        #
+#    Updated: 2018/03/19 19:02:02 by ade-verd         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ NAME_CHK = checker
 SRC_PATH = src
 SWP_PATH = $(SRC_PATH)/$(NAME_SWP)
 CHK_PATH = $(SRC_PATH)/$(NAME_CHK)
-LIB_PATH = libft
+LIB_PATH = libftprintf/libft
 OBJ_PATH = obj
 
 # **************************************************************************** #
@@ -58,14 +58,14 @@ BIN_DEL = "--$(LOG_CLEAR)$(LOG_YELLOW)Binary$(LOG_NOCOLOR) deletion " \
 
 all: $(NAME)
 
-$(NAME): push_swap checker
+$(NAME): $(NAME_SWP) $(NAME_CHK)
 
 $(NAME_SWP): libft.a
 	@make -C $(SWP_PATH) $@
 	@if [ -h $@ ]; then rm -f $@; fi;
 	@ln -s $(SWP_PATH)/$@ .
 
-$(NAME_CHK): libft.a 
+$(NAME_CHK): libft.a
 	@make -C $(CHK_PATH) $@
 	@if [ -h $@ ]; then rm -f $@; fi;
 	@ln -s $(CHK_PATH)/$@ .

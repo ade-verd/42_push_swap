@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/15 17:24:17 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/03/19 13:33:45 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/03/19 17:36:31 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	ft_reverse_motion(t_heaps *ab, char *move)
 {
 	int			i;
-	const t_ft	tab[] = { { "sa", "sb", ft_swap_b },
+	const t_fct	tab[] = { { "sa", "sb", ft_swap_b },
 	{ "sb", "sa", ft_swap_a },
 	{ "ss", "ss", ft_swap_ab },
 	{ "pa", "pb", ft_push_b },

@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 17:48:51 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/03/19 13:22:47 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/03/19 17:33:57 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ void		ft_swap_ab(t_heaps *ab, int apply)
 {
 	int		ret_a;
 	int		ret_b;
-	int		ref;
 
 	ret_a = ft_swap_motion(ab->a);
 	ret_b = ft_swap_motion(ab->b);

@@ -20,9 +20,11 @@ CC = gcc
 SRC_PATH = ./
 SRC_PATH_MUTUAL = ../mutual/
 OBJ_PATH = ../../obj/$(NAME)/
-LIB_PATH = ../../libft/ ../../ft_printf
+PRINTF_PATH = ../../libftprintf/
+LIBFT_PATH = $(PRINTF_PATH)libft/
+LIB_PATH = $(LIBFT_PATH) $(PRINTF_PATH) 
 INC_PATH = ../../includes/ \
-		   $(LIB_PATH)/includes/
+		   $(addsuffix includes/, $(LIB_PATH))
 
 # Includes & libraries
 CPPFLAGS = $(addprefix -I ,$(INC_PATH))
@@ -77,6 +79,9 @@ else
 	CFLAGS := $(FLAGS_DEFAULT) $(ADDFLAGS)
 endif
 
+# Variables
+COUNTER=0
+
 # **************************************************************************** #
 # SPECIALS CHARS                                                               #
 # **************************************************************************** #
@@ -111,14 +116,14 @@ BIN_DEL = "--$(LOG_CLEAR)$(LOG_YELLOW)Binary$(LOG_NOCOLOR) deletion " \
 # **************************************************************************** #
 .PHONY: all, clean, fclean, re, norme, normadev
 
-all: libft.a $(NAME)
+all: $(NAME)
 
-$(NAME): $(OBJ_PATH) $(OBJ)
+$(NAME): libftprintf.a $(OBJ_PATH) $(OBJ)
 	@$(CC) $(OBJ) $(LDFLAGS) $(LDLIBS) -o $(NAME)
-	@echo -e $(ASSEMBLING)
+	@if [ $(COUNTER) -ne 0 ]; then echo -e $(ASSEMBLING); fi;
 
-libft.a:
-	@make -C $(LIB_PATH) $@
+libftprintf.a:
+	@make -C $(PRINTF_PATH) $@
 
 $(OBJ_PATH):
 	@echo -e "$(TITLE)build $(NAME)$(END_TITLE)"
@@ -126,15 +131,16 @@ $(OBJ_PATH):
 	@mkdir -p $(OBJ_PATH)
 	@mkdir -p $(OBJ_PATH)/$(SRC_PATH_MUTUAL)
 
-$(OBJ_PATH)%.o: $(SRC_PATH)%.c
+$(OBJ_PATH)%.o: $(SRC_PATH)%.c 
 	@$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
 	@echo -e $(LINKING)
+	$(eval COUNTER=$(shell echo $$(($(COUNTER)+1))))
 
 clean:
 	@echo -e "$(TITLE)clean $(NAME)$(END_TITLE)"
 	@echo -e $(OBJECTS_DEL)
 	@rm -Rf $(OBJ_PATH)
-	@make -C $(LIB_PATH) clean_quiet
+	@make -C $(PRINTF_PATH) clean_quiet
 
 fclean:
 	@echo -e "$(TITLE)fclean $(NAME)$(END_TITLE)"
@@ -142,7 +148,7 @@ fclean:
 	@rm -Rf $(OBJ_PATH)
 	@echo -e $(BIN_DEL)
 	@rm -f $(NAME)
-	@make -C $(LIB_PATH) fclean_quiet
+	@make -C $(PRINTF_PATH) fclean_quiet
 
 re: fclean all
 

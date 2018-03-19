@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/02 17:21:44 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/03/19 13:47:14 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/03/19 19:14:36 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ int		ft_count_moves(t_heaps *ab, void (*f)(t_heaps*))
 	t_heaps	*tmp;
 	int 	count;
 
-	ft_heaps_init(tmp);
+	ft_heaps_init(&tmp);
 	ft_heaps_cpy(tmp, ab);
 	f(tmp);
 	count = tmp->buff->index;

@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 11:37:19 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/03/19 13:34:30 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/03/19 19:14:24 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,15 @@
 
 # include <stdio.h> /* A SUPPRIMER */
 # include <stdlib.h>
-# include "libft.h"
 # include "ft_printf.h"
 
-typedef struct	s_buff
+typedef struct	s_buf
 {
 	char 			move[4];
 	int				index;
-	struct s_buff	*next;
-	struct s_buff	*prev;
-}				t_buff;
+	struct s_buf	*next;
+	struct s_buf	*prev;
+}				t_buf;
 
 typedef struct	s_stack
 {
@@ -41,7 +40,7 @@ typedef struct	s_heaps
 {
 	t_stack			*a;
 	t_stack			*b;
-	t_buff			*buff;
+	t_buf			*buff;
 	int 			count;
 	int				min;
 	int				max;
@@ -55,10 +54,10 @@ int				ft_read_and_fillstack(int ac, char **av, t_heaps *ab);
 /*
 ** Heaps tools (A and B)
 */
-void			ft_heaps_init(t_heaps *ab);
+void			ft_heaps_init(t_heaps **ab);
 void			ft_heaps_del(t_heaps *ab);
 void			ft_heaps_display(t_heaps *ab, unsigned char c);
-//void			ft_heaps_cpy(t_heaps *dest, t_heaps *src);
+void			ft_heaps_cpy(t_heaps *dest, t_heaps *src);
 
 /*
 ** Print moves in a buffer
@@ -94,12 +93,12 @@ void			ft_rrotate_b(t_heaps *ab, int apply);
 void			ft_rrotate_ab(t_heaps *ab, int apply);
 void			ft_reverse_motion(t_heaps *ab, char *move);
 
-typedef struct	s_ft
+typedef struct	s_fct
 {
 	char		move[4];
 	char		rmove[4];
 	void		(*f)(t_heaps *ab, int apply);
-}				t_ft;
+}				t_fct;
 
 /*
 ** Errors

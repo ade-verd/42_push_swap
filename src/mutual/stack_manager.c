@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 11:54:35 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/03/19 13:32:54 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/03/19 17:30:03 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void	ft_stackdisplay(t_stack *stack, unsigned char c)
 			cpy->nb < next ? ft_putstr(F_CYAN) : ft_putstr(F_RED);
 			if (cpy->nb == cpy->p_val && cpy->p_pos > 0)
 				ft_printf("%s%s", F_BOLD, F_UNDERLINE);
-			ft_printf("%d%s", cpy->nb, C_NO);
+			ft_printf("%d%s", cpy->nb, F_NO);
 			cpy->next ? ft_putstr(", ") : ft_putstr(" (end)\n");
 			next = cpy->nb;
 			cpy = cpy->next;

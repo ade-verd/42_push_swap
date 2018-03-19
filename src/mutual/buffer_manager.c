@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/06 14:35:21 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/03/19 13:31:01 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/03/19 17:33:36 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 void	ft_moveappend(t_heaps *ab, char *s)
 {
 	int 	i;
-	t_buff	*new;
+	t_buf	*new;
 
 	i = 0;
-	if (!(new = (t_buff*)malloc(sizeof(t_buff))))
+	if (!(new = (t_buf*)malloc(sizeof(t_buf))))
 		ft_error(ab, "malloc");
 	while (s[i] && (i < 3))
 	{
@@ -41,7 +41,7 @@ void	ft_moveappend(t_heaps *ab, char *s)
 
 void	ft_displaymoves(t_heaps *ab, int display_number_moves)
 {
-	t_buff		*current;
+	t_buf		*current;
 	
 	if (ab && ab->buff)
 	{
@@ -51,7 +51,7 @@ void	ft_displaymoves(t_heaps *ab, int display_number_moves)
 		while (current)
 		{
 			if (current->prev) // A supprimer
-				ft_printf("%s, ", current->move) // A supprimer
+				ft_printf("%s, ", current->move); // A supprimer
 			else // A supprimer
 				ft_printf("%s\n", current->move);
 			current = current->prev;
@@ -76,7 +76,7 @@ void	ft_display_lastmove(t_heaps *ab)
 
 void	ft_del_lastmove(t_heaps *ab)
 {
-	t_buff	*cpy;
+	t_buf	*cpy;
 	char	move[4];
 
 	if (ab && ab->buff && ab->buff->next)
