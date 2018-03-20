@@ -6,13 +6,13 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 11:54:35 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/03/19 17:30:03 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/03/20 13:37:05 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int		ft_stackpush(t_stack *current_link, int new_nb, char id)
+int		ft_stackpush(t_stack **current_link, int new_nb, char id)
 {
 	t_stack		*new_link;
 
@@ -22,43 +22,46 @@ int		ft_stackpush(t_stack *current_link, int new_nb, char id)
 		return (-1);
 	}
 	new_link->nb = new_nb;
-	if (!(current_link))
+	if (!(*current_link))
+	{
 		new_link->index = 1;
+		new_link->p_pos = 1;
+	}
 	else
 	{
-		new_link->index = current_link->index + 1;
-		current_link->prev = new_link;
+		new_link->index = (*current_link)->index + 1;
+		(*current_link)->prev = new_link;
 	}
 	new_link->id = id;
-	new_link->next = current_link;
+	new_link->next = *current_link;
 	new_link->prev = NULL;
-	current_link = new_link;
+	*current_link = new_link;
 	return (0);
 }
 
-int		ft_stackpop(t_stack *stack)
+int		ft_stackpop(t_stack **stack)
 {
 	int			nb;
 	t_stack		*cpy;
 
-	if (!stack)
+	if (!(*stack))
 		return (-1);
-	cpy = stack;
-	nb = stack->nb;
-	stack = stack->next;
+	cpy = *stack;
+	nb = (*stack)->nb;
+	*stack = (*stack)->next;
 	ft_memdel((void**)&cpy);
 	return (nb);
 }
 
-void	ft_stackdisplay(t_stack *stack, unsigned char c)
+void	ft_stackdisplay(t_stack **stack, unsigned char c)
 {
 	t_stack		*cpy;
 	int 		next;
 
 	ft_printf("%c:\t", ft_toupper(c));
-	if (stack)
+	if (*stack)
 	{
-		cpy = stack;
+		cpy = *stack;
 		next = cpy->nb;
 		ft_putstr("(top) ");
 		while (cpy)
@@ -89,14 +92,14 @@ int		ft_stacklen(t_stack *stack)
 	return (i);
 }
 
-void	ft_stackdel(t_stack *stack)
+void	ft_stackdel(t_stack **stack)
 {
 	t_stack		*cpy;
 
-	while (stack)
+	while (*stack)
 	{
-		cpy = stack;
-		stack = stack->next;
+		cpy = *stack;
+		*stack = (*stack)->next;
 		ft_memdel((void**)&cpy);
 	}
 }

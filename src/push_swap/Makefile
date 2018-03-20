@@ -45,7 +45,7 @@ SRC_NAME_MUTUAL = \
 		   swap_motion.c\
 		   push_motion.c\
 		   rotate_motion.c\
-		   reverse_rotate_motion.c\
+		   rrotate_motion.c\
 		   reverse_motion.c\
 		   \
 		   counter_tools.c\

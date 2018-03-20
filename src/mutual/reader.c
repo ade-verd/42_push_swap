@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 17:38:06 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/03/19 19:02:48 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/03/20 13:08:56 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,27 +28,27 @@ int		ft_isnumber(char *str)
 	return (1);
 }
 
-void	ft_ab_minmax(t_heaps *ab, int nb)
+void	ft_ab_minmax(t_heaps **ab, int nb)
 {
-	if (ab && !ab->a)
+	if (*ab && !(*ab)->a)
 	{
-		ab->min = nb;
-		ab->max = nb;
+		(*ab)->min = nb;
+		(*ab)->max = nb;
 	}
-	else if (ab)
+	else if (*ab)
 	{
-		if (nb < ab->min)
-			ab->min = nb;
-		if (nb > ab->max)
-			ab->max = nb;
+		if (nb < (*ab)->min)
+			(*ab)->min = nb;
+		if (nb > (*ab)->max)
+			(*ab)->max = nb;
 	}
 }
 
-int		ft_read_and_fillstack(int ac, char **av, t_heaps *ab)
+int		ft_read_and_fillstack(int ac, char **av, t_heaps **ab)
 {
 	int		nb;
 
-	if (!ab)
+	if (!(*ab))
 		ft_error(ab, "read_and_fillstack");
 	while (ac > 1)
 	{
@@ -57,11 +57,11 @@ int		ft_read_and_fillstack(int ac, char **av, t_heaps *ab)
 		{
 			nb = ft_atoi(av[ac]);
 			ft_ab_minmax(ab, nb);
-			ft_stackpush(ab->a, nb, 'a');
+			ft_stackpush(&(*ab)->a, nb, 'a');
 		}
 		else
 			ft_error(ab, 0);
 	}
-	ab->count = ab->a->index;
+	(*ab)->count = (*ab)->a->index;
 	return (1);
 }

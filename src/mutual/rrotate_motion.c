@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   reverse_rotate_motion.c                            :+:      :+:    :+:   */
+/*   rrotate_motion.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 17:48:51 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/03/19 13:21:16 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/03/20 13:00:43 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,25 +46,25 @@ static int	ft_rrotate_motion(t_stack *stack)
 	return (0);
 }
 
-void		ft_rrotate_a(t_heaps *ab, int apply)
+void		ft_rrotate_a(t_heaps **ab, int apply)
 {
-	if (ft_rrotate_motion(ab->a) && apply == 1)
+	if (ft_rrotate_motion((*ab)->a) && apply == 1)
 		ft_moveappend(ab, "rra");
 }
 
-void		ft_rrotate_b(t_heaps *ab, int apply)
+void		ft_rrotate_b(t_heaps **ab, int apply)
 {
-	if (ft_rrotate_motion(ab->b) && apply == 1)
+	if (ft_rrotate_motion((*ab)->b) && apply == 1)
 		ft_moveappend(ab, "rrb");
 }
 
-void		ft_rrotate_ab(t_heaps *ab, int apply)
+void		ft_rrotate_ab(t_heaps **ab, int apply)
 {
 	int		ret_a;
 	int		ret_b;
 
-	ret_a = ft_rrotate_motion(ab->a);
-	ret_b = ft_rrotate_motion(ab->b);
+	ret_a = ft_rrotate_motion((*ab)->a);
+	ret_b = ft_rrotate_motion((*ab)->b);
 	if (ret_a && ret_b && apply == 1)
 			ft_moveappend(ab, "rrr");
 	else if (ret_a && apply == 1)
