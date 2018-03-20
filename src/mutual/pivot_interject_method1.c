@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/02 17:21:44 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/03/20 13:24:54 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/03/20 15:54:56 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,8 @@ void	ft_interject_pivot_pushinf(t_heaps **ab)
 	int		count;
 	int 	pivot;
 
-	count = ft_count_val((*ab)->a, (*ab)->a->p_val, "<");
-	pivot = (*ab)->a->p_val;
+	count = ft_count_val((*ab)->a, (*ab)->a_pval, "<");
+	pivot = (*ab)->a_pval;
 //	printf("%s\n", __FUNCTION__);
 	while (*ab && (*ab)->a && count)
 	{
@@ -58,7 +58,7 @@ void	ft_interject_pivot_pushinf(t_heaps **ab)
 		else
 			ft_rrotate_a(ab, 1);
 	}
-	ft_place_on_target(ab, (*ab)->a->p_pos, (*ab)->a->index);
+	ft_place_on_target(ab, (*ab)->a_ppos, (*ab)->a->index);
 	while (*ab && (*ab)->b)
 	{
 		if ((*ab)->b->next && (*ab)->b->nb < (*ab)->b->next->nb)
@@ -74,8 +74,8 @@ void	ft_interject_pivot_pushsup(t_heaps **ab)
 	int 	pivot;
 
 //	printf("%s\n", __FUNCTION__);
-	count = ft_count_val((*ab)->a, (*ab)->a->p_val, ">");
-	pivot = (*ab)->a->p_val;
+	count = ft_count_val((*ab)->a, (*ab)->a_pval, ">");
+	pivot = (*ab)->a_pval;
 	while (*ab && (*ab)->a && count)
 	{
 		if ((*ab)->a->nb > pivot)
@@ -88,7 +88,7 @@ void	ft_interject_pivot_pushsup(t_heaps **ab)
 		else
 			ft_rotate_a(ab, 1);
 	}
-	ft_place_on_target(ab, (*ab)->a->p_pos, 1);
+	ft_place_on_target(ab, (*ab)->a_ppos, 1);
 	while (*ab && (*ab)->b)
 	{
 		if ((*ab)->b->next && (*ab)->b->nb > (*ab)->b->next->nb)
@@ -121,9 +121,9 @@ void	ft_interject_pivot(t_heaps **ab)
 	int		ret2;
 
 	//ft_heaps_display(ab, 'a' + 'b');
-	if ((*ab)->a->p_val == (*ab)->min && (*ab)->a->p_pos != (*ab)->a->index)
+	if ((*ab)->a_pval == (*ab)->min && (*ab)->a_ppos != (*ab)->a->index)
 	{
-		ft_place_on_target(ab, (*ab)->a->p_pos, (*ab)->a->index);
+		ft_place_on_target(ab, (*ab)->a_ppos, (*ab)->a->index);
 		ft_push_b(ab, 1);
 		if ((max_index = ft_find_index((*ab)->a, (*ab)->max)) > 1)
 			ft_place_on_target(ab, max_index, 1);

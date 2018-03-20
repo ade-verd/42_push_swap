@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 11:54:35 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/03/20 13:10:08 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/03/20 16:10:06 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,10 @@ void	ft_heaps_init(t_heaps **ab)
 	ft_buffer_init(ab);
 	(*ab)->a = NULL;
 	(*ab)->b = NULL;
+	(*ab)->a_pval = 0;
+	(*ab)->a_ppos = 0;
+	(*ab)->b_pval = 0;
+	(*ab)->b_ppos = 0;
 }
 
 void	ft_heaps_del(t_heaps **ab)
@@ -38,7 +42,7 @@ void	ft_heaps_del(t_heaps **ab)
 	if (*ab && (*ab)->buff)
 		ft_memdel((void**)&(*ab)->buff);
 	if (*ab)
-		ft_memdel((void**)&ab);
+		ft_memdel((void**)ab);
 }
 
 void	ft_heaps_display(t_heaps **ab, unsigned char c)
@@ -46,18 +50,18 @@ void	ft_heaps_display(t_heaps **ab, unsigned char c)
 	ft_display_lastmove(ab);
 	if (c == 'a')
 	{
-		ft_stackdisplay(&(*ab)->a, c);
+		ft_stackdisplay(&(*ab)->a, c, (*ab)->a_pval, (*ab)->a_ppos);
 		ft_putstr("___\n");
 	}
 	else if (c == 'b')
 	{
-		ft_stackdisplay(&(*ab)->b, c);
+		ft_stackdisplay(&(*ab)->b, c, (*ab)->b_pval, (*ab)->b_ppos);
 		ft_putstr("___\n");
 	}
 	else
 	{
-		ft_stackdisplay(&(*ab)->a, 'a');
-		ft_stackdisplay(&(*ab)->b, 'b');
+		ft_stackdisplay(&(*ab)->a, 'a', (*ab)->a_pval, (*ab)->a_ppos);
+		ft_stackdisplay(&(*ab)->b, 'b', (*ab)->b_pval, (*ab)->b_ppos);
 		ft_putstr("___\n");
 	}
 }
@@ -84,10 +88,10 @@ void	ft_heaps_cpy(t_heaps *dest, t_heaps *src)
 		}
 		if (src->b)
 			ft_stackpush(&dest->b, src->a->nb, 'b');
-		dest->a->p_val = src->a->p_val;
-		dest->a->p_pos = src->a->p_pos;
-		dest->b->p_val = src->b->p_val;
-		dest->b->p_pos = src->b->p_pos;
+		dest->a_pval = src->a_pval;
+		dest->a_ppos = src->a_ppos;
+		dest->b_pval = src->b_pval;
+		dest->b_ppos = src->b_ppos;
 		dest->min = src->min;
 		dest->max = src->max;
 	}

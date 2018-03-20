@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/06 14:35:21 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/03/20 13:33:01 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/03/20 15:23:23 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,18 +63,14 @@ void	ft_displaymoves(t_heaps **ab, int display_number_moves)
 
 void	ft_display_lastmove(t_heaps **ab)
 {
-	if (*ab && (*ab)->buff)
+	if (*ab && (*ab)->buff && ((*ab)->a_ppos > 0 || (*ab)->b_ppos > 0))
 	{
 		ft_putstr((*ab)->buff->move);
-		if ((*ab)->a)
-		//if ((*ab)->a->p_pos > 0)
-			ft_printf("\tPivot_A: %d #%d", (*ab)->a->p_val, (*ab)->a->p_pos);
-		if ((*ab)->b)
-		//if ((*ab)->a->p_pos > 0)
-			ft_printf("\tPivot_B: %d #%d", (*ab)->b->p_val, (*ab)->b->p_pos);
+		if ((*ab)->a && (*ab)->a_ppos > 0)
+			ft_printf("\tPivot_A: %d #%d", (*ab)->a_pval, (*ab)->a_ppos);
+		if ((*ab)->b && (*ab)->b_ppos > 0)
+			ft_printf("\tPivot_B: %d #%d", (*ab)->b_pval, (*ab)->b_ppos);
 		ft_putchar('\n');
-		if ((*ab)->a->p_pos < 1 || (*ab)->b->p_pos <1)
-			exit(0);
 	}
 }
 

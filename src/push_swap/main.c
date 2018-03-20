@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/27 17:28:18 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/03/20 12:24:57 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/03/20 16:04:30 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ int		main(int ac, char **av)
 {
 	t_heaps		*ab;
 
-	ab = NULL;
 	if (ac > 1)
 	{
 		ft_heaps_init(&ab);

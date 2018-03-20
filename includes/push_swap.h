@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 11:37:19 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/03/20 13:06:10 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/03/20 15:20:58 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,6 @@ typedef struct	s_stack
 	char			id;
 	int				nb;
 	int				index;
-	int				p_val;
-	int				p_pos;
 	struct s_stack	*next;
 	struct s_stack	*prev;
 }				t_stack;
@@ -44,6 +42,10 @@ typedef struct	s_heaps
 	int 			count;
 	int				min;
 	int				max;
+	int				a_pval;
+	int				a_ppos;
+	int				b_pval;
+	int				b_ppos;
 }				t_heaps;
 
 /*
@@ -73,7 +75,7 @@ void			ft_del_allmoves(t_heaps **ab);
 */
 int				ft_stackpush(t_stack **current_link, int new_nb, char id);
 int				ft_stackpop(t_stack **stack);
-void			ft_stackdisplay(t_stack **stack, unsigned char c);
+void			ft_stackdisplay(t_stack **s, unsigned char c, int val, int pos);
 int				ft_stacklen(t_stack *stack);
 void			ft_stackdel(t_stack **stack);
 

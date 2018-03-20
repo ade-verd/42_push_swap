@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 11:54:35 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/03/20 13:37:05 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/03/20 15:20:14 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,7 @@ int		ft_stackpush(t_stack **current_link, int new_nb, char id)
 	}
 	new_link->nb = new_nb;
 	if (!(*current_link))
-	{
 		new_link->index = 1;
-		new_link->p_pos = 1;
-	}
 	else
 	{
 		new_link->index = (*current_link)->index + 1;
@@ -53,7 +50,7 @@ int		ft_stackpop(t_stack **stack)
 	return (nb);
 }
 
-void	ft_stackdisplay(t_stack **stack, unsigned char c)
+void	ft_stackdisplay(t_stack **stack, unsigned char c, int pval, int ppos)
 {
 	t_stack		*cpy;
 	int 		next;
@@ -66,8 +63,8 @@ void	ft_stackdisplay(t_stack **stack, unsigned char c)
 		ft_putstr("(top) ");
 		while (cpy)
 		{
-			cpy->nb < next ? ft_putstr(F_CYAN) : ft_putstr(F_RED);
-			if (cpy->nb == cpy->p_val && cpy->p_pos > 0)
+			cpy->nb < next ? ft_putstr(F_RED) : ft_putstr(F_CYAN);
+			if (cpy->nb == pval && ppos > 0)
 				ft_printf("%s%s", F_BOLD, F_UNDERLINE);
 			ft_printf("%d%s", cpy->nb, F_NO);
 			cpy->next ? ft_putstr(", ") : ft_putstr(" (end)\n");
