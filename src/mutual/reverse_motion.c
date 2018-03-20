@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/15 17:24:17 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/03/20 12:39:27 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/03/20 17:01:57 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,9 @@ void	ft_reverse_motion(t_heaps **ab, char *move)
 		if (ft_strcmp(tab[i].move, move) == 0)
 		{
 			tab[i].f(ab, 0);
-			printf("%s%s%s\t", "\033[0;31m",tab[i].rmove, "\033[0m");
+			ft_printf("%s%s%s\t", "\033[0;31m",tab[i].rmove, "\033[0m");
 			fflush(stdout);
-			ft_heaps_display(ab, 'a' + 'b');
+			ft_heaps_display(ab, 'a' + 'b', 1);
 			return ;
 		}
 		i++;
