@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 11:37:19 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/03/20 15:20:58 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/03/20 16:22:21 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ typedef struct	s_heaps
 	int				a_ppos;
 	int				b_pval;
 	int				b_ppos;
+	int				option_v;
 }				t_heaps;
 
 /*
@@ -58,7 +59,7 @@ int				ft_read_and_fillstack(int ac, char **av, t_heaps **ab);
 */
 void			ft_heaps_init(t_heaps **ab);
 void			ft_heaps_del(t_heaps **ab);
-void			ft_heaps_display(t_heaps **ab, unsigned char c);
+void			ft_heaps_display(t_heaps **ab, unsigned char c, int context);
 void			ft_heaps_cpy(t_heaps *dest, t_heaps *src);
 
 /*
