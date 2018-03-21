@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 17:38:06 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/03/20 16:22:53 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/03/21 13:55:51 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int		ft_read_and_fillstack(int ac, char **av, t_heaps **ab)
 		{
 			nb = ft_atoi(av[ac]);
 			ft_ab_minmax(ab, nb);
-			ft_stackpush(&(*ab)->a, nb, 'a');
+			ft_stackpush(ab, &(*ab)->a, nb, 'a');
 		}
 		else if (av[ac][0] == '-' && av[ac][1] == 'v')
 			(*ab)->option_v = 1;

@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 11:54:35 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/03/20 17:21:48 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/03/21 13:56:55 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,20 +75,20 @@ void	ft_heaps_cpy(t_heaps *dest, t_heaps *src)
 			src->a = src->a->next;
 		while (src->a && src->a->prev)
 		{
-			ft_stackpush(&dest->a, src->a->nb, 'a');
+			ft_stackpush(&dest, &dest->a, src->a->nb, 'a');
 			src->a = src->a->prev;
 		}
 		if (src->a)
-			ft_stackpush(&dest->a, src->a->nb, 'a');
+			ft_stackpush(&dest, &dest->a, src->a->nb, 'a');
 		while (src && src->b && src->b->next)
 			src->b = src->b->next;
 		while (src->b && src->b->prev)
 		{
-			ft_stackpush(&dest->b, src->b->nb, 'b');
+			ft_stackpush(&dest, &dest->b, src->b->nb, 'b');
 			src->b = src->b->prev;
 		}
 		if (src->b)
-			ft_stackpush(&dest->b, src->a->nb, 'b');
+			ft_stackpush(&dest, &dest->b, src->a->nb, 'b');
 		dest->a_pval = src->a_pval;
 		dest->a_ppos = src->a_ppos;
 		dest->b_pval = src->b_pval;

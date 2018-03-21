@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 11:37:19 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/03/20 18:38:50 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/03/21 13:52:41 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ typedef struct	s_stack
 	char			id;
 	int				nb;
 	int				index;
+	int				*ppos;
+	int				*pval;
 	struct s_stack	*next;
 	struct s_stack	*prev;
 }				t_stack;
@@ -74,7 +76,7 @@ void			ft_del_allmoves(t_heaps **ab);
 /*
 ** Stack tools (A or B)
 */
-int				ft_stackpush(t_stack **current_link, int new_nb, char id);
+int				ft_stackpush(t_heaps **ab, t_stack **current, int nb, char id);
 int				ft_stackpop(t_stack **stack);
 void			ft_stackdisplay(t_stack **s, unsigned char c, int val, int pos);
 int				ft_stacklen(t_stack *stack);
