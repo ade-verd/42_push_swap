@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/07 13:24:56 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/03/20 18:39:28 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/03/21 18:31:57 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void 	ft_rsorter(t_heaps **ab, int a_ppos)
 		ft_pivot_value(ab, a_ppos);
 		if ((ft_count_bad((*ab)->a, (*ab)->a_pval, a_ppos)) != 0)
 		{
-			ft_interject_pivot(ab, (*ab)->a);
+			ft_interject_pivot(ab, &(*ab)->a);
 			ft_rsorter(ab, a_ppos);
 		}
 		else
@@ -60,7 +60,7 @@ void 	ft_sorter(t_heaps **ab, int a_ppos)
 		ft_pivot_value(ab, a_ppos);
 		if ((ft_count_bad((*ab)->a, (*ab)->a_pval, a_ppos)) != 0)
 		{
-			ft_interject_pivot(ab, (*ab)->a);
+			ft_interject_pivot(ab, &(*ab)->a);
 			ft_sorter(ab, a_ppos);
 		}
 		else
