@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/02 17:21:44 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/03/21 19:01:11 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/03/21 19:19:14 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	ft_interject_pivot_push(t_heaps **ab, t_stack **work, t_stack **other)
 		{
 			(*work)->id == 'a' ? ft_push_b(ab, 1) : ft_push_a(ab, 1);
 			push++;
-			if (*other && (*other)->next && (*other)->nb < (*other)->next->nb)
+			if ((*other)->next && (*other)->nb < (*other)->next->nb)
 				(*other)->id == 'a' ? ft_swap_a(ab, 1) : ft_swap_b(ab, 1);
 			count--;
 		}
@@ -64,7 +64,7 @@ void	ft_interject_pivot_push(t_heaps **ab, t_stack **work, t_stack **other)
 	ft_place_on_target(ab, work, *(*work)->ppos, (*work)->index);
 	while (*ab && *other && push)
 	{
-		if (*other && (*other)->next && (*other)->nb < (*other)->next->nb)
+		if ((*other)->next && (*other)->nb < (*other)->next->nb)
 			(*other)->id == 'a' ? ft_swap_a(ab, 1) : ft_swap_b(ab, 1);
 		else
 		{
