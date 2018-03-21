@@ -6,20 +6,20 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/07 13:24:56 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/03/21 18:31:57 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/03/21 19:21:40 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void 	ft_pivot_value(t_heaps **ab, int pivot_index)
+void 	ft_pivot_value(t_heaps **ab, t_stack **work, int pivot_index)
 {
 	t_stack	*current;
 
 	if (*ab && (*ab)->a)
 	{
 		current = (*ab)->a;
-		while (current && current->index > pivot_index)
+G		while (current && current->index > pivot_index)
 			current = current->next;
 		if (current->index == pivot_index)
 		{
