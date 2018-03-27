@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/07 13:24:56 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/03/27 15:39:56 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/03/27 16:35:17 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void 	ft_pivot_value(t_heaps **ab, t_stack **work, int pivot_index)
 
 void 	ft_rsorter(t_heaps **ab, t_stack **work, int ppos)
 {
-	if (ppos == 1)
+	if (ppos > (*work)->index)
 		return ;
 	if ((*work)->index > 2)
 	{
@@ -42,7 +42,7 @@ void 	ft_rsorter(t_heaps **ab, t_stack **work, int ppos)
 			ft_rsorter(ab, work, ppos);
 		}
 		else
-			ft_rsorter(ab, work, ppos - 1);
+			ft_rsorter(ab, work, ppos + 1);
 	}
 	else if ((*work)->index == 2 && ((*work)->nb > (*work)->next->nb))
 		ft_swap_a(ab, 1);
@@ -50,9 +50,9 @@ void 	ft_rsorter(t_heaps **ab, t_stack **work, int ppos)
 
 void 	ft_sorter(t_heaps **ab, t_stack **work, int ppos)
 {
-	if (ppos > (*work)->index)
+	if (ppos < 1)
 	{
-		ft_rsorter(ab, work, (*work)->index);
+		ft_rsorter(ab, work, 1);
 		return ;
 	}
 	if ((*work)->index > 2)
@@ -64,7 +64,7 @@ void 	ft_sorter(t_heaps **ab, t_stack **work, int ppos)
 			ft_sorter(ab, work, ppos);
 		}
 		else
-			ft_sorter(ab, work, ppos + 1);
+			ft_sorter(ab, work, ppos - 1);
 	}
 	else if ((*work)->index == 2 && ((*work)->nb > (*work)->next->nb))
 		ft_swap_a(ab, 1);

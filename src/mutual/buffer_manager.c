@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/06 14:35:21 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/03/20 17:20:30 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/03/27 16:36:41 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,11 +57,11 @@ void	ft_displaymoves(t_heaps **ab, int display_number_moves)
 			current = current->next;
 		while (current)
 		{
-			if (current->prev) // A supprimer
+		/*	if (current->prev) // A supprimer
 				ft_printf("%s, ", current->move); // A supprimer
 			else // A supprimer
 				ft_printf("%s\n", current->move);
-			current = current->prev;
+		*/	current = current->prev;
 		}
 	}
 	if (display_number_moves == 1)

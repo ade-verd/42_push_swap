@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/02 17:21:44 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/03/21 19:19:14 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/03/27 17:53:58 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,30 @@ void	ft_place_on_target(t_heaps **ab, t_stack **work, int toplace_ind, int targe
 			(*work)->id == 'a' ? ft_rrotate_a(ab, 1) : ft_rrotate_b(ab, 1);
 			toplace_ind = toplace_ind == 1 ? (*work)->index : toplace_ind - 1;
 		}
-		if (toplace_ind > (*work)->index)
-			exit(0);
 	}
 	//printf("END REPLACE\n___\n");
 }
 
-void	ft_interject_pivot_push(t_heaps **ab, t_stack **work, t_stack **other)
+void	ft_sort_n_repush(t_heaps **ab, t_stack **other, int push)
+{
+	while (*ab && *other && push)
+	{
+		if ((*other)->next 
+			&& (((*other)->sens == 1 && (*other)->nb > (*other)->next->nb)
+			|| ((*other)->sens == 0 && (*other)->nb < (*other)->next->nb)))
+		{
+			(*other)->id == 'a' ? ft_swap_a(ab, 1) : ft_swap_b(ab, 1);
+			ft_sorter(ab, other, (*other)->index);
+		}
+		else
+		{
+			(*other)->id == 'a' ? ft_push_b(ab, 1) : ft_push_a(ab, 1);
+			push--;
+		}
+	}
+}
+
+void	ft_interject(t_heaps **ab, t_stack **work, t_stack **other)
 {
 	int		count;
 	int		push;
@@ -54,7 +71,9 @@ void	ft_interject_pivot_push(t_heaps **ab, t_stack **work, t_stack **other)
 		{
 			(*work)->id == 'a' ? ft_push_b(ab, 1) : ft_push_a(ab, 1);
 			push++;
-			if ((*other)->next && (*other)->nb < (*other)->next->nb)
+			if ((*other)->next 
+				&& (((*other)->sens == 1 && (*other)->nb > (*other)->next->nb)
+				|| ((*other)->sens == 0 && (*other)->nb < (*other)->next->nb)))
 				(*other)->id == 'a' ? ft_swap_a(ab, 1) : ft_swap_b(ab, 1);
 			count--;
 		}
@@ -62,16 +81,7 @@ void	ft_interject_pivot_push(t_heaps **ab, t_stack **work, t_stack **other)
 			(*work)->id == 'a' ? ft_rrotate_a(ab, 1) : ft_rrotate_b(ab, 1);
 	}
 	ft_place_on_target(ab, work, *(*work)->ppos, (*work)->index);
-	while (*ab && *other && push)
-	{
-		if ((*other)->next && (*other)->nb < (*other)->next->nb)
-			(*other)->id == 'a' ? ft_swap_a(ab, 1) : ft_swap_b(ab, 1);
-		else
-		{
-			(*other)->id == 'a' ? ft_push_b(ab, 1) : ft_push_a(ab, 1);
-			push--;
-		}
-	}
+	ft_sort_n_repush(ab, other, push);
 }
 
 void	ft_interject_pivot(t_heaps **ab, t_stack **work)
@@ -89,5 +99,5 @@ void	ft_interject_pivot(t_heaps **ab, t_stack **work)
 		ft_push_a(ab, 1);
 	}
 	else*/
-		ft_interject_pivot_push(ab, work, other);
+		ft_interject(ab, work, other);
 }

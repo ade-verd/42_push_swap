@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 11:54:35 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/03/21 14:08:58 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/03/27 17:27:06 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ int		ft_stackpush(t_heaps **ab, t_stack **current_link, int new_nb, char id)
 		(*current_link)->prev = new_link;
 	}
 	new_link->id = id;
+	new_link->sens = id == 'a' ? 1 : 0;
 	new_link->ppos = id == 'a' ? &(*ab)->a_ppos : &(*ab)->b_ppos;
 	new_link->pval = id == 'a' ? &(*ab)->a_pval : &(*ab)->b_pval;
 	new_link->next = *current_link;

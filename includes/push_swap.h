@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 11:37:19 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/03/27 15:38:13 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/03/27 17:26:58 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ typedef struct	s_stack
 	char			id;
 	int				nb;
 	int				index;
+	int				sens;
 	int				*ppos;
 	int				*pval;
 	struct s_stack	*next;
