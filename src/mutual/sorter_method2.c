@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/07 13:24:56 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/03/21 19:21:40 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/03/27 15:39:56 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,56 +16,56 @@ void 	ft_pivot_value(t_heaps **ab, t_stack **work, int pivot_index)
 {
 	t_stack	*current;
 
-	if (*ab && (*ab)->a)
+	if (*ab && *work)
 	{
-		current = (*ab)->a;
-G		while (current && current->index > pivot_index)
+		current = *work;
+		while (current && current->index > pivot_index)
 			current = current->next;
 		if (current->index == pivot_index)
 		{
-			(*ab)->a_pval = current->nb;
-			(*ab)->a_ppos = pivot_index;
+			*(*work)->pval = current->nb;
+			*(*work)->ppos = pivot_index;
 		}
 	}
 }
 
-void 	ft_rsorter(t_heaps **ab, int a_ppos)
+void 	ft_rsorter(t_heaps **ab, t_stack **work, int ppos)
 {
-	if (a_ppos == 1)
+	if (ppos == 1)
 		return ;
-	if ((*ab)->count > 2)
+	if ((*work)->index > 2)
 	{
-		ft_pivot_value(ab, a_ppos);
-		if ((ft_count_bad((*ab)->a, (*ab)->a_pval, a_ppos)) != 0)
+		ft_pivot_value(ab, work, ppos);
+		if ((ft_count_bad(*work, *(*work)->pval, ppos)) != 0)
 		{
-			ft_interject_pivot(ab, &(*ab)->a);
-			ft_rsorter(ab, a_ppos);
+			ft_interject_pivot(ab, work);
+			ft_rsorter(ab, work, ppos);
 		}
 		else
-			ft_rsorter(ab, a_ppos - 1);
+			ft_rsorter(ab, work, ppos - 1);
 	}
-	else if ((*ab)->count == 2 && ((*ab)->a->nb > (*ab)->a->next->nb))
+	else if ((*work)->index == 2 && ((*work)->nb > (*work)->next->nb))
 		ft_swap_a(ab, 1);
 }
 
-void 	ft_sorter(t_heaps **ab, int a_ppos)
+void 	ft_sorter(t_heaps **ab, t_stack **work, int ppos)
 {
-	if (a_ppos > (*ab)->a->index)
+	if (ppos > (*work)->index)
 	{
-		ft_rsorter(ab, (*ab)->a->index);
+		ft_rsorter(ab, work, (*work)->index);
 		return ;
 	}
-	if ((*ab)->count > 2)
+	if ((*work)->index > 2)
 	{
-		ft_pivot_value(ab, a_ppos);
-		if ((ft_count_bad((*ab)->a, (*ab)->a_pval, a_ppos)) != 0)
+		ft_pivot_value(ab, work, ppos);
+		if ((ft_count_bad(*work, *(*work)->pval, ppos)) != 0)
 		{
-			ft_interject_pivot(ab, &(*ab)->a);
-			ft_sorter(ab, a_ppos);
+			ft_interject_pivot(ab, work);
+			ft_sorter(ab, work, ppos);
 		}
 		else
-			ft_sorter(ab, a_ppos + 1);
+			ft_sorter(ab, work, ppos + 1);
 	}
-	else if ((*ab)->count == 2 && ((*ab)->a->nb > (*ab)->a->next->nb))
+	else if ((*work)->index == 2 && ((*work)->nb > (*work)->next->nb))
 		ft_swap_a(ab, 1);
 }
