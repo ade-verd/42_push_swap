@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/07 13:24:56 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/03/28 15:19:34 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/03/28 18:55:20 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ void 	ft_rsorter(t_heaps **ab, t_stack **work, int ppos)
 
 void 	ft_sorter(t_heaps **ab, t_stack **work, int ppos)
 {
-	printf("ENTER\n");
 	if (!(*work))
 		return ;
 	if (ppos < 1)

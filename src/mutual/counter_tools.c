@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/15 12:25:12 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/03/28 15:07:14 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/03/28 18:49:30 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ int		ft_countv(t_stack *stack, int val, char *sign)
 {
 	int		count;
 
-	printf("Stack:%c\tSign:%s\tVal:%d\t", stack->id - 32, sign, val);
 	count = ft_strchr(sign, '=') ? -1 : 0;
 	while (stack)
 	{
@@ -44,8 +43,6 @@ int		ft_countv(t_stack *stack, int val, char *sign)
 			count++;
 		stack = stack->next;
 	}
-	printf("Count:%d\n", count);
-	fflush(stdout);
 	return (count);
 }
 
@@ -54,7 +51,6 @@ int		ft_count_bad(t_stack *stack, int pivot, int pos)
 	int		count;
 
 	count = 0;
-	printf("Stack:%c\t", stack->id - 32);
 	while (stack)
 	{
 		if (stack->sens == 1)
@@ -73,8 +69,6 @@ int		ft_count_bad(t_stack *stack, int pivot, int pos)
 		}
 		stack = stack->next;
 	}
-	printf("Pivot:%d\tCountBad:%d\n", pivot, count);
-	fflush(stdout);
 	return (count);
 }
 
