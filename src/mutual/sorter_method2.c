@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/07 13:24:56 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/03/27 16:35:17 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/03/28 15:19:34 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,12 +44,17 @@ void 	ft_rsorter(t_heaps **ab, t_stack **work, int ppos)
 		else
 			ft_rsorter(ab, work, ppos + 1);
 	}
-	else if ((*work)->index == 2 && ((*work)->nb > (*work)->next->nb))
-		ft_swap_a(ab, 1);
+	else if ((*work)->index == 2
+				&& (((*work)->sens == 1 && (*work)->nb > (*work)->next->nb)
+				|| ((*work)->sens == 0 && (*work)->nb < (*work)->next->nb)))
+		(*work)->id == 'a' ? ft_swap_a(ab, 1) : ft_swap_b(ab, 1);
 }
 
 void 	ft_sorter(t_heaps **ab, t_stack **work, int ppos)
 {
+	printf("ENTER\n");
+	if (!(*work))
+		return ;
 	if (ppos < 1)
 	{
 		ft_rsorter(ab, work, 1);
@@ -66,6 +71,8 @@ void 	ft_sorter(t_heaps **ab, t_stack **work, int ppos)
 		else
 			ft_sorter(ab, work, ppos - 1);
 	}
-	else if ((*work)->index == 2 && ((*work)->nb > (*work)->next->nb))
-		ft_swap_a(ab, 1);
+	else if ((*work)->index == 2
+				&& (((*work)->sens == 1 && (*work)->nb > (*work)->next->nb)
+				|| ((*work)->sens == 0 && (*work)->nb < (*work)->next->nb)))
+		(*work)->id == 'a' ? ft_swap_a(ab, 1) : ft_swap_b(ab, 1);
 }

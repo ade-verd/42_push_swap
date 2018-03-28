@@ -6,13 +6,15 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/02 17:21:44 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/03/27 17:53:58 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/03/28 15:13:55 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ft_place_on_target(t_heaps **ab, t_stack **work, int toplace_ind, int target_index)
+/*Revoir la fonction en testant le nombre de coups*/
+void	ft_place_on_target(t_heaps **ab, t_stack **work,
+											int toplace_ind, int target_index)
 {
 	float	median_index;
 	int 	sens;
@@ -41,47 +43,45 @@ void	ft_sort_n_repush(t_heaps **ab, t_stack **other, int push)
 	while (*ab && *other && push)
 	{
 		if ((*other)->next 
-			&& (((*other)->sens == 1 && (*other)->nb > (*other)->next->nb)
-			|| ((*other)->sens == 0 && (*other)->nb < (*other)->next->nb)))
-		{
+				&& (((*other)->sens == 1 && (*other)->nb > (*other)->next->nb)
+				|| ((*other)->sens == 0 && (*other)->nb < (*other)->next->nb)))
 			(*other)->id == 'a' ? ft_swap_a(ab, 1) : ft_swap_b(ab, 1);
-			ft_sorter(ab, other, (*other)->index);
-		}
 		else
-		{
 			(*other)->id == 'a' ? ft_push_b(ab, 1) : ft_push_a(ab, 1);
-			push--;
-		}
+		push--;
 	}
 }
 
-void	ft_interject(t_heaps **ab, t_stack **work, t_stack **other)
+void	ft_interject(t_heaps **ab, t_stack **work, t_stack **othr, int sens)
 {
 	int		count;
 	int		push;
-	int 	pivot;
+	int 	pvt;
 
 	push = 0;
-	count = ft_count_val(*work, *(*work)->pval, "<");
-	pivot = *(*work)->pval;
+	pvt = *(*work)->pval;
+	count = sens == 1 ? ft_countv(*work, pvt, "<") : ft_countv(*work, pvt, ">");
 //	printf("%s\n", __FUNCTION__);
+	//if (*work && (*work)->id == 'b')
+	//	exit(0);
 	while (*ab && *work && count)
 	{
-		if ((*work)->nb < pivot)
+		if ((sens == 1 && (*work)->nb < pvt) || (sens == 0 && (*work)->nb > pvt))
 		{
 			(*work)->id == 'a' ? ft_push_b(ab, 1) : ft_push_a(ab, 1);
 			push++;
-			if ((*other)->next 
-				&& (((*other)->sens == 1 && (*other)->nb > (*other)->next->nb)
-				|| ((*other)->sens == 0 && (*other)->nb < (*other)->next->nb)))
-				(*other)->id == 'a' ? ft_swap_a(ab, 1) : ft_swap_b(ab, 1);
+			if ((*othr)->next 
+					&& (((*othr)->sens == 1 && (*othr)->nb > (*othr)->next->nb)
+					|| ((*othr)->sens == 0 && (*othr)->nb < (*othr)->next->nb)))
+				(*othr)->id == 'a' ? ft_swap_a(ab, 1) : ft_swap_b(ab, 1);
 			count--;
 		}
 		else
 			(*work)->id == 'a' ? ft_rrotate_a(ab, 1) : ft_rrotate_b(ab, 1);
+		*othr && !ft_issort(*othr) ? ft_rsorter(ab, othr, 1) : none;
 	}
 	ft_place_on_target(ab, work, *(*work)->ppos, (*work)->index);
-	ft_sort_n_repush(ab, other, push);
+	ft_sort_n_repush(ab, othr, push);
 }
 
 void	ft_interject_pivot(t_heaps **ab, t_stack **work)
@@ -99,5 +99,5 @@ void	ft_interject_pivot(t_heaps **ab, t_stack **work)
 		ft_push_a(ab, 1);
 	}
 	else*/
-		ft_interject(ab, work, other);
+		ft_interject(ab, work, other, (*work)->sens);
 }

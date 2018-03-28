@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 11:37:19 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/03/27 17:26:58 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/03/28 15:07:36 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,11 +110,13 @@ typedef struct	s_fct
 ** Errors
 */
 void			ft_error(t_heaps **ab, char *precision);
+int				none(void);
 
 /*
 ** Sort
 */
 void 			ft_sorter(t_heaps **ab, t_stack **work, int pivot_pos);
+void 			ft_rsorter(t_heaps **ab, t_stack **work, int pivot_pos);
 
 /*
 ** Pivot
@@ -125,7 +127,8 @@ void			ft_interject_pivot(t_heaps **ab, t_stack **work);
 /*
 ** Counter tools
 */
-int				ft_count_val(t_stack *stack, int val, char *sign);
+int				ft_issort(t_stack *stack);
+int				ft_countv(t_stack *stack, int val, char *sign);
 int				ft_count_bad(t_stack *stack, int pivot, int pos);
 int				ft_find_index(t_stack *stack, int nb);
 

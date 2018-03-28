@@ -6,16 +6,33 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/15 12:25:12 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/03/15 13:37:48 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/03/28 15:07:14 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int		ft_count_val(t_stack *stack, int val, char *sign)
+int		ft_issort(t_stack *stack)
+{
+	int		sens;
+
+	sens = stack->sens;
+	while (stack && stack->next)
+	{
+		if (sens == 1 && stack->nb > stack->next->nb)
+			return (0);
+		else if (sens == 0 && stack->nb < stack->next->nb)
+			return (0);
+		stack = stack->next;
+	}
+	return (1);
+}
+
+int		ft_countv(t_stack *stack, int val, char *sign)
 {
 	int		count;
 
+	printf("Stack:%c\tSign:%s\tVal:%d\t", stack->id - 32, sign, val);
 	count = ft_strchr(sign, '=') ? -1 : 0;
 	while (stack)
 	{
@@ -27,6 +44,8 @@ int		ft_count_val(t_stack *stack, int val, char *sign)
 			count++;
 		stack = stack->next;
 	}
+	printf("Count:%d\n", count);
+	fflush(stdout);
 	return (count);
 }
 
@@ -35,14 +54,27 @@ int		ft_count_bad(t_stack *stack, int pivot, int pos)
 	int		count;
 
 	count = 0;
+	printf("Stack:%c\t", stack->id - 32);
 	while (stack)
 	{
-		if (stack->nb > pivot && stack->index > pos)
-			count++;
-		if (stack->nb < pivot && stack->index < pos)
-			count++;
+		if (stack->sens == 1)
+		{
+			if (stack->nb > pivot && stack->index > pos)
+				count++;
+			if (stack->nb < pivot && stack->index < pos)
+				count++;
+		}
+		else
+		{
+			if (stack->nb > pivot && stack->index < pos)
+				count++;
+			if (stack->nb < pivot && stack->index > pos)
+				count++;
+		}
 		stack = stack->next;
 	}
+	printf("Pivot:%d\tCountBad:%d\n", pivot, count);
+	fflush(stdout);
 	return (count);
 }
 
