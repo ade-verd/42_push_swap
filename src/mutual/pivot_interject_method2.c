@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/02 17:21:44 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/03/28 19:00:33 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/03/29 15:33:20 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,12 @@
 
 /*Revoir la fonction en testant le nombre de coups*/
 void	ft_place_on_target(t_heaps **ab, t_stack **work,
-											int toplace_ind, int target_index)
+			int toplace_ind, int target_index)
 {
 	float	median_index;
 	int 	sens;
 
+//	printf("%s\n", __FUNCTION__);
 	median_index = (*work)->index / 2;
 	sens = toplace_ind > median_index ? 1 : -1;
 	while (toplace_ind != target_index)
@@ -38,6 +39,7 @@ void	ft_place_on_target(t_heaps **ab, t_stack **work,
 
 void	ft_sort_repush(t_heaps **ab, t_stack **other, int push)
 {
+//	printf("%s\n", __FUNCTION__);
 	while (*ab && *other && push)
 	{
 		if ((*other)->next 
@@ -52,6 +54,7 @@ void	ft_sort_repush(t_heaps **ab, t_stack **other, int push)
 
 void	ft_interject(t_heaps **ab, t_stack **work, t_stack **othr, int sens)
 {
+	//printf("%s\n", __FUNCTION__);
 	int		count;
 	int		push;
 	int 	pvt;
@@ -87,6 +90,7 @@ void	ft_interject_pivot(t_heaps **ab, t_stack **work)
 //	int		max_index;
 	t_stack	**other;
 
+//	printf("%s\n", __FUNCTION__);
 	//if (ft_issort(*work))
 	//	return ;
 	other = (*work)->id == 'a' ? &(*ab)->b : &(*ab)->a;

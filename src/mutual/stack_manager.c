@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 11:54:35 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/03/28 12:38:37 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/03/29 15:30:24 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,17 +22,15 @@ int		ft_stackpush(t_heaps **ab, t_stack **current_link, int new_nb, char id)
 		return (-1);
 	}
 	new_link->nb = new_nb;
-	if (!(*current_link))
-		new_link->index = 1;
-	else
-	{
-		new_link->index = (*current_link)->index + 1;
+	new_link->index = !*current_link ? 1 : (*current_link)->index + 1;
+	if (*current_link)
 		(*current_link)->prev = new_link;
-	}
 	new_link->id = id;
 	new_link->sens = id == 'a' ? 1 : 0;
 	new_link->ppos = id == 'a' ? &(*ab)->a_ppos : &(*ab)->b_ppos;
 	new_link->pval = id == 'a' ? &(*ab)->a_pval : &(*ab)->b_pval;
+	new_link->min = id == 'a' ? &(*ab)->a_min : &(*ab)->b_min;
+	new_link->max = id == 'a' ? &(*ab)->a_max : &(*ab)->b_max;
 	new_link->next = *current_link;
 	new_link->prev = NULL;
 	*current_link = new_link;
@@ -63,6 +61,7 @@ void	ft_stackdisplay(t_stack **stack, unsigned char c, int pval, int ppos)
 	{
 		cpy = *stack;
 		next = cpy->nb;
+		ft_printf("min:%d, max:%d\t", *(*stack)->min, *(*stack)->max);
 		ft_putstr("(top) ");
 		while (cpy)
 		{

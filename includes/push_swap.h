@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 11:37:19 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/03/28 15:07:36 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/03/29 13:30:25 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ typedef struct	s_stack
 	int				nb;
 	int				index;
 	int				sens;
+	int				*min;
+	int				*max;
 	int				*ppos;
 	int				*pval;
 	struct s_stack	*next;
@@ -45,6 +47,10 @@ typedef struct	s_heaps
 	int 			count;
 	int				min;
 	int				max;
+	int				a_min;
+	int				a_max;
+	int				b_min;
+	int				b_max;
 	int				a_pval;
 	int				a_ppos;
 	int				b_pval;

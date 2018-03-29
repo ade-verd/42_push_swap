@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 17:38:06 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/03/21 13:55:51 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/03/29 14:42:07 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,8 @@ int		ft_read_and_fillstack(int ac, char **av, t_heaps **ab)
 		else
 			ft_error(ab, 0);
 	}
+	(*ab)->a_min = (*ab)->min;
+	(*ab)->a_max = (*ab)->max;
 	(*ab)->count = (*ab)->a->index;
 	return (1);
 }

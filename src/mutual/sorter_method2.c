@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/07 13:24:56 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/03/28 18:55:20 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/03/29 15:33:38 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void 	ft_pivot_value(t_heaps **ab, t_stack **work, int pivot_index)
 {
+//	printf("%s\n", __FUNCTION__);
 	t_stack	*current;
 
 	if (*ab && *work)
@@ -31,6 +32,7 @@ void 	ft_pivot_value(t_heaps **ab, t_stack **work, int pivot_index)
 
 void 	ft_rsorter(t_heaps **ab, t_stack **work, int ppos)
 {
+//	printf("%s\n", __FUNCTION__);
 	if (ppos > (*work)->index)
 		return ;
 	if ((*work)->index > 2)
@@ -52,6 +54,7 @@ void 	ft_rsorter(t_heaps **ab, t_stack **work, int ppos)
 
 void 	ft_sorter(t_heaps **ab, t_stack **work, int ppos)
 {
+//	printf("%s\n", __FUNCTION__);
 	if (!(*work))
 		return ;
 	if (ppos < 1)
