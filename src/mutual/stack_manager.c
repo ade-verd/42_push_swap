@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 11:54:35 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/03/29 15:30:24 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/03/29 17:25:54 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	ft_stackdisplay(t_stack **stack, unsigned char c, int pval, int ppos)
 	{
 		cpy = *stack;
 		next = cpy->nb;
-		ft_printf("min:%d, max:%d\t", *(*stack)->min, *(*stack)->max);
+		//ft_printf("min:%d, max:%d\t", *(*stack)->min, *(*stack)->max);
 		ft_putstr("(top) ");
 		while (cpy)
 		{

@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 11:37:19 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/03/29 13:30:25 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/03/29 17:51:04 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,6 +121,7 @@ int				none(void);
 /*
 ** Sort
 */
+void			ft_simple_sorter(t_heaps **ab, t_stack **work);
 void 			ft_sorter(t_heaps **ab, t_stack **work, int pivot_pos);
 void 			ft_rsorter(t_heaps **ab, t_stack **work, int pivot_pos);
 

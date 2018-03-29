@@ -48,7 +48,8 @@ SRC_NAME_MUTUAL = \
 		   rrotate_motion.c\
 		   reverse_motion.c\
 		   \
-		   counter_tools.c\
+		   tools.c\
+		   simple_sorter.c\
 		   sorter_method2.c\
 		   pivot_interject_method2.c\
 
