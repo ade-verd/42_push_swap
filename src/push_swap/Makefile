@@ -20,11 +20,11 @@ CC = gcc
 SRC_PATH = ./
 SRC_PATH_MUTUAL = ../mutual/
 OBJ_PATH = ../../obj/$(NAME)/
-PRINTF_PATH = ../../libftprintf/
-LIBFT_PATH = $(PRINTF_PATH)libft/
+PRINTF_PATH = ../../libftprintf
+LIBFT_PATH = $(PRINTF_PATH)/libft
 LIB_PATH = $(LIBFT_PATH) $(PRINTF_PATH) 
-INC_PATH = ../../includes/ \
-		   $(addsuffix includes/, $(LIB_PATH))
+INC_PATH = ../../includes \
+		   $(addsuffix /includes/, $(LIB_PATH))
 
 # Includes & libraries
 CPPFLAGS = $(addprefix -I ,$(INC_PATH))
@@ -59,7 +59,7 @@ OBJ_NAME_MUTUAL = $(SRC_NAME_MUTUAL:.c=.o)
 SRC = $(addprefix $(SRC_PATH),$(SRC_NAME)) \
 	  $(addprefix $(SRC_PATH_MUTUAL),$(SRC_NAME_MUTUAL))
 OBJ = $(addprefix $(OBJ_PATH),$(OBJ_NAME)) \
-	  $(addprefix $(OBJ_PATH)/$(SRC_PATH_MUTUAL),$(OBJ_NAME_MUTUAL))
+	  $(addprefix $(OBJ_PATH)$(SRC_PATH_MUTUAL),$(OBJ_NAME_MUTUAL))
 
 # Flags with OS Compatibiliy
 OS = $(shell uname)
@@ -79,6 +79,10 @@ ifdef FLAGS
 else
 	CFLAGS := $(FLAGS_DEFAULT) $(ADDFLAGS)
 endif
+
+# MAKEFLAGS
+MAKEFLAGS += --no-print-directory
+MAKE = make $(MAKEFLAGS) -C
 
 # Variables
 COUNTER=0
@@ -124,7 +128,7 @@ $(NAME): libftprintf.a $(OBJ_PATH) $(OBJ)
 	@if [ $(COUNTER) -ne 0 ]; then echo -e $(ASSEMBLING); fi;
 
 libftprintf.a:
-	@make -C $(PRINTF_PATH) $@
+	@$(MAKE) $(PRINTF_PATH) $@
 
 $(OBJ_PATH):
 	@echo -e "$(TITLE)build $(NAME)$(END_TITLE)"
@@ -141,7 +145,7 @@ clean:
 	@echo -e "$(TITLE)clean $(NAME)$(END_TITLE)"
 	@echo -e $(OBJECTS_DEL)
 	@rm -Rf $(OBJ_PATH)
-	@make -C $(PRINTF_PATH) clean_quiet
+	@$(MAKE) $(PRINTF_PATH) clean_quiet
 
 fclean:
 	@echo -e "$(TITLE)fclean $(NAME)$(END_TITLE)"
@@ -149,7 +153,7 @@ fclean:
 	@rm -Rf $(OBJ_PATH)
 	@echo -e $(BIN_DEL)
 	@rm -f $(NAME)
-	@make -C $(PRINTF_PATH) fclean_quiet
+	@$(MAKE) $(PRINTF_PATH) fclean_quiet
 
 re: fclean all
 

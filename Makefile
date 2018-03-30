@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+         #
+#    By: aurelien <aurelien@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/05 13:46:57 by ade-verd          #+#    #+#              #
-#    Updated: 2018/03/19 19:02:02 by ade-verd         ###   ########.fr        #
+#    Updated: 2018/03/30 17:57:27 by aurelien         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,10 @@ SWP_PATH = $(SRC_PATH)/$(NAME_SWP)
 CHK_PATH = $(SRC_PATH)/$(NAME_CHK)
 LIB_PATH = libftprintf/libft
 OBJ_PATH = obj
+
+# MAKEFLAGS
+MAKEFLAGS += --no-print-directory
+MAKE = make $(MAKEFLAGS) -C
 
 # **************************************************************************** #
 # SPECIALS CHARS                                                               #
@@ -60,28 +64,31 @@ all: $(NAME)
 
 $(NAME): $(NAME_SWP) $(NAME_CHK)
 
-$(NAME_SWP): libft.a
-	@make -C $(SWP_PATH) $@
+$(NAME_SWP): force
+	@$(MAKE) $(SWP_PATH) $@
 	@if [ -h $@ ]; then rm -f $@; fi;
 	@ln -s $(SWP_PATH)/$@ .
 
-$(NAME_CHK): libft.a
-	@make -C $(CHK_PATH) $@
+$(NAME_CHK): force
+	@$(MAKE) $(CHK_PATH) $@
 	@if [ -h $@ ]; then rm -f $@; fi;
 	@ln -s $(CHK_PATH)/$@ .
 
+force:
+	@true
+
 libft.a:
-	@make -C $(LIB_PATH) $@
+	@$(MAKE) $(LIB_PATH) $@
 
 clean:
-	@make -C $(SWP_PATH) clean
-	@make -C $(CHK_PATH) clean
+	@$(MAKE) $(SWP_PATH) clean
+	@$(MAKE) $(CHK_PATH) clean
 	@rm -Rf $(OBJ_PATH)
 
 
 fclean:
-	@make -C $(SWP_PATH) fclean
-	@make -C $(CHK_PATH) fclean
+	@$(MAKE) $(SWP_PATH) fclean
+	@$(MAKE) $(CHK_PATH) fclean
 	@rm -Rf $(OBJ_PATH)
 	@if [ -h $(NAME_SWP) ]; then rm -f $(NAME_SWP); fi;
 	@if [ -h $(NAME_CHK) ]; then rm -f $(NAME_CHK); fi;
@@ -90,9 +97,9 @@ re: fclean all
 
 norme:
 	@echo -e "$(TITLE)Norminette: $(NAME_SWP)$(END_TITLE)"
-	@make -C $(SWP_PATH) norme
+	@$(MAKE) $(SWP_PATH) norme
 	@echo -e "$(TITLE)Norminette: $(NAME_CHK)$(END_TITLE)"
-	@make -C $(CHK_PATH) norme
+	@$(MAKE) $(CHK_PATH) norme
 
 normadev: 
 	sh ~/Projects/support/Normadev/normadev.sh **/*.[ch]
