@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tools.c                                            :+:      :+:    :+:   */
+/*   counter_tools.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/15 12:25:12 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/03/29 17:28:31 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/04/03 14:18:12 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,18 +70,4 @@ int		ft_count_bad(t_stack *stack, int pivot, int pos)
 		stack = stack->next;
 	}
 	return (count);
-}
-
-int		ft_find_index(t_stack *stack, int nb)
-{
-	int 	index;
-
-	index = stack->index;
-	while (stack->index > 0)
-	{
-		if (stack->nb == nb)
-			return (stack->index);
-		stack = stack->next;
-	}
-	return (-1);
 }

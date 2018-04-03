@@ -65,8 +65,7 @@ else
 endif
 
 # MAKEFLAGS
-MAKEFLAGS += --no-print-directory
-MAKE = make $(MAKEFLAGS) -C
+MAKE = make --no-print-directory -C #$(MAKEFLAGS)
 
 # Variables
 COUNTER=0

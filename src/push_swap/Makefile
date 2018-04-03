@@ -48,7 +48,9 @@ SRC_NAME_MUTUAL = \
 		   rrotate_motion.c\
 		   reverse_motion.c\
 		   \
-		   tools.c\
+		   counter_tools.c\
+		   finder_tools.c\
+		   \
 		   simple_sorter.c\
 		   sorter_method2.c\
 		   pivot_interject_method2.c\
@@ -81,8 +83,7 @@ else
 endif
 
 # MAKEFLAGS
-MAKEFLAGS += --no-print-directory
-MAKE = make $(MAKEFLAGS) -C
+MAKE = make --no-print-directory -C #$(MAKEFLAGS)
 
 # Variables
 COUNTER=0

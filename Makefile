@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: aurelien <aurelien@student.42.fr>          +#+  +:+       +#+         #
+#    By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/05 13:46:57 by ade-verd          #+#    #+#              #
-#    Updated: 2018/03/30 17:57:27 by aurelien         ###   ########.fr        #
+#    Updated: 2018/04/03 15:36:09 by ade-verd         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ OBJ_PATH = obj
 
 # MAKEFLAGS
 MAKEFLAGS += --no-print-directory
-MAKE = make $(MAKEFLAGS) -C
+MAKE = make --no-print-directory -C #$(MAKEFLAGS)
 
 # **************************************************************************** #
 # SPECIALS CHARS                                                               #

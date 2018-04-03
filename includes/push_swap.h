@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 11:37:19 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/03/29 17:51:04 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/04/03 14:59:23 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,6 +124,7 @@ int				none(void);
 void			ft_simple_sorter(t_heaps **ab, t_stack **work);
 void 			ft_sorter(t_heaps **ab, t_stack **work, int pivot_pos);
 void 			ft_rsorter(t_heaps **ab, t_stack **work, int pivot_pos);
+void			ft_place_on_target(t_heaps **h, t_stack **wk, int ind, int tgt);
 
 /*
 ** Pivot
@@ -132,11 +133,15 @@ void 			ft_rsorter(t_heaps **ab, t_stack **work, int pivot_pos);
 void			ft_interject_pivot(t_heaps **ab, t_stack **work);
 
 /*
-** Counter tools
+** Tools: count, find, issort, ...
 */
 int				ft_issort(t_stack *stack);
 int				ft_countv(t_stack *stack, int val, char *sign);
 int				ft_count_bad(t_stack *stack, int pivot, int pos);
 int				ft_find_index(t_stack *stack, int nb);
+int				ft_find_val(t_stack *stack, int index_tofind, int *val);
+int				ft_find_next(t_stack *stack, int ref);
+int				ft_find_prev(t_stack *stack, int ref);
+int				ft_find_median(t_stack *stck, int *ind, int start_v, int end_v);
 
 #endif

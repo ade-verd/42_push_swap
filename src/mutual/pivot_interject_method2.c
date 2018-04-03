@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/02 17:21:44 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/03/29 15:33:20 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/04/03 13:26:11 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	ft_sort_repush(t_heaps **ab, t_stack **other, int push)
 
 void	ft_interject(t_heaps **ab, t_stack **work, t_stack **othr, int sens)
 {
-	//printf("%s\n", __FUNCTION__);
+//	printf("%s\n", __FUNCTION__);
 	int		count;
 	int		push;
 	int 	pvt;
@@ -64,7 +64,9 @@ void	ft_interject(t_heaps **ab, t_stack **work, t_stack **othr, int sens)
 	count = sens == 1 ? ft_countv(*work, pvt, "<") : ft_countv(*work, pvt, ">");
 	while (*ab && *work && count && !ft_issort(*work))
 	{
-		if ((sens == 1 && (*work)->nb < pvt) || (sens == 0 && (*work)->nb > pvt))
+		if ((*work)->index <= 3)
+			ft_simple_sorter(ab, work);
+		else if ((sens == 1 && (*work)->nb < pvt) || (sens == 0 && (*work)->nb > pvt))
 		{
 			(*work)->id == 'a' ? ft_push_b(ab, 1) : ft_push_a(ab, 1);
 			push++;
@@ -79,9 +81,10 @@ void	ft_interject(t_heaps **ab, t_stack **work, t_stack **othr, int sens)
 		}
 		else
 			(*work)->id == 'a' ? ft_rrotate_a(ab, 1) : ft_rrotate_b(ab, 1);
-		*othr && !ft_issort(*othr) ? ft_sorter(ab, othr, (*othr)->index) : none;
 	}
-	ft_place_on_target(ab, work, *(*work)->ppos, (*work)->index);
+	*othr && !ft_issort(*othr) ? ft_sorter(ab, othr, (*othr)->index) : none;
+	if (!ft_issort(*work))
+		ft_place_on_target(ab, work, *(*work)->ppos, (*work)->index);
 	ft_sort_repush(ab, othr, push);
 }
 
