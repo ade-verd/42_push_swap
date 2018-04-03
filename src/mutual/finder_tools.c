@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/03 14:17:05 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/04/03 15:11:43 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/04/03 16:07:26 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,26 +15,32 @@
 int		ft_find_index(t_stack *stack, int nb)
 {
 	int 	index;
+	t_stack	*cpy;
 
 	index = stack->index;
-	while (stack->index > 0)
+	cpy = stack ? stack : NULL;
+	while (cpy)
 	{
-		if (stack->nb == nb)
-			return (stack->index);
-		stack = stack->next;
+		if (cpy->nb == nb)
+			return (cpy->index);
+		cpy = cpy->next;
 	}
 	return (-1);
 }
 
 int		ft_find_val(t_stack *stack, int index_tofind, int *val)
 {
-	while (stack)
+	t_stack	*cpy;
+
+	cpy = stack ? stack : NULL;
+	while (cpy)
 	{
-		if (stack->index == index_tofind)
+		if (cpy->index == index_tofind)
 		{
-			*val = stack->nb;
+			*val = cpy->nb;
 			return (1);
 		}
+		cpy = cpy->next;
 	}
 	return (0);
 }
@@ -42,13 +48,15 @@ int		ft_find_val(t_stack *stack, int index_tofind, int *val)
 int		ft_find_next(t_stack *stack, int ref)
 {
 	int		next_val;
+	t_stack	*cpy;
 
 	next_val = *stack->max;
-	while (stack)
+	cpy = stack ? stack : NULL;
+	while (cpy)
 	{
-		if (stack->nb > ref && stack->nb < next_val)
-			next_val = stack->nb;
-		stack = stack->next;
+		if (cpy->nb > ref && cpy->nb < next_val)
+			next_val = cpy->nb;
+		cpy = cpy->next;
 	}
 	return (next_val);
 }
@@ -56,13 +64,15 @@ int		ft_find_next(t_stack *stack, int ref)
 int		ft_find_prev(t_stack *stack, int ref)
 {
 	int		prev_val;
+	t_stack	*cpy;
 
 	prev_val = *stack->min;
-	while (stack)
+	cpy = stack ? stack : NULL;
+	while (cpy)
 	{
-		if (stack->nb < ref && stack->nb > prev_val)
-			prev_val = stack->nb;
-		stack = stack->next;
+		if (cpy->nb < ref && cpy->nb > prev_val)
+			prev_val = cpy->nb;
+		cpy = cpy->next;
 	}
 	return (prev_val);
 }
@@ -73,7 +83,7 @@ int		ft_find_median(t_stack *stack, int *index, int start_val, int end_val)
 
 	start_val = start_val < *stack->min ? *stack->min : start_val;
 	end_val = end_val > *stack->max ? *stack->max : end_val;
-	median_val = start_val + ((start_val - end_val) / 2);
+	median_val = start_val + ((end_val - start_val) / 2);
 	if ((*index = ft_find_index(stack, median_val)) == -1)
 		median_val = ft_find_next(stack, median_val);
 	*index = ft_find_index(stack, median_val);
