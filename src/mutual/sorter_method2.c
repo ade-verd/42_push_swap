@@ -6,28 +6,31 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/07 13:24:56 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/04/03 13:44:16 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/04/03 17:54:06 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void 	ft_pivot_value(t_heaps **ab, t_stack **work, int pivot_index)
+void 	ft_nextpivot(t_stack **work, char next_previous)
 {
-//	printf("%s\n", __FUNCTION__);
-	t_stack	*current;
+	int		start_val;
+	int		end_val;
 
-	if (*ab && *work)
+	if (!*work)
+		return ;
+	if (next_previous == 'N')
 	{
-		current = *work;
-		while (current && current->index > pivot_index)
-			current = current->next;
-		if (current->index == pivot_index)
-		{
-			*(*work)->pval = current->nb;
-			*(*work)->ppos = pivot_index;
-		}
+		start_val = (*work)->ppos == 0 ? *(*work)->min : *(*work)->pval;
+		end_val = *(*work)->max;
 	}
+	else
+	{
+		start_val = *(*work)->min;
+		end_val = (*work)->ppos == 0 ? *(*work)->max : *(*work)->pval;
+	}
+	*(*work)->pval = ft_find_median(*work, (*work)->ppos, start_val, end_val);
+	*(*work)->ppos = ft_find_index(*work, *(*work)->pval);
 }
 
 void 	ft_rsorter(t_heaps **ab, t_stack **work, int ppos)
@@ -37,7 +40,7 @@ void 	ft_rsorter(t_heaps **ab, t_stack **work, int ppos)
 		return ;
 	if ((*work)->index > 5)
 	{
-		ft_pivot_value(ab, work, ppos);
+		//////ft_pivot_value(ab, work, ppos);
 		if ((ft_count_bad(*work, *(*work)->pval, ppos)) != 0)
 		{
 			ft_interject_pivot(ab, work);
@@ -62,7 +65,7 @@ void 	ft_sorter(t_heaps **ab, t_stack **work, int ppos)
 	}
 	if ((*work)->index > 5)
 	{
-		ft_pivot_value(ab, work, ppos);
+		//////ft_pivot_value(ab, work, ppos);
 		if ((ft_count_bad(*work, *(*work)->pval, ppos)) != 0)
 		{
 			ft_interject_pivot(ab, work);
