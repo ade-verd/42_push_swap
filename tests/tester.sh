@@ -8,7 +8,7 @@ else
 	NBRTOP=$2;
 fi
 
-ARG=$(ruby -e "puts ($NBRBOT..$NBRTOP).to_a.shuffle.join(' ')")
+export ARG=$(ruby -e "puts ($NBRBOT..$NBRTOP).to_a.shuffle.join(' ')")
 
 read -p "Display visual mode [yY] ? " -n 1 -r
 echo    # (optional) move to a new line
@@ -21,3 +21,5 @@ else
 	./push_swap -v $ARG
 	echo "List: $ARG"
 fi
+
+exec $SHELL -i

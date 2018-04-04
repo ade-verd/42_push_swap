@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/29 12:34:11 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/04/03 13:26:19 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/04/04 13:08:32 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void static	ft_more_values(t_heaps **ab, t_stack **work)
 
 void		ft_simple_sorter(t_heaps **ab, t_stack **work)
 {
-//	printf("%s\n", __FUNCTION__);
+	printf("%s\twork: %c\n", __FUNCTION__, (*work)->id - 32);
 	if (ft_issort(*work))
 		return ;
 	if ((*work)->index == 2)
