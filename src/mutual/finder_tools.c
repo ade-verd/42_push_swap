@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/03 14:17:05 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/04/04 13:18:53 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/04/04 16:54:46 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,12 +91,11 @@ int		ft_find_median(t_stack *stack, int *index, int start_val, int end_val)
 
 	if (!stack)
 		return (0);
-	if (*stack->ppos == 1 || *stack->ppos == stack->index)
-		return (*stack->ppos == 1 ? *stack->ppos - 1 : *stack->ppos + 1);
+	//if (*stack->ppos == 1 || *stack->ppos == stack->index)
+	//	return (*stack->ppos == 1 ? *stack->ppos - 1 : *stack->ppos + 1);
 	start_val = start_val < *stack->min ? *stack->min : start_val;
 	end_val = end_val > *stack->max ? *stack->max : end_val;
 	median_val = start_val + ((end_val - start_val) / 2);
-	printf("Find_index: %d\n", ft_find_index(stack, median_val));
 	if (((*index = ft_find_index(stack, median_val)) == -1))
 		median_val = ft_find_next(stack, median_val);
 	*index = ft_find_index(stack, median_val);

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sorter_method2.c                                   :+:      :+:    :+:   */
+/*   sorter_method3.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/07 13:24:56 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/04/04 17:34:49 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/04/04 19:22:46 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,42 +35,19 @@ int 	ft_nextpivot(t_stack **work, char next_previous)
 	return (*(*work)->ppos);
 }
 
-void 	ft_sorternext(t_heaps **ab, t_stack **work, int ppos)
-{
-	printf("%s\twork: %c\n", __FUNCTION__, (*work)->id - 32);
-	if (!(*work) || ft_issort(*work))
-		return ;
-	if ((*work)->index > 4)
-	{
-		if ((ft_count_bad(*work, *(*work)->pval, ppos)) != 0)
-			ft_interject_pivot(ab, work);
-		if (!ft_issort(*work))
-			ft_sorternext(ab, work, ft_nextpivot(work, 'N'));
-	}
-	else
-		ft_simple_sorter(ab, work);
-	if (ppos == (*work)->index && !ft_issort(*work))
-		ft_sorter(ab, work, ft_nextpivot(work, 'P'));
-}
-
 void 	ft_sorter(t_heaps **ab, t_stack **work, int ppos)
 {
 	printf("%s\twork: %c\n", __FUNCTION__, (*work)->id - 32);
-	if (!(*work) || ft_issort(*work))
+	if (!(*work) || ft_issort(*work) || ppos <= 1)
 		return ;
-	if (ppos == 1)
-		return ;
-	else if (ppos == (*work)->index)
-	{
-		ft_sorternext(ab, work, ft_nextpivot(work, 'N'));
-		return ;
-	}
+	*(*work)->ppos = ppos;
+	ft_find_val(*work, *(*work)->ppos, (*work)->pval);
 	if ((*work)->index > 4)
 	{
 		if ((ft_count_bad(*work, *(*work)->pval, ppos)) != 0)
 			ft_interject_pivot(ab, work);
 		if (!ft_issort(*work))
-			ft_sorter(ab, work, ft_nextpivot(work, 'P'));
+			ft_sorter(ab, work, ppos - 1);
 	}
 	else
 		ft_simple_sorter(ab, work);
