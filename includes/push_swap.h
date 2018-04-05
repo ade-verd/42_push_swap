@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 11:37:19 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/04/04 12:06:21 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/04/05 14:13:08 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ typedef struct	s_heaps
 	int				a_ppos;
 	int				b_pval;
 	int				b_ppos;
+	int				cutsize;
 	int				option_v;
 }				t_heaps;
 
@@ -85,7 +86,7 @@ void			ft_del_allmoves(t_heaps **ab);
 */
 int				ft_stackpush(t_heaps **ab, t_stack **current, int nb, char id);
 int				ft_stackpop(t_stack **stack);
-void			ft_stackdisplay(t_stack **s, unsigned char c, int val, int pos);
+void			ft_stackdisplay(t_heaps **ab, t_stack **wk, t_stack **o, int c);
 int				ft_stacklen(t_stack *stack);
 void			ft_stackdel(t_stack **stack);
 
@@ -121,6 +122,7 @@ int				none(void);
 /*
 ** Sort
 */
+void 			ft_mergesorter(t_heaps **ab, t_stack **work, int cutsize);
 void			ft_simple_sorter(t_heaps **ab, t_stack **work);
 void 			ft_sorter(t_heaps **ab, t_stack **work, int pivot_pos);
 void 			ft_rsorter(t_heaps **ab, t_stack **work, int pivot_pos);
@@ -137,6 +139,7 @@ int				ft_nextpivot(t_stack **work, char next_previous);
 ** Tools: count, find, issort, ...
 */
 int				ft_issort(t_stack *stack);
+int				ft_issortn(t_stack *stack, int n);
 int				ft_countv(t_stack *stack, int val, char *sign);
 int				ft_count_bad(t_stack *stack, int pivot, int pos);
 int				ft_find_index(t_stack *stack, int nb);

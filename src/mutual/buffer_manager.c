@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/06 14:35:21 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/04/04 15:42:46 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/04/05 13:45:28 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,9 +73,9 @@ void	ft_display_lastmove(t_heaps **ab)
 	if (*ab && (*ab)->buff && ((*ab)->a_ppos > 0 || (*ab)->b_ppos > 0))
 	{
 		ft_putstr((*ab)->buff->move);
-		//if ((*ab)->a && (*ab)->a_ppos > 0)
+		if ((*ab)->a && (*ab)->a_ppos > 0)
 			ft_printf("\tPivot_A: %d #%d", (*ab)->a_pval, (*ab)->a_ppos);
-		//if ((*ab)->b && (*ab)->b_ppos > 0)
+		if ((*ab)->b && (*ab)->b_ppos > 0)
 			ft_printf("\tPivot_B: %d #%d", (*ab)->b_pval, (*ab)->b_ppos);
 		ft_putchar('\n');
 	}

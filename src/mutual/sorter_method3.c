@@ -6,49 +6,90 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/07 13:24:56 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/04/04 19:22:46 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/04/05 13:29:44 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int 	ft_nextpivot(t_stack **work, char next_previous)
+void 	ft_merge(t_heaps **ab, int cutsize)
 {
-	int		start_val;
-	int		end_val;
-
-	if (!*work)
-		return (0);
-	if (next_previous == 'N')
+	if (!*ab)
+		return ;
+	while ((*ab)->b)
 	{
-		start_val = (*work)->ppos == 0 ? *(*work)->min : *(*work)->pval;
-		end_val = *(*work)->max;
+		if ((*ab)->a->nb > (*ab)->b->nb)
+		{
+			ft_push_a(ab, 1);
+			cutsize++;
+		}
+		else
+		{
+			while ((*ab)->a && cutsize && (*ab)->a->nb < (*ab)->b->nb)
+			{
+				if ((*ab)->a->next && (*ab)->a->nb > (*ab)->a->next->nb)
+					ft_swap_a(ab, 1);
+				else
+				{
+					ft_rotate_a(ab, 1);
+					cutsize--;
+				}
+			}
+			ft_push_a(ab, 1);
+			cutsize++;
+		}
 	}
-	else
-	{
-		start_val = *(*work)->min;
-		end_val = (*work)->ppos == 0 ? *(*work)->max : *(*work)->pval;
-	}
-	*(*work)->pval = ft_find_median(*work, (*work)->ppos, start_val, end_val);
-	*(*work)->ppos = ft_find_index(*work, *(*work)->pval);
-	printf("NextPivot: %d\tPos: #%d\n", *(*work)->pval, *(*work)->ppos);
-	return (*(*work)->ppos);
+	while (cutsize--)
+		ft_rotate_a(ab, 1);
 }
 
-void 	ft_sorter(t_heaps **ab, t_stack **work, int ppos)
+void	ft_push_n_sort(t_heaps **ab, int cutsize, int pushback)
 {
-	printf("%s\twork: %c\n", __FUNCTION__, (*work)->id - 32);
-	if (!(*work) || ft_issort(*work) || ppos <= 1)
-		return ;
-	*(*work)->ppos = ppos;
-	ft_find_val(*work, *(*work)->ppos, (*work)->pval);
-	if ((*work)->index > 4)
-	{
-		if ((ft_count_bad(*work, *(*work)->pval, ppos)) != 0)
-			ft_interject_pivot(ab, work);
-		if (!ft_issort(*work))
-			ft_sorter(ab, work, ppos - 1);
-	}
+	if (cutsize == 2)
+		ft_swap_a(ab, 1);
 	else
-		ft_simple_sorter(ab, work);
+	{
+		while (cutsize--)
+		{
+			ft_push_b(ab, 1);
+			ft_simple_sorter(ab, &(*ab)->b);
+		}
+	}
+	while (pushback && (*ab)->b)
+		ft_push_a(ab, 1);
+}
+
+void 	ft_mergesorter(t_heaps **ab, t_stack **work, int cutsize)
+{
+	int		nbcycle;
+	int		rest;
+	int		cycle;
+	int		i;
+
+	nbcycle = (*work)->index / cutsize;
+	rest = (*work)->index % cutsize;
+	cycle = 1;
+	(*ab)->cutsize = cutsize;
+	printf("%s\twork: %c\n", __FUNCTION__, (*work)->id - 32);
+	if (!*ab || !*work || ft_issort(*work) || cutsize > (*work)->index)
+		return ;
+	while (cycle <= nbcycle)
+	{
+		if (*work && !ft_issortn(*work, cutsize))
+		{
+			printf("%scycle %d n'est pas trié%s\n", F_RED, cycle, F_NO);
+			ft_push_n_sort(ab, cutsize, 0);
+			ft_merge(ab, cutsize);
+		}
+		else if (cycle + 1 < nbcycle)
+		{
+			printf("cycle %d est trié\n", cycle);
+			i = cutsize;
+			while (i--)
+				ft_rotate_a(ab, 1);
+		}
+		cycle++;
+	}
+	ft_push_n_sort(ab, rest, 1);
+	//ft_mergesorter(ab, work, cutsize * 2);
 }

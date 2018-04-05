@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 11:54:35 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/03/29 17:25:54 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/04/05 15:05:42 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,30 +51,37 @@ int		ft_stackpop(t_stack **stack)
 	return (nb);
 }
 
-void	ft_stackdisplay(t_stack **stack, unsigned char c, int pval, int ppos)
+void	ft_stackdisplay(t_heaps **ab, t_stack **work, t_stack **other, int c)
 {
 	t_stack		*cpy;
 	int 		next;
+	char		count;
 
 	ft_printf("%c:\t", ft_toupper(c));
-	if (*stack)
+	if (*work)
 	{
-		cpy = *stack;
+		cpy = *work;
 		next = cpy->nb;
-		//ft_printf("min:%d, max:%d\t", *(*stack)->min, *(*stack)->max);
 		ft_putstr("(top) ");
+		//count = *other && c == 'a' ? (*ab)->cutsize - (*other)->index : 1;
+		count = *other ? (*ab)->cutsize - (*other)->index : (*ab)->cutsize;
 		while (cpy)
 		{
 			if (cpy->sens == 1)
 				cpy->nb < next ? ft_putstr(F_RED) : ft_putstr(F_CYAN);
 			else
 				cpy->nb > next ? ft_putstr(F_RED) : ft_putstr(F_CYAN);
-			if (cpy->nb == pval && ppos > 0)
+			if (cpy->nb == *cpy->pval && *cpy->ppos > 0)
 				ft_printf("%s%s", F_BOLD, F_UNDERLINE);
 			ft_printf("%d%s", cpy->nb, F_NO);
-			cpy->next ? ft_putstr(", ") : ft_putstr(" (end)\n");
+			if (cpy->next)
+				//count == (*ab)->cutsize && c == 'a' ? ft_putstr(" | ") : ft_putstr(", ");
+				!count && (*ab)->cutsize && c == 'a' ? ft_putstr(" | ") : ft_putstr(", ");
+			else
+				ft_putstr(" (bottom)\n");
 			next = cpy->nb;
 			cpy = cpy->next;
+			count = count == 0 ? (*ab)->cutsize : count - 1;
 		}
 	}
 	else
