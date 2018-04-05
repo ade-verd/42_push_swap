@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 11:54:35 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/04/05 15:05:42 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/04/05 16:13:03 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,8 @@ void	ft_stackdisplay(t_heaps **ab, t_stack **work, t_stack **other, int c)
 		next = cpy->nb;
 		ft_putstr("(top) ");
 		//count = *other && c == 'a' ? (*ab)->cutsize - (*other)->index : 1;
-		count = *other ? (*ab)->cutsize - (*other)->index : (*ab)->cutsize;
+		count = *other ? (*ab)->cutsize - (*other)->index - 1: (*ab)->cutsize - 1;
+		printf("count:%d\n", count);
 		while (cpy)
 		{
 			if (cpy->sens == 1)
@@ -76,12 +77,12 @@ void	ft_stackdisplay(t_heaps **ab, t_stack **work, t_stack **other, int c)
 			ft_printf("%d%s", cpy->nb, F_NO);
 			if (cpy->next)
 				//count == (*ab)->cutsize && c == 'a' ? ft_putstr(" | ") : ft_putstr(", ");
-				!count && (*ab)->cutsize && c == 'a' ? ft_putstr(" | ") : ft_putstr(", ");
+				count == 0 && (*ab)->cutsize && c == 'a' ? ft_putstr(" | ") : ft_putstr(", ");
 			else
 				ft_putstr(" (bottom)\n");
 			next = cpy->nb;
 			cpy = cpy->next;
-			count = count == 0 ? (*ab)->cutsize : count - 1;
+			count = count == 0 ? (*ab)->cutsize - 1 : count - 1;
 		}
 	}
 	else
