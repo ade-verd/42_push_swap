@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/02 17:21:44 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/04/04 19:19:17 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/04/06 15:04:38 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void	ft_interject(t_heaps **ab, t_stack **work, t_stack **othr, int sens)
 	while (*ab && *work && count)
 	{
 		if ((*work)->index < 4)
-			ft_simple_sorter(ab, work);
+			ft_simple_sorter(ab, work, (*work)->index);
 		else if ((sens == 1 && (*work)->nb < pvl) || (sens == 0 && (*work)->nb > pvl))
 		{
 			(*work)->id == 'a' ? ft_push_b(ab, 1) : ft_push_a(ab, 1);
@@ -76,7 +76,7 @@ void	ft_interject(t_heaps **ab, t_stack **work, t_stack **othr, int sens)
 		}
 		else
 			(*work)->id == 'a' ? ft_rotate_a(ab, 1) : ft_rotate_b(ab, 1);
-		*othr && !ft_issort(*othr) ? ft_simple_sorter(ab, othr) : none;
+		*othr && !ft_issort(*othr) ? ft_simple_sorter(ab, othr, (*othr)->index) : none;
 	}
 	//!ft_issort(*work) ? ft_sorter(ab, work, ft_nextpivot(work, 'N')) : none;
 	//if (!ft_issort(*work))

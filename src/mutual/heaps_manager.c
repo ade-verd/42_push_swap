@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 11:54:35 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/04/05 16:53:59 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/04/06 15:13:29 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	ft_heaps_init(t_heaps **ab)
 	(*ab)->a_max = 0;
 	(*ab)->b_min = 0;
 	(*ab)->b_max = 0;
-	(*ab)->cut = 0;
+	(*ab)->cut = 1;
 }
 
 void	ft_heaps_del(t_heaps **ab)
@@ -56,7 +56,7 @@ void	ft_heaps_display(t_heaps **ab, unsigned char c, int displaycontext)
 
 	if (displaycontext == 1)
 	{
-		printf("%s%sPress Enter to continue%s", F_BLINKING, F_BLACK, F_NO);
+		ft_printf("%s%sPress Enter to continue%s", F_BLINKING, F_BLACK, F_NO);
 		fgets(s, sizeof s, stdin); 
 		//sleep(1);
 		ft_display_lastmove(ab);

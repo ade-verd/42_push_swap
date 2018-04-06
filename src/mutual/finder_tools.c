@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/03 14:17:05 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/04/04 16:54:46 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/04/06 12:46:41 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,24 @@ int		ft_find_prev(t_stack *stack, int ref)
 		cpy = cpy->next;
 	}
 	return (prev_val);
+}
+
+void	ft_find_minmax(t_stack *stack, int *min, int *max, int n)
+{
+	t_stack	*cpy;
+
+	if (!stack)
+		return ;
+	cpy = stack;
+	*min = stack->nb;
+	*max = stack->nb;
+	while (cpy && n)
+	{
+		*min = cpy->nb < *min ? cpy->nb : *min;
+		*max = cpy->nb > *max ? cpy->nb : *max;
+		n--;
+		cpy = cpy->next;
+	}
 }
 
 int		ft_find_median(t_stack *stack, int *index, int start_val, int end_val)

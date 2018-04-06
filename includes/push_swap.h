@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 11:37:19 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/04/05 16:53:21 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/04/06 13:10:28 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,7 +123,7 @@ int				none(void);
 ** Sort
 */
 void 			ft_mergesorter(t_heaps **ab, t_stack **work, int cutsize);
-void			ft_simple_sorter(t_heaps **ab, t_stack **work);
+void			ft_simple_sorter(t_heaps **ab, t_stack **work, int n);
 void 			ft_sorter(t_heaps **ab, t_stack **work, int pivot_pos);
 void 			ft_rsorter(t_heaps **ab, t_stack **work, int pivot_pos);
 void			ft_place_on_target(t_heaps **h, t_stack **wk, int ind, int tgt);
@@ -147,5 +147,6 @@ int				ft_find_val(t_stack *stack, int index_tofind, int *val);
 int				ft_find_next(t_stack *stack, int ref);
 int				ft_find_prev(t_stack *stack, int ref);
 int				ft_find_median(t_stack *stck, int *ind, int start_v, int end_v);
+void			ft_find_minmax(t_stack *stack, int *min, int *max, int n);
 
 #endif
