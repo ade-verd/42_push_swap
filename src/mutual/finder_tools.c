@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/03 14:17:05 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/04/06 12:46:41 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/04/06 18:40:24 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ void	ft_find_minmax(t_stack *stack, int *min, int *max, int n)
 	}
 }
 
-int		ft_find_median(t_stack *stack, int *index, int start_val, int end_val)
+/*int		ft_find_median(t_stack *stack, int *index, int start_val, int end_val)
 {
 	int 	median_val;
 
@@ -118,4 +118,41 @@ int		ft_find_median(t_stack *stack, int *index, int start_val, int end_val)
 		median_val = ft_find_next(stack, median_val);
 	*index = ft_find_index(stack, median_val);
 	return (median_val);
+}*/
+
+int		ft_find_median(t_stack *stack)
+{
+	int		i;
+	int		tab[stack->index + 1];
+	t_stack	*cpy;
+
+	if (!stack)
+		return (0);
+	cpy = stack;
+	tab[stack->index] = 0;
+	i = 0;
+	while (i < stack->index)
+	{
+		tab[i] = cpy->nb;
+		cpy = cpy->next;
+		i++;
+	}
+	i = 0;
+	while (i + 1 < stack->index)
+	{
+		if (tab[i] > tab[i + 1])
+		{
+			ft_swap(&tab[i], &tab[i + 1]);
+			i = -1;
+		}
+		i++;
+	}
+	i = 0;
+	while (i < stack->index)
+	{
+		printf("%d, ", tab[i]);
+		i++;
+	}
+	printf("\n");
+	return (tab[stack->index / 2]);
 }
