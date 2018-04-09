@@ -6,36 +6,41 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/02 17:21:44 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/04/06 18:26:27 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/04/09 17:11:49 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
 /*Revoir la fonction en testant le nombre de coups*/
-void	ft_place_on_target(t_heaps **ab, t_stack **work,
+int		ft_place_on_target(t_heaps **ab, t_stack **work,
 			int toplace_ind, int target_index)
 {
 	float	median_index;
 	int 	sens;
+	int		position;
 
-	printf("%s\twork: %c\n", __FUNCTION__, (*work)->id - 32);
-	printf("Toplace:%d\tTarget:%d\n", toplace_ind, target_index);
+//	printf("%s\twork: %c\n", __FUNCTION__, (*work)->id - 32);
+//	printf("Toplace:%d\tTarget:%d\n", toplace_ind, target_index);
 	median_index = (*work)->index / 2;
 	sens = toplace_ind > median_index ? 1 : -1;
+	position = 0;
 	while (toplace_ind != target_index)
 	{
 		if (sens == 1)
 		{
 			(*work)->id == 'a' ? ft_rotate_a(ab, 1) : ft_rotate_b(ab, 1);
 			toplace_ind = toplace_ind == (*work)->index ? 1 : toplace_ind + 1;
+			position--;
 		}
 		else
 		{
 			(*work)->id == 'a' ? ft_rrotate_a(ab, 1) : ft_rrotate_b(ab, 1);
 			toplace_ind = toplace_ind == 1 ? (*work)->index : toplace_ind - 1;
+			position++;
 		}
 	}
+	return (position);
 }
 
 void	ft_sort_repush(t_heaps **ab, t_stack **other, int push)

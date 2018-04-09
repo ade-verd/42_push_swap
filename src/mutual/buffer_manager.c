@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/06 14:35:21 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/04/05 13:45:28 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/04/09 17:32:21 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,9 @@ void	ft_moveappend(t_heaps **ab, char *s)
 
 void	ft_displaymoves(t_heaps **ab, int display_number_moves)
 {
-	t_buf		*current;
+//	t_buf		*current;
 
-	if (*ab && (*ab)->buff)
+/*	if (*ab && (*ab)->buff)
 	{
 		current = (*ab)->buff;
 		while (current && current->index > 1)
@@ -64,7 +64,7 @@ void	ft_displaymoves(t_heaps **ab, int display_number_moves)
 			current = current->prev;
 		}
 	}
-	if (display_number_moves == 1)
+*/	if (display_number_moves == 1)
 		ft_printf("Number of movements: %d\n", (*ab)->buff->index);
 }
 
