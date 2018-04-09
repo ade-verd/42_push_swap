@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/03 14:17:05 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/04/06 18:40:24 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/04/09 13:30:37 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,14 +130,13 @@ int		ft_find_median(t_stack *stack)
 		return (0);
 	cpy = stack;
 	tab[stack->index] = 0;
-	i = 0;
-	while (i < stack->index)
+	i = stack->index;
+	while (i)
 	{
 		tab[i] = cpy->nb;
 		cpy = cpy->next;
-		i++;
+		i--;
 	}
-	i = 0;
 	while (i + 1 < stack->index)
 	{
 		if (tab[i] > tab[i + 1])
@@ -148,11 +147,12 @@ int		ft_find_median(t_stack *stack)
 		i++;
 	}
 	i = 0;
-	while (i < stack->index)
+	while (tab[i])
 	{
 		printf("%d, ", tab[i]);
 		i++;
 	}
-	printf("\n");
+	printf("\nstack->index:%d\n", stack->index);
+	printf("median:%d\n", tab[stack->index / 2]);
 	return (tab[stack->index / 2]);
 }

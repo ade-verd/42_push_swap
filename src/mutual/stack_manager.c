@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 11:54:35 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/04/05 16:54:18 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/04/09 12:18:45 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,11 +51,10 @@ int		ft_stackpop(t_stack **stack)
 	return (nb);
 }
 
-void	ft_stackdisplay(t_heaps **ab, t_stack **work, t_stack **other, int c)
+void	ft_stackdisplay(t_stack **work, int c)
 {
 	t_stack		*cpy;
 	int			next;
-	int			n;
 
 	ft_printf("%c:\t", ft_toupper(c));
 	if (*work)
@@ -63,7 +62,6 @@ void	ft_stackdisplay(t_heaps **ab, t_stack **work, t_stack **other, int c)
 		cpy = *work;
 		next = cpy->nb;
 		ft_putstr("(top) ");
-		n = *other ? (*ab)->cut - ((*other)->index % (*ab)->cut) : (*ab)->cut;
 		while (cpy)
 		{
 			if (cpy->sens == 1)
@@ -73,13 +71,9 @@ void	ft_stackdisplay(t_heaps **ab, t_stack **work, t_stack **other, int c)
 			if (cpy->nb == *cpy->pval && *cpy->ppos > 0)
 				ft_printf("%s%s", F_BOLD, F_UNDERLINE);
 			ft_printf("%d%s", cpy->nb, F_NO);
-			if (cpy->next)
-				n == 1 && c == 'a' ? ft_putstr(" | ") : ft_putstr(", ");
-			else
-				ft_putstr(" (bottom)\n");
+			cpy->next ? ft_putstr(", ") : ft_putstr(" (bottom)\n");
 			next = cpy->nb;
 			cpy = cpy->next;
-			n = n == 1 ? (*ab)->cut : n - 1;
 		}
 	}
 	else

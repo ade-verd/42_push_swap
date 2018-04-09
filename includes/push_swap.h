@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 11:37:19 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/04/06 18:23:14 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/04/09 12:51:30 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,8 @@ void			ft_del_allmoves(t_heaps **ab);
 */
 int				ft_stackpush(t_heaps **ab, t_stack **current, int nb, char id);
 int				ft_stackpop(t_stack **stack);
-void			ft_stackdisplay(t_heaps **ab, t_stack **wk, t_stack **o, int c);
+//void			ft_stackdisplay(t_heaps **ab, t_stack **wk, t_stack **o, int c);
+void			ft_stackdisplay(t_stack **work, int c);
 int				ft_stacklen(t_stack *stack);
 void			ft_stackdel(t_stack **stack);
 
@@ -124,7 +125,8 @@ int				none(void);
 */
 void 			ft_mergesorter(t_heaps **ab, t_stack **work, int cutsize);
 void			ft_simple_sorter(t_heaps **ab, t_stack **work, int n);
-void 			ft_sorter(t_heaps **ab, t_stack **work, int pivot_pos);
+//void 			ft_sorter(t_heaps **ab, t_stack **work, int pivot_pos);
+void 			ft_sorter(t_heaps **ab, t_stack **work);
 void 			ft_rsorter(t_heaps **ab, t_stack **work, int pivot_pos);
 void			ft_place_on_target(t_heaps **h, t_stack **wk, int ind, int tgt);
 

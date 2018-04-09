@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/29 12:34:11 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/04/06 15:13:48 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/04/09 13:02:23 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,13 @@ void		ft_simple_sorter(t_heaps **ab, t_stack **work, int n)
 	if (ft_issortn(*work, n))
 		return ;
 	if ((*work)->index == 2 || (n == 2 && !ft_issortn(*work, 2)))
-		(*work)->id == 'a' ? ft_swap_a(ab, 1) : ft_swap_b(ab, 1);
+	{
+		if ((((*work)->id == 'a' && (*work)->nb == *(*work)->max))
+			|| (((*work)->id == 'b' && (*work)->nb == *(*work)->min)))
+			(*work)->id == 'a' ? ft_rotate_a(ab, 1) : ft_rotate_b(ab, 1);
+		else
+			(*work)->id == 'a' ? ft_swap_a(ab, 1) : ft_swap_b(ab, 1);
+	}
 	else if ((*work)->index == 3 || (n == 3 && !ft_issortn(*work, 3)))
 		ft_three_values(ab, work, n);
 	else

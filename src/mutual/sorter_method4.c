@@ -6,59 +6,47 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/07 13:24:56 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/04/06 18:25:02 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/04/09 13:22:33 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int 	ft_nextpivot(t_stack **work, char next_previous)
+void	ft_push_under_median(t_heaps **ab, t_stack **work)
 {
-	int		start_val;
-	int		end_val;
-:w_coredump
-	if (!*work)
-		return (0);
-	if (next_previous == 'N')
-	{
-		start_val = (*work)->ppos == 0 ? *(*work)->min : *(*work)->pval;
-		end_val = *(*work)->max;
-	}
-	else
-	{
-		start_val = *(*work)->min;
-		end_val = (*work)->ppos == 0 ? *(*work)->max : *(*work)->pval;
-	}
-//	*(*work)->pval = ft_find_median(*work, (*work)->ppos, start_val, end_val);
-	*(*work)->ppos = ft_find_index(*work, *(*work)->pval);
-	printf("NextPivot: %d\tPos: #%d\n", *(*work)->pval, *(*work)->ppos);
-	return (*(*work)->ppos);
-}
+	int		count;
+	int		mdn;
+	int		sens;
 
-void 	ft_sorternext(t_heaps **ab, t_stack **work, int ppos)
-{
 	printf("%s\twork: %c\n", __FUNCTION__, (*work)->id - 32);
-	if (!(*work) || ft_issort(*work))
-		return ;
-	if ((*work)->index > 4)
+	*(*work)->pval = ft_find_median(*work);
+	*(*work)->ppos = ft_find_index(*work, *(*work)->pval);
+	mdn = *(*work)->pval;
+	printf("%smedian: %d%s\n", F_YELLOW, mdn, F_NO);
+	sens = (*work)->sens;
+	count = sens == 1 ? ft_countv(*work, mdn, "<") : ft_countv(*work, mdn, ">");
+	while (*work && count)
 	{
-		if ((ft_count_bad(*work, *(*work)->pval, ppos)) != 0)
-			ft_interject_pivot(ab, work);
-		if (!ft_issort(*work))
-			ft_sorternext(ab, work, ft_nextpivot(work, 'N'));
+		if ((sens == 1 && (*work)->nb < mdn) || (sens == 0 && (*work)->nb > mdn))
+		{
+			(*work)->id == 'a' ? ft_push_b(ab, 1) : ft_push_a(ab, 1);
+			ft_simple_sorter(ab, &(*ab)->b, 2);
+			count--;
+		}
+		else
+			(*work)->id == 'a' ? ft_rrotate_a(ab, 1) : ft_rrotate_b(ab, 1);
 	}
-	else
-	//	ft_simple_sorter(ab, work);
-	if (ppos == (*work)->index && !ft_issort(*work))
-		ft_sorter(ab, work, ft_nextpivot(work, 'P'));
 }
 
 void 	ft_sorter(t_heaps **ab, t_stack **work)
 {
-	int ppos;
-
-	printf("%s\twork: %c\n", __FUNCTION__, (*work)->id - 32);
-	if (!(*work) || ft_issort(*work))
+	//printf("%s\twork: %c\n", __FUNCTION__, (*work)->id - 32);
+	if (!(*work))
 		return ;
-//	ft_find_median(*work, &ppos, 1);
+	while ((*work)->index > 2)
+		ft_push_under_median(ab, work);
+	ft_simple_sorter(ab, work, (*work)->index);
+	while ((*ab)->b)
+		ft_push_under_median(ab, work);
+	//ft_simple_sorter(ab, work, (*work)->index);
 }

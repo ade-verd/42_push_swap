@@ -52,8 +52,8 @@ SRC_NAME_MUTUAL = \
 		   finder_tools.c\
 		   \
 		   simple_sorter.c\
+		   sorter_method4.c\
 		   pivot_interject_method4.c\
-#		   sorter_method4.c\
 
 OBJ_NAME = $(SRC_NAME:.c=.o)
 OBJ_NAME_MUTUAL = $(SRC_NAME_MUTUAL:.c=.o)
