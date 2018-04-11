@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/07 13:24:56 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/04/09 19:51:24 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/04/11 13:03:28 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,13 @@ void	ft_push_under_median(t_heaps **ab, t_stack **work)
 	*(*work)->pval = ft_find_median(*work);
 	*(*work)->ppos = ft_find_index(*work, *(*work)->pval);
 	mdn = *(*work)->pval;
-	printf("%smedian: %d%s\n", F_YELLOW, mdn, F_NO);
+	printf("%s\t\tmedian: %d%s\n", F_YELLOW, mdn, F_NO);
 	sens = (*work)->sens;
 	count = sens == 1 ? ft_countv(*work, mdn, "<") : ft_countv(*work, mdn, ">");
 	while (*work && count)
 	{
+		if (ft_issort(*work) && (*work)->min > (*ab)->b->max)
+			return ;
 		if ((sens == 1 && (*work)->nb < mdn) || (sens == 0 && (*work)->nb > mdn))
 		{
 			(*work)->id == 'a' ? ft_push_b(ab, 1) : ft_push_a(ab, 1);
@@ -50,24 +52,28 @@ void	ft_push_above_median(t_heaps **ab, t_stack **other)
 	*(*other)->pval = ft_find_median(*other);
 	*(*other)->ppos = ft_find_index(*other, *(*other)->pval);
 	mdn = *(*other)->pval;
-	printf("%smedian: %d%s\n", F_YELLOW, mdn, F_NO);
+	printf("%s\t\tmedian: %d%s\n", F_YELLOW, mdn, F_NO);
 	sens = (*other)->sens;
 	count = ft_countv(*other, mdn, ">");
 	push = 0;
-	ft_simple_sorter(ab, &(*ab)->b, (*ab)->b->index);
+	ft_simple_sorter(ab, other, (*other)->index - ft_find_index(*other, mdn));
 	while (*other && count)
 	{
 		//if ((sens == 1 && (*other)->nb < mdn) || (sens == 0 && (*other)->nb > mdn))
 	//	{
-			ft_push_a(ab, 1);
-			ft_simple_sorter(ab, &(*ab)->a, 2);
-			push++;
-			count--;
+		//if (!ft_issortn((*ab)->b, 3))
+		//	ft_simple_sorter(ab, &(*ab)->b, 3);
+		ft_push_a(ab, 1);
+		push++;
+		count--;
 	//	}
 	//	else
 	//		ft_rrotate_b(ab, 1);
 	}
-	ft_simple_sorter(ab, &(*ab)->a, push);
+	if (!ft_issort((*ab)->a))
+		(*ab)->a->index < 20 ? ft_simple_sorter(ab, &(*ab)->a, (*ab)->a->index)
+			: ft_sorter(ab, &(*ab)->a);
+	//ft_simple_sorter(ab, &(*ab)->a, push);
 }
 
 void 	ft_sorter(t_heaps **ab, t_stack **work)
@@ -83,14 +89,19 @@ void 	ft_sorter(t_heaps **ab, t_stack **work)
 	ft_simple_sorter(ab, &(*ab)->b, (*ab)->b->index);
 	while ((*ab)->b)
 		ft_push_a(ab, 1);*/
-	while ((*work)->index > 2)
-		ft_push_under_median(ab, work);
-	ft_simple_sorter(ab, work, (*work)->index);
-	while ((*ab)->b->index > 2)
-		ft_push_above_median(ab, &(*ab)->b);
-	ft_simple_sorter(ab, &(*ab)->b, (*ab)->b->index);
-	while ((*ab)->b)
-		ft_push_a(ab, 1);
+	if ((*work)->index < 20)
+		ft_simple_sorter(ab, work, (*work)->index);
+	else
+	{
+		while ((*work)->index > 2)
+			ft_push_under_median(ab, work);
+		ft_simple_sorter(ab, work, (*work)->index);
+		while ((*ab)->b->index > 2)
+			ft_push_above_median(ab, &(*ab)->b);
+		ft_simple_sorter(ab, &(*ab)->b, (*ab)->b->index);
+		while ((*ab)->b)
+			ft_push_a(ab, 1);
+	}
 //	if (!ft_issort(*work))
 //		ft_sorter(ab, work);
 }
