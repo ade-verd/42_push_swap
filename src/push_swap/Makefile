@@ -50,10 +50,11 @@ SRC_NAME_MUTUAL = \
 		   \
 		   counter_tools.c\
 		   finder_tools.c\
+		   choose_best_rotation.c\
 		   \
 		   simple_sorter.c\
 		   sorter_method4.c\
-		   pivot_interject_method4.c\
+#		   pivot_interject_method4.c\
 
 OBJ_NAME = $(SRC_NAME:.c=.o)
 OBJ_NAME_MUTUAL = $(SRC_NAME_MUTUAL:.c=.o)

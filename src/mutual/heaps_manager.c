@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 11:54:35 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/04/09 12:14:56 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/04/11 19:11:28 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ void	ft_heaps_cpy(t_heaps *dest, t_heaps *src)
 			src->a = src->a->next;
 		while (src->a && src->a->prev)
 		{
+			printf("Problem here\n");
 			ft_stackpush(&dest, &dest->a, src->a->nb, 'a');
 			src->a = src->a->prev;
 		}

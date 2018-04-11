@@ -6,80 +6,76 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/07 13:24:56 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/04/11 13:03:28 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/04/11 18:49:00 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ft_push_under_median(t_heaps **ab, t_stack **work)
+void	ft_push_under_median(t_heaps **ab, t_stack **a, t_stack **b)
 {
 	int		count;
 	int		mdn;
 	int		sens;
 
-	printf("%s\twork: %c\n", __FUNCTION__, (*work)->id - 32);
-	*(*work)->pval = ft_find_median(*work);
-	*(*work)->ppos = ft_find_index(*work, *(*work)->pval);
-	mdn = *(*work)->pval;
+	printf("%s\n", __FUNCTION__);
+	*(*a)->pval = ft_find_median(*a);
+	*(*a)->ppos = ft_find_index(*a, *(*a)->pval);
+	mdn = *(*a)->pval;
 	printf("%s\t\tmedian: %d%s\n", F_YELLOW, mdn, F_NO);
-	sens = (*work)->sens;
-	count = sens == 1 ? ft_countv(*work, mdn, "<") : ft_countv(*work, mdn, ">");
-	while (*work && count)
+	sens = (*a)->sens;
+	count = sens == 1 ? ft_countv(*a, mdn, "<") : ft_countv(*a, mdn, ">");
+	while (*a && count)
 	{
-		if (ft_issort(*work) && (*work)->min > (*ab)->b->max)
+		if (ft_issort(*a) && *b && *(*a)->min > *(*b)->max)
 			return ;
-		if ((sens == 1 && (*work)->nb < mdn) || (sens == 0 && (*work)->nb > mdn))
+		if ((sens == 1 && (*a)->nb < mdn) || (sens == 0 && (*a)->nb > mdn))
 		{
-			(*work)->id == 'a' ? ft_push_b(ab, 1) : ft_push_a(ab, 1);
-			(*work)->id == 'a' ? ft_simple_sorter(ab, &(*ab)->b, 2)
-					: ft_simple_sorter(ab, &(*ab)->a, 2);
+			(*a)->id == 'a' ? ft_push_b(ab, 1) : ft_push_a(ab, 1);
+			(*a)->id == 'a' ? ft_simple_sorter(ab, b, 2)
+					: ft_simple_sorter(ab, a, 2);
 			count--;
 		}
 		else
-			(*work)->id == 'a' ? ft_rrotate_a(ab, 1) : ft_rrotate_b(ab, 1);
+			(*a)->id == 'a' ? ft_rrotate_a(ab, 1) : ft_rrotate_b(ab, 1);
 	}
 }
 
-void	ft_push_above_median(t_heaps **ab, t_stack **other)
+void	ft_push_above_median(t_heaps **ab, t_stack **a, t_stack **b)
 {
 	int		count;
 	int		push;
 	int		mdn;
 	int		sens;
 
-	printf("%s\twork: %c\n", __FUNCTION__, (*other)->id - 32);
-	*(*other)->pval = ft_find_median(*other);
-	*(*other)->ppos = ft_find_index(*other, *(*other)->pval);
-	mdn = *(*other)->pval;
+	printf("%s\n", __FUNCTION__);
+	*(*b)->pval = ft_find_median(*b);
+	*(*b)->ppos = ft_find_index(*b, *(*b)->pval);
+	mdn = *(*b)->pval;
 	printf("%s\t\tmedian: %d%s\n", F_YELLOW, mdn, F_NO);
-	sens = (*other)->sens;
-	count = ft_countv(*other, mdn, ">");
+	sens = (*b)->sens;
+	count = ft_countv(*b, mdn, ">");
 	push = 0;
-	ft_simple_sorter(ab, other, (*other)->index - ft_find_index(*other, mdn));
-	while (*other && count)
+	ft_simple_sorter(ab, b, (*b)->index - ft_find_index(*b, mdn));
+	while (*b && count)
 	{
-		//if ((sens == 1 && (*other)->nb < mdn) || (sens == 0 && (*other)->nb > mdn))
-	//	{
-		//if (!ft_issortn((*ab)->b, 3))
-		//	ft_simple_sorter(ab, &(*ab)->b, 3);
+		//if (!ft_issortn(*b, 15))
+		//	ft_simple_sorter(ab, b, 15);
+		ft_place(ab, *b, *(*b)->max, (*b)->index);
 		ft_push_a(ab, 1);
 		push++;
 		count--;
-	//	}
-	//	else
-	//		ft_rrotate_b(ab, 1);
 	}
-	if (!ft_issort((*ab)->a))
-		(*ab)->a->index < 20 ? ft_simple_sorter(ab, &(*ab)->a, (*ab)->a->index)
-			: ft_sorter(ab, &(*ab)->a);
+	if (!ft_issort(*a))
+		ft_sorter(ab, a, b);
 	//ft_simple_sorter(ab, &(*ab)->a, push);
 }
 
-void 	ft_sorter(t_heaps **ab, t_stack **work)
+void 	ft_sorter(t_heaps **ab, t_stack **a, t_stack **b)
 {
-	printf("%s\twork: %c\n", __FUNCTION__, (*work)->id - 32);
-	if (!(*work) || ft_issort(*work))
+	printf("%s\n", __FUNCTION__);
+	//printf("ARG: %s\n", getenv("ARG"));
+	if (!*a || ft_issort(*a))
 		return ;
 	/*while ((*work)->index > 2)
 		ft_push_under_median(ab, work);
@@ -89,17 +85,23 @@ void 	ft_sorter(t_heaps **ab, t_stack **work)
 	ft_simple_sorter(ab, &(*ab)->b, (*ab)->b->index);
 	while ((*ab)->b)
 		ft_push_a(ab, 1);*/
-	if ((*work)->index < 20)
-		ft_simple_sorter(ab, work, (*work)->index);
+	if ((*a)->index < 15)
+		ft_simple_sorter(ab, a, (*a)->index);
 	else
 	{
-		while ((*work)->index > 2)
-			ft_push_under_median(ab, work);
-		ft_simple_sorter(ab, work, (*work)->index);
-		while ((*ab)->b->index > 2)
-			ft_push_above_median(ab, &(*ab)->b);
-		ft_simple_sorter(ab, &(*ab)->b, (*ab)->b->index);
-		while ((*ab)->b)
+		while ((*a)->index > 2)
+		{
+			if (ft_issort(*a) && *b && *(*a)->min > *(*b)->max)
+				break ;
+			ft_push_under_median(ab, a, b);
+		}
+		if (*a)
+			ft_simple_sorter(ab, a, (*a)->index);
+		while (*b && (*b)->index > 2)
+			ft_push_above_median(ab, a, b);
+		if (*b)
+			ft_simple_sorter(ab, b, (*b)->index);
+		while (*b)
 			ft_push_a(ab, 1);
 	}
 //	if (!ft_issort(*work))
@@ -109,5 +111,9 @@ void 	ft_sorter(t_heaps **ab, t_stack **work)
 /*
 ** Idées d'améliorations : 
 ** - tester le meilleur chemin pour diminuer les rotations
-** - 
+** - réduire les gestes inutiles :
+**		pa/pb, pb/pa
+**		sa/sa, sb/sb, ss/ss
+**		ra/rra, rra/ra, rb/rrb, rrb/rb, rr/rrr, rrr/rr
+** - réaliser le ss (directement ds les fonctions motions) test à faire quand on fait un sa ou sb
 */

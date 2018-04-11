@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/29 12:34:11 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/04/11 11:58:12 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/04/11 18:25:13 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,8 @@ void static	ft_more_values(t_heaps **ab, t_stack **work, int n)
 	if (((*work)->sens == 1 && (*work)->nb > (*work)->next->nb)
 			|| ((*work)->sens == 0 && (*work)->nb < (*work)->next->nb))
 		(*work)->id == 'a' ? ft_swap_a(ab, 1) : ft_swap_b(ab, 1);
-	c = ft_place_on_target(ab, work, ft_find_index(*work, top), (*work)->index);
+	//c = ft_place_on_target(ab, work, ft_find_index(*work, top), (*work)->index);
+	c = ft_place(ab, *work, top, (*work)->index);
 	if (!ft_issortn(*work, n))
 		(*work)->id == 'a' ? ft_push_b(ab, 1) : ft_push_a(ab, 1);
 	while (c && !ft_issortn(*work, n))
