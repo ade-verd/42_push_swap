@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/11 17:43:25 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/04/12 13:52:55 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/04/12 16:33:55 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,8 @@ void		ft_choose_push_under_median(t_heaps **ab, t_stack **a, t_stack **b)
 	ft_heaps_display(&cpy, 'a' + 'b', 0);
 	ft_heaps_del(&cpy);
 	printf("AFTER TESTS R\n");
+	//ft_memdel((void**)&cpy);
+	//exit(0);
 	ft_heaps_init(&cpy);
 	ft_heaps_cpy(cpy, *ab);
 	ft_push_under_median(&cpy, &cpy->a, &cpy->b, 'R');

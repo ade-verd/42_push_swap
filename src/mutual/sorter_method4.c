@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/07 13:24:56 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/04/12 12:37:05 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/04/12 16:14:58 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,7 @@ void 	ft_sorter(t_heaps **ab, t_stack **a, t_stack **b)
 			if (ft_issort(*a) && *b && *(*a)->min > *(*b)->max)
 				break ;
 			ft_choose_push_under_median(ab, a, b);
+			//ft_push_under_median(ab, a, b, 'r');
 		}
 		if (*a)
 			ft_simple_sorter(ab, a, (*a)->index);
