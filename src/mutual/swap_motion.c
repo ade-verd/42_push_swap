@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 17:48:51 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/03/20 15:43:42 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/04/12 12:16:00 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,17 @@ static int	ft_swap_motion(t_stack *stack, int *ppos)
 
 void		ft_swap_a(t_heaps **ab, int apply)
 {
-	if (ft_swap_motion((*ab)->a, &(*ab)->a_ppos) && apply == 1)
+	if (!ft_issortn((*ab)->b, 2))
+		ft_swap_ab(ab, apply);
+	else if (ft_swap_motion((*ab)->a, &(*ab)->a_ppos) && apply == 1)
 		ft_moveappend(ab, "sa");
 }
 
 void		ft_swap_b(t_heaps **ab, int apply)
 {
-	if (ft_swap_motion((*ab)->b, &(*ab)->b_ppos) && apply == 1)
+	if (!ft_issortn((*ab)->a, 2))
+		ft_swap_ab(ab, apply);
+	else if (ft_swap_motion((*ab)->b, &(*ab)->b_ppos) && apply == 1)
 		ft_moveappend(ab, "sb");
 }
 

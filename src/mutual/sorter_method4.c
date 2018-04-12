@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/07 13:24:56 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/04/11 18:49:00 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/04/12 11:58:30 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@ void	ft_push_under_median(t_heaps **ab, t_stack **a, t_stack **b)
 	int		mdn;
 	int		sens;
 
-	printf("%s\n", __FUNCTION__);
+//	printf("%s\n", __FUNCTION__);
 	*(*a)->pval = ft_find_median(*a);
 	*(*a)->ppos = ft_find_index(*a, *(*a)->pval);
 	mdn = *(*a)->pval;
-	printf("%s\t\tmedian: %d%s\n", F_YELLOW, mdn, F_NO);
+//	printf("%s\t\tmedian: %d%s\n", F_YELLOW, mdn, F_NO);
 	sens = (*a)->sens;
 	count = sens == 1 ? ft_countv(*a, mdn, "<") : ft_countv(*a, mdn, ">");
 	while (*a && count)
@@ -48,11 +48,11 @@ void	ft_push_above_median(t_heaps **ab, t_stack **a, t_stack **b)
 	int		mdn;
 	int		sens;
 
-	printf("%s\n", __FUNCTION__);
+//	printf("%s\n", __FUNCTION__);
 	*(*b)->pval = ft_find_median(*b);
 	*(*b)->ppos = ft_find_index(*b, *(*b)->pval);
 	mdn = *(*b)->pval;
-	printf("%s\t\tmedian: %d%s\n", F_YELLOW, mdn, F_NO);
+//	printf("%s\t\tmedian: %d%s\n", F_YELLOW, mdn, F_NO);
 	sens = (*b)->sens;
 	count = ft_countv(*b, mdn, ">");
 	push = 0;
@@ -73,7 +73,7 @@ void	ft_push_above_median(t_heaps **ab, t_stack **a, t_stack **b)
 
 void 	ft_sorter(t_heaps **ab, t_stack **a, t_stack **b)
 {
-	printf("%s\n", __FUNCTION__);
+//	printf("%s\n", __FUNCTION__);
 	//printf("ARG: %s\n", getenv("ARG"));
 	if (!*a || ft_issort(*a))
 		return ;
