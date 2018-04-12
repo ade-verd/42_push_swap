@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 11:54:35 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/04/12 12:01:52 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/04/12 13:45:00 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,12 +83,11 @@ void	ft_heaps_cpy(t_heaps *dest, t_heaps *src)
 {
 	if (src && dest)
 	{
-		printf("SOURCE:\n");
-		ft_heaps_display(&src, 'a' + 'b', 0);
 		while (src && src->a && src->a->next)
 			src->a = src->a->next;
 		while (src->a && src->a->prev)
 		{
+			printf("src->a->nb: %d\n", src->a->nb);
 			ft_stackpush(&dest, &dest->a, src->a->nb, 'a');
 			src->a = src->a->prev;
 		}
@@ -102,7 +101,7 @@ void	ft_heaps_cpy(t_heaps *dest, t_heaps *src)
 			src->b = src->b->prev;
 		}
 		if (src->b)
-			ft_stackpush(&dest, &dest->b, src->a->nb, 'b');
+			ft_stackpush(&dest, &dest->b, src->b->nb, 'b');
 		dest->a_pval = src->a_pval;
 		dest->a_ppos = src->a_ppos;
 		dest->b_pval = src->b_pval;

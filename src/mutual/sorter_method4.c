@@ -6,13 +6,13 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/07 13:24:56 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/04/12 11:58:30 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/04/12 12:37:05 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ft_push_under_median(t_heaps **ab, t_stack **a, t_stack **b)
+void	ft_push_under_median(t_heaps **ab, t_stack **a, t_stack **b, char rot)
 {
 	int		count;
 	int		mdn;
@@ -36,7 +36,9 @@ void	ft_push_under_median(t_heaps **ab, t_stack **a, t_stack **b)
 					: ft_simple_sorter(ab, a, 2);
 			count--;
 		}
-		else
+		else if (rot == 'r')
+			(*a)->id == 'a' ? ft_rotate_a(ab, 1) : ft_rotate_b(ab, 1);
+		else if (rot == 'R')
 			(*a)->id == 'a' ? ft_rrotate_a(ab, 1) : ft_rrotate_b(ab, 1);
 	}
 }
@@ -93,7 +95,7 @@ void 	ft_sorter(t_heaps **ab, t_stack **a, t_stack **b)
 		{
 			if (ft_issort(*a) && *b && *(*a)->min > *(*b)->max)
 				break ;
-			ft_push_under_median(ab, a, b);
+			ft_choose_push_under_median(ab, a, b);
 		}
 		if (*a)
 			ft_simple_sorter(ab, a, (*a)->index);

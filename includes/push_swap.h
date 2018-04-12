@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 11:37:19 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/04/11 18:31:01 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/04/12 12:36:45 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,6 +137,10 @@ int				ft_place(t_heaps **ab, t_stack *wrk, int toplace_v, int targ_p);
 //void			ft_interject_pivot(t_heaps **ab);
 void			ft_interject_pivot(t_heaps **ab, t_stack **work);
 int				ft_nextpivot(t_stack **work, char next_previous);
+void			ft_choose_push_under_median(t_heaps **ab, t_stack **a,
+																t_stack **b);
+void			ft_push_under_median(t_heaps **ab, t_stack **a, t_stack **b,
+																char rot);
 
 /*
 ** Tools: count, find, issort, ...

@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/11 17:43:25 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/04/12 11:41:15 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/04/12 13:52:55 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,4 +66,48 @@ int			ft_place(t_heaps **ab, t_stack *work, int toplace_v, int targ_p)
 			work->id == 'a' ? ft_rrotate_a(ab, 1) : ft_rrotate_b(ab, 1);
 	}
 	return (ft_abs(r) < rr ? r : rr);
+}
+
+void		ft_choose_push_under_median(t_heaps **ab, t_stack **a, t_stack **b)
+{
+	t_heaps *cpy;
+	int		r;
+	int		rr;
+
+	r = 0;
+	rr = 0;
+	printf("BEFORE TESTS\n");
+	ft_heaps_display(ab, 'a' + 'b', 0);
+	ft_heaps_init(&cpy);
+	ft_heaps_cpy(cpy, *ab);
+	printf("BEFORE TESTS CPY:\n");
+	ft_heaps_display(&cpy, 'a' + 'b', 0);
+	ft_push_under_median(&cpy, &cpy->a, &cpy->b, 'r');
+	r = cpy->buff->index;
+	ft_heaps_display(ab, 'a' + 'b', 0);
+	printf("AFTER TESTS CPY:\n");
+	ft_heaps_display(&cpy, 'a' + 'b', 0);
+	ft_heaps_del(&cpy);
+	printf("AFTER TESTS R\n");
+	ft_heaps_init(&cpy);
+	ft_heaps_cpy(cpy, *ab);
+	ft_push_under_median(&cpy, &cpy->a, &cpy->b, 'R');
+	rr = cpy->buff->index;
+	ft_heaps_del(&cpy);
+	printf("AFTER TESTS RR\n");
+	ft_heaps_display(ab, 'a' + 'b', 0);
+	if (r < rr)
+	{
+		printf("\t\tr:%d < rr:%d\t", r, rr);
+		printf("r is the best\n");
+		ft_push_under_median(ab, a, b, 'r');
+	}
+	else
+	{
+		printf("\t\tr:%d < rr:%d\t", r, rr);
+		printf("\t\trr is the best\t");
+		ft_push_under_median(ab, a, b, 'R');
+	}
+	printf("AFTER APPLY\n");
+	ft_heaps_display(ab, 'a' + 'b', 0);
 }
