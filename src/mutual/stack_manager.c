@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 11:54:35 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/04/12 16:13:53 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/04/12 18:01:34 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,6 @@ void	ft_stackdel(t_stack **stack)
 
 	while (*stack)
 	{
-		printf("%sx Del stack->id: %c\tstack-nb: %d%s\n", F_RED, (*stack)->id, (*stack)->nb, F_NO);
 		cpy = *stack;
 		*stack = (*stack)->next;
 		ft_memdel((void**)&cpy);

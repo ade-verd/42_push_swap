@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 11:54:35 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/04/12 16:08:34 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/04/12 18:02:02 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ void	ft_heaps_cpy(t_heaps *dest, t_heaps *src)
 	{
 		while (src && src->a && src->a->next)
 			src->a = src->a->next;
+		
 		while (src->a && src->a->prev)
 		{
 			printf("src->a->nb: %d\n", src->a->nb);
