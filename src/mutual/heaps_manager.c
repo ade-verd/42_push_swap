@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 11:54:35 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/04/11 19:11:28 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/04/12 11:22:00 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,37 +76,5 @@ void	ft_heaps_display(t_heaps **ab, unsigned char c, int displaycontext)
 		ft_stackdisplay(&(*ab)->a, 'a');
 		ft_stackdisplay(&(*ab)->b, 'b');
 		ft_putstr("___\n");
-	}
-}
-
-void	ft_heaps_cpy(t_heaps *dest, t_heaps *src)
-{
-	if (src && dest)
-	{
-		while (src && src->a && src->a->next)
-			src->a = src->a->next;
-		while (src->a && src->a->prev)
-		{
-			printf("Problem here\n");
-			ft_stackpush(&dest, &dest->a, src->a->nb, 'a');
-			src->a = src->a->prev;
-		}
-		if (src->a)
-			ft_stackpush(&dest, &dest->a, src->a->nb, 'a');
-		while (src && src->b && src->b->next)
-			src->b = src->b->next;
-		while (src->b && src->b->prev)
-		{
-			ft_stackpush(&dest, &dest->b, src->b->nb, 'b');
-			src->b = src->b->prev;
-		}
-		if (src->b)
-			ft_stackpush(&dest, &dest->b, src->a->nb, 'b');
-		dest->a_pval = src->a_pval;
-		dest->a_ppos = src->a_ppos;
-		dest->b_pval = src->b_pval;
-		dest->b_ppos = src->b_ppos;
-		dest->min = src->min;
-		dest->max = src->max;
 	}
 }

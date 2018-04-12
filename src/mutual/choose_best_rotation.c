@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/11 17:43:25 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/04/11 19:07:13 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/04/12 11:41:15 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,27 +44,26 @@ static int	ft_target_rr(t_heaps **ab, t_stack *work, int toplace_v, int targ_p)
 
 int			ft_place(t_heaps **ab, t_stack *work, int toplace_v, int targ_p)
 {
-	t_heaps	*cpy;
-	t_stack	*stack;
+	int		ref;
 	int		r;
 	int		rr;
 
 	r = 0;
 	rr = 0;
-	ft_heaps_display(ab, 'a' + 'b', 0);
-	ft_heaps_init(&cpy);
-	ft_heaps_cpy(cpy, (*ab));
-	stack = work->id == 'a' ? cpy->a : cpy->b;
-	r = ft_target_r(&cpy, stack, toplace_v, targ_p);
-	ft_heaps_del(&cpy);
-	ft_heaps_init(&cpy);
-	ft_heaps_cpy(cpy, (*ab));
-	stack = work->id == 'a' ? cpy->a : cpy->b;
-	r = ft_target_r(&cpy, stack, toplace_v, targ_p);
-	ft_heaps_del(&cpy);
+	ref = work->nb;
+	r = ft_target_r(ab, work, toplace_v, targ_p);
+	ft_target_rr(ab, work, ref, work->index);
+	rr = ft_target_rr(ab, work, toplace_v, targ_p);
+	ft_target_r(ab, work, ref, work->index);
 	if (ft_abs(r) < rr)
-		ft_target_r(ab, work, toplace_v, targ_p);
+	{
+		while (r++)
+			work->id == 'a' ? ft_rotate_a(ab, 1) : ft_rotate_b(ab, 1);
+	}
 	else
-		ft_target_rr(ab, work, toplace_v, targ_p);
+	{
+		while (rr--)
+			work->id == 'a' ? ft_rrotate_a(ab, 1) : ft_rrotate_b(ab, 1);
+	}
 	return (ft_abs(r) < rr ? r : rr);
 }
