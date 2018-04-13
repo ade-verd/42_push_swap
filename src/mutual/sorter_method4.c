@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/07 13:24:56 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/04/13 12:33:19 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/04/13 18:38:26 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,17 +29,19 @@ void	ft_push_under_median(t_heaps **ab, t_stack **w, t_stack **o, char rot)
 	{
 		if (ft_issort(*w) && *o && *(*w)->min > *(*o)->max)
 			return ;
+		if ((*w)->index < 6)
+			ft_simple_sorter(ab, w, (*w)->index);
+		//(*w)->id == 'a' ? ft_place_nmin(ab, *w, (*w)->index / 3) : ft_place_nmax(ab, *w, (*w)->index / 3);
 		if ((sens == 1 && (*w)->nb < mdn) || (sens == 0 && (*w)->nb > mdn))
 		{
 			(*w)->id == 'a' ? ft_push_b(ab, 1) : ft_push_a(ab, 1);
-			(*w)->id == 'a' ? ft_simple_sorter(ab, o, 2)
-					: ft_simple_sorter(ab, w, 2);
+			ft_simple_sorter(ab, o, 2);
 			count--;
 		}
 		else if (rot == 'r')
 			(*w)->id == 'a' ? ft_rotate_a(ab, 1) : ft_rotate_b(ab, 1);
-		else if (rot == 'R')
-			(*w)->id == 'a' ? ft_rrotate_a(ab, 1) : ft_rrotate_b(ab, 1);
+		//else if (rot == 'R')
+		//	(*w)->id == 'a' ? ft_rrotate_a(ab, 1) : ft_rrotate_b(ab, 1);
 	}
 }
 
@@ -58,7 +60,7 @@ void	ft_push_above_median(t_heaps **ab, t_stack **w, t_stack **o)
 	sens = (*o)->sens;
 	count = ft_countv(*o, mdn, ">");
 	push = 0;
-	ft_simple_sorter(ab, o, (*o)->index - ft_find_index(*o, mdn));
+	//ft_simple_sorter(ab, o, (*o)->index - ft_find_index(*o, mdn));
 	while (*o && count)
 	{
 		//if (!ft_issortn(*b, 15))
@@ -68,7 +70,7 @@ void	ft_push_above_median(t_heaps **ab, t_stack **w, t_stack **o)
 		push++;
 		count--;
 	}
-	if (!ft_issort(*o))
+	if (!ft_issort(*w))
 		ft_sorter(ab, w, o);
 	//ft_simple_sorter(ab, &(*ab)->a, push);
 }
@@ -87,7 +89,7 @@ void 	ft_sorter(t_heaps **ab, t_stack **w, t_stack **o)
 	ft_simple_sorter(ab, &(*ab)->b, (*ab)->b->index);
 	while ((*ab)->b)
 		ft_push_a(ab, 1);*/
-	if ((*w)->index < 10)
+	if ((*w)->index < 6)
 		ft_simple_sorter(ab, w, (*w)->index);
 	else
 	{

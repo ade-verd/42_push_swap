@@ -25,7 +25,7 @@ then
 		./push_swap $ARG | ./checkerkh -l $ARG
 	fi
 else
-	./push_swap $ARG
+#	./push_swap $ARG
 	./push_swap $ARG | ./checkerkh -l $ARG
 fi
 echo "List: $ARG"

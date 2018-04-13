@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/11 17:43:25 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/04/12 18:39:57 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/04/13 18:33:53 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,63 +68,40 @@ int			ft_place(t_heaps **ab, t_stack *work, int toplace_v, int targ_p)
 	return (ft_abs(r) < rr ? r : rr);
 }
 
-int			ft_dododo(t_heaps **ab, char rot)
+void		ft_place_nmax(t_heaps **ab, t_stack *work, int n)
 {
-	t_heaps *cpy;
-	int		count;
+	int		max;
+	t_stack	*cpy;
 
-	count = 0;
-	ft_heaps_init(&cpy);
-	ft_heaps_cpy(cpy, *ab);
-	ft_push_under_median(&cpy, &cpy->a, &cpy->b, rot);
-	count = cpy->buff->index;
-	ft_heaps_del(&cpy);
-	return (count);
+	n = (n % 2 == 0) ? (n / 2) : (n / 2) + 1; 
+	if (!work)
+		return ;
+	cpy = work;
+	max = cpy->nb;
+	while (cpy)
+	{
+		if (cpy->index > (cpy->index - n) || cpy->index <= n)
+			max = cpy->nb > max ? cpy->nb : max;
+		cpy = cpy->next;
+	}
+	ft_place(ab, work, max, work->index);
 }
 
-void		ft_choose_push_under_median(t_heaps **ab, t_stack **a, t_stack **b)
+void		ft_place_nmin(t_heaps **ab, t_stack *work, int n)
 {
-//	t_heaps *cpy;
-	int		r;
-	int		rr;
+	int		min;
+	t_stack	*cpy;
 
-	r = ft_dododo(ab, 'r');
-	rr = ft_dododo(ab, 'R');
-/*	printf("BEFORE TESTS\n");
-	ft_heaps_display(ab, 'a' + 'b', 0);
-	
-	r = 0;
-	rr = 0;
-	ft_heaps_init(&cpy);
-	ft_heaps_cpy(cpy, *ab);
-	ft_push_under_median(&cpy, &cpy->a, &cpy->b, 'r');
-	r = cpy->buff->index;
-	
-	printf("CPY Avant del\n");
-	ft_heaps_display(&cpy, 'a' + 'b', 0);
-	
-	ft_heaps_del(&cpy);
-	
-	printf("AFTER R BEFORE RR\n");
-	ft_heaps_display(ab, 'a' + 'b', 0);
-
-	ft_heaps_init(&cpy);
-	ft_heaps_cpy(cpy, *ab);
-	ft_push_under_median(&cpy, &cpy->a, &cpy->b, 'R');
-	rr = cpy->buff->index;
-	ft_heaps_del(&cpy);
-*/	if (r < rr)
+	n = (n % 2 == 0) ? (n / 2) : (n / 2) + 1; 
+	if (!work)
+		return ;
+	cpy = work;
+	min = cpy->nb;
+	while (cpy)
 	{
-		printf("\t\tr:%d < rr:%d\t", r, rr);
-		printf("r is the best\n");
-		ft_push_under_median(ab, a, b, 'r');
+		if (cpy->index > (cpy->index - n) || cpy->index <= n)
+			min = cpy->nb < min ? cpy->nb : min;
+		cpy = cpy->next;
 	}
-	else
-	{
-		printf("\t\tr:%d < rr:%d\t", r, rr);
-		printf("\t\trr is the best\t");
-		ft_push_under_median(ab, a, b, 'R');
-	}
-//	printf("AFTER APPLY\n");
-//	ft_heaps_display(ab, 'a' + 'b', 0);
+	ft_place(ab, work, min, work->index);
 }
