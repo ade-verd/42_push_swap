@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/06 14:35:21 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/04/12 12:06:15 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/04/13 11:36:41 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,9 @@ void	ft_moveappend(t_heaps **ab, char *s)
 		ft_heaps_display(ab, 'a' + 'b', 1);
 	else
 	{
-		if ((*ab)->buff->next)
-			ft_putstr("\033[3D");
-		ft_printf("%sLast: %s%s%s \n", F_UP, F_YELLOW, (*ab)->buff->move, F_NO);
+		//if ((*ab)->buff->next)
+		//	ft_putstr("\033[3D");
+		//ft_printf("%sLast: %s%s%s \n", F_UP, F_YELLOW, (*ab)->buff->move, F_NO);
 	}
 }
 
@@ -57,15 +57,16 @@ void	ft_displaymoves(t_heaps **ab, int display_number_moves)
 			current = current->next;
 		while (current && current->index > 0)
 		{
-			if (current->prev) // A supprimer
-				ft_printf("%s, ", current->move); // A supprimer
-			else // A supprimer
+		//	if (current->prev) // A supprimer
+		//		ft_printf("%s, ", current->move); // A supprimer
+		//	else // A supprimer
 				ft_printf("%s\n", current->move);
 			current = current->prev;
 		}
 	}
 	if (display_number_moves == 1)
-		ft_printf("Number of movements: %d\n", (*ab)->buff->index);
+	{}
+//		ft_printf("Number of movements: %d\n", (*ab)->buff->index);
 }
 
 void	ft_display_lastmove(t_heaps **ab)
