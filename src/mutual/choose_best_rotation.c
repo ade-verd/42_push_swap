@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/11 17:43:25 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/04/13 18:33:53 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/04/14 19:14:53 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,44 @@ int			ft_place(t_heaps **ab, t_stack *work, int toplace_v, int targ_p)
 	{
 		while (rr--)
 			work->id == 'a' ? ft_rrotate_a(ab, 1) : ft_rrotate_b(ab, 1);
+	}
+	return (ft_abs(r) < rr ? r : rr);
+}
+
+int			ft_place2(t_heaps **ab, t_stack **work, int toplace_v, int targ_p)
+{
+	int		ref;
+	int		r;
+	int		rr;
+	int		next;
+
+	r = 0;
+	rr = 0;
+	ref = (*work)->nb;
+	next = (*work)->id == 'a' ? ft_find_next(*work, toplace_v) : ft_find_prev(*work, toplace_v);
+	r = ft_target_r(ab, *work, toplace_v, targ_p);
+	ft_target_rr(ab, *work, ref, (*work)->index);
+	rr = ft_target_rr(ab, *work, toplace_v, targ_p);
+	ft_target_r(ab, *work, ref, (*work)->index);
+	if (ft_abs(r) < rr)
+	{
+		while (r++ && (*work)->nb != toplace_v)
+		{
+			if ((*work)->nb == next)
+				(*work)->id == 'a' ? ft_push_b(ab, 1) : ft_push_a(ab, 1);
+			if ((*work)->nb != toplace_v)
+				(*work)->id == 'a' ? ft_rotate_a(ab, 1) : ft_rotate_b(ab, 1);
+		}
+	}
+	else
+	{
+		while (rr-- && (*work)->nb != toplace_v)
+		{
+			if ((*work)->nb == next)
+				(*work)->id == 'a' ? ft_push_b(ab, 1) : ft_push_a(ab, 1);
+			if ((*work)->nb != toplace_v)
+				(*work)->id == 'a' ? ft_rrotate_a(ab, 1) : ft_rrotate_b(ab, 1);
+		}
 	}
 	return (ft_abs(r) < rr ? r : rr);
 }

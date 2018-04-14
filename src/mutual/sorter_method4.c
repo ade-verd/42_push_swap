@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/07 13:24:56 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/04/14 15:18:32 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/04/14 19:02:28 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ void	ft_push_under_median(t_heaps **ab, t_stack **w, t_stack **o, char rot)
 void	ft_push_above_median(t_heaps **ab, t_stack **w, t_stack **o)
 {
 	int		count;
-	int		push;
 	int		mdn;
 	int		sens;
 
@@ -61,15 +60,14 @@ void	ft_push_above_median(t_heaps **ab, t_stack **w, t_stack **o)
 //	printf("%s\t\tmedian: %d%s\n", F_YELLOW, mdn, F_NO);
 	sens = (*o)->sens;
 	count = sens == 1 ? ft_countv(*w, mdn, "<") : ft_countv(*w, mdn, ">");
-	push = 0;
 	//ft_simple_sorter(ab, o, (*o)->index - ft_find_index(*o, mdn));
 	while (*o && count)
 	{
 		//if (!ft_issortn(*b, 15))
 		//ft_simple_sorter(ab, o, 10);
-		ft_place(ab, *o, *(*o)->max, (*o)->index);
+		ft_place2(ab, o, *(*o)->max, (*o)->index);
 		ft_push_a(ab, 1);
-		push++;
+		ft_simple_sorter(ab, w, 2);
 		count--;
 	}
 	if (!ft_issort(*w))
