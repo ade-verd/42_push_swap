@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/07 13:24:56 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/04/13 18:38:26 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/04/14 14:46:27 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,13 +35,12 @@ void	ft_push_under_median(t_heaps **ab, t_stack **w, t_stack **o, char rot)
 		if ((sens == 1 && (*w)->nb < mdn) || (sens == 0 && (*w)->nb > mdn))
 		{
 			(*w)->id == 'a' ? ft_push_b(ab, 1) : ft_push_a(ab, 1);
-			ft_simple_sorter(ab, o, 2);
+			(*o)->nb < ft_find_median(*o) ? ft_rotate_b(ab, 1)
+				: ft_simple_sorter(ab, o, 2);
 			count--;
 		}
 		else if (rot == 'r')
 			(*w)->id == 'a' ? ft_rotate_a(ab, 1) : ft_rotate_b(ab, 1);
-		//else if (rot == 'R')
-		//	(*w)->id == 'a' ? ft_rrotate_a(ab, 1) : ft_rrotate_b(ab, 1);
 	}
 }
 
@@ -58,7 +57,7 @@ void	ft_push_above_median(t_heaps **ab, t_stack **w, t_stack **o)
 	mdn = *(*o)->pval;
 //	printf("%s\t\tmedian: %d%s\n", F_YELLOW, mdn, F_NO);
 	sens = (*o)->sens;
-	count = ft_countv(*o, mdn, ">");
+	count = sens == 1 ? ft_countv(*w, mdn, "<") : ft_countv(*w, mdn, ">");
 	push = 0;
 	//ft_simple_sorter(ab, o, (*o)->index - ft_find_index(*o, mdn));
 	while (*o && count)

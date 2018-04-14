@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/03 14:17:05 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/04/13 17:37:28 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/04/14 14:42:32 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int		ft_find_index(t_stack *stack, int nb)
 	return (-1);
 }
 
-int		ft_find_val(t_stack *stack, int index_tofind, int *val)
+int		ft_find_val_pointer(t_stack *stack, int index_tofind, int *val)
 {
 	t_stack	*cpy;
 
@@ -44,6 +44,22 @@ int		ft_find_val(t_stack *stack, int index_tofind, int *val)
 			*val = cpy->nb;
 			return (1);
 		}
+		cpy = cpy->next;
+	}
+	return (0);
+}
+
+int		ft_find_val(t_stack *stack, int index_tofind)
+{
+	t_stack	*cpy;
+
+	if (!stack)
+		return (0);
+	cpy = stack;
+	while (cpy)
+	{
+		if (cpy->index == index_tofind)
+			return (cpy->nb);
 		cpy = cpy->next;
 	}
 	return (0);

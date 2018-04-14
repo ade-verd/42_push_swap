@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 11:37:19 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/04/13 15:55:07 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/04/14 14:42:17 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,7 +152,8 @@ int				ft_issortn(t_stack *stack, int n);
 int				ft_countv(t_stack *stack, int val, char *sign);
 int				ft_count_bad(t_stack *stack, int pivot, int pos);
 int				ft_find_index(t_stack *stack, int nb);
-int				ft_find_val(t_stack *stack, int index_tofind, int *val);
+int				ft_find_val(t_stack *stack, int index_tofind);
+int				ft_find_val_pointer(t_stack *stack, int index_tofind, int *val);
 int				ft_find_next(t_stack *stack, int ref);
 int				ft_find_prev(t_stack *stack, int ref);
 //int				ft_find_median(t_stack *stck, int *ind, int start_v, int end_v);
