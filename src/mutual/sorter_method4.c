@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/07 13:24:56 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/04/16 13:54:00 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/04/16 14:39:30 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	ft_push_under_median(t_heaps **ab, t_stack **w, t_stack **o, char rot)
 			//if ((*o)->nb < ft_find_median(*o))
 			if ((*o)->nb < mdn_of_mdn)
 				(*w)->id == 'a' ? ft_rotate_b(ab, 1) : ft_rotate_a(ab, 1);
-			ft_simple_sorter(ab, o, 2);
+			//ft_simple_sorter(ab, o, 2);
 			count--;
 		}
 		else if (rot == 'r')
