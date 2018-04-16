@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 11:37:19 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/04/14 19:02:11 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/04/16 16:21:58 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,7 +126,7 @@ int				none(void);
 void 			ft_mergesorter(t_heaps **ab, t_stack **work, int cutsize);
 void			ft_simple_sorter(t_heaps **ab, t_stack **work, int n);
 //void 			ft_sorter(t_heaps **ab, t_stack **work, int pivot_pos);
-void 			ft_sorter(t_heaps **ab, t_stack **a, t_stack **b);
+void 			ft_sorter(t_heaps **ab, t_stack **a, t_stack **b, int size);
 void 			ft_rsorter(t_heaps **ab, t_stack **work, int pivot_pos);
 //int				ft_place_on_target(t_heaps **h, t_stack **wk, int ind, int tgt);
 int				ft_place(t_heaps **ab, t_stack *wrk, int toplace_v, int targ_p);
@@ -140,10 +140,6 @@ void			ft_place_nmin(t_heaps **ab, t_stack *work, int n);
 //void			ft_interject_pivot(t_heaps **ab);
 void			ft_interject_pivot(t_heaps **ab, t_stack **work);
 int				ft_nextpivot(t_stack **work, char next_previous);
-void			ft_choose_push_under_median(t_heaps **ab, t_stack **a,
-																t_stack **b);
-void			ft_push_under_median(t_heaps **ab, t_stack **a, t_stack **b,
-																char rot);
 
 /*
 ** Tools: count, find, issort, ...

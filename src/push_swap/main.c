@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/27 17:28:18 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/04/13 18:34:38 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/04/16 16:21:32 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int		main(int ac, char **av)
 		//ft_mergesorter(&ab, &ab->a, 2);
 		//ft_simple_sorter(&ab, &ab->a, ab->a->index);
 		//ft_find_median(ab->a);
-		ft_sorter(&ab, &ab->a, &ab->b);
+		ft_sorter(&ab, &ab->a, &ab->b, ab->a->index);
 		//ft_heaps_display(&ab, 'a' + 'b', 0);
 		ft_displaymoves(&ab, 1);
 		ft_heaps_del(&ab);
