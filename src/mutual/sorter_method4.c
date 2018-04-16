@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/07 13:24:56 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/04/14 19:02:28 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/04/16 13:54:00 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,13 @@ void	ft_push_under_median(t_heaps **ab, t_stack **w, t_stack **o, char rot)
 	int		count;
 	int		mdn;
 	int		sens;
+	int		mdn_of_mdn;
 
 //	printf("%s\n", __FUNCTION__);
 	*(*w)->pval = ft_find_median(*w);
 	*(*w)->ppos = ft_find_index(*w, *(*w)->pval);
 	mdn = *(*w)->pval;
+	mdn_of_mdn = *(*w)->min + ((*(*w)->max - *(*w)->min) / 4);
 //	printf("%s\t\tmedian: %d%s\n", F_YELLOW, mdn, F_NO);
 	sens = (*w)->sens;
 	count = sens == 1 ? ft_countv(*w, mdn, "<") : ft_countv(*w, mdn, ">");
@@ -35,9 +37,10 @@ void	ft_push_under_median(t_heaps **ab, t_stack **w, t_stack **o, char rot)
 		if ((sens == 1 && (*w)->nb < mdn) || (sens == 0 && (*w)->nb > mdn))
 		{
 			(*w)->id == 'a' ? ft_push_b(ab, 1) : ft_push_a(ab, 1);
-			(*o)->nb < ft_find_median(*o) ? ft_rotate_b(ab, 1) : none;
-			ft_simple_sorter(ab, o, 2);
-			if ((*o)->nb < ft_find_median(*o))
+			//(*o)->nb < ft_find_median(*o) ? ft_rotate_b(ab, 1) : none;
+			//ft_simple_sorter(ab, o, 2);
+			//if ((*o)->nb < ft_find_median(*o))
+			if ((*o)->nb < mdn_of_mdn)
 				(*w)->id == 'a' ? ft_rotate_b(ab, 1) : ft_rotate_a(ab, 1);
 			ft_simple_sorter(ab, o, 2);
 			count--;
@@ -45,6 +48,7 @@ void	ft_push_under_median(t_heaps **ab, t_stack **w, t_stack **o, char rot)
 		else if (rot == 'r')
 			(*w)->id == 'a' ? ft_rotate_a(ab, 1) : ft_rotate_b(ab, 1);
 	}
+	ft_place2(ab, w, mdn, (*w)->index);
 }
 
 void	ft_push_above_median(t_heaps **ab, t_stack **w, t_stack **o)
@@ -93,6 +97,9 @@ void 	ft_sorter(t_heaps **ab, t_stack **w, t_stack **o)
 		ft_simple_sorter(ab, w, (*w)->index);
 	else
 	{
+		//ft_push_under_median(ab, w, o, 'r');
+		//ft_sorter(ab, o, w);
+
 		while ((*w)->index > 2)
 		{
 			if (ft_issort(*w) && *o && *(*w)->min > *(*o)->max)
