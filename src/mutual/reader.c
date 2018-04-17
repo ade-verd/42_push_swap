@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 17:38:06 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/04/17 17:31:52 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/04/17 17:55:02 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,9 +63,26 @@ void	ft_ab_minmax(t_heaps **ab, int nb)
 	}
 }
 
-int		ft_read_and_fillstack(int ac, char **av, t_heaps **ab)
+void	ft_check_n_push(t_heaps **ab, char *str)
 {
 	int		nb;
+
+	nb = 0;
+	if (ft_isnumber(str))
+	{
+		nb = ft_atoi(str);
+		ft_nb_exists((*ab)->a, nb) == 1 ? ft_error(ab, 0) : none;
+		ft_ab_minmax(ab, nb);
+		ft_stackpush(ab, &(*ab)->a, nb, 'a');
+	}
+	else if (str[0] == '-' && str[1] == 'v')
+		(*ab)->option_v = 1;
+	else
+		ft_error(ab, 0);
+}
+
+int		ft_read_and_fillstack(int ac, char **av, t_heaps **ab)
+{
 	int		i;
 	char	**tab;
 
@@ -74,24 +91,10 @@ int		ft_read_and_fillstack(int ac, char **av, t_heaps **ab)
 	while (ac > 1)
 	{
 		ac--;
-		i = 0;
+		i = ft_countwords(av[ac], ' ');
 		tab = ft_strsplit(av[ac], ' ');
-		while (tab[i])
-			i++;
 		while (--i >= 0)
-		{
-			if (ft_isnumber(tab[i]))
-			{
-				nb = ft_atoi(tab[i]);
-				ft_nb_exists((*ab)->a, nb) == 1 ? ft_error(ab, 0) : none;
-				ft_ab_minmax(ab, nb);
-				ft_stackpush(ab, &(*ab)->a, nb, 'a');
-			}
-			else if (tab[i][0] == '-' && tab[i][1] == 'v')
-				(*ab)->option_v = 1;
-			else
-				ft_error(ab, 0);
-		}
+			ft_check_n_push(ab, tab[i]);
 		ft_freetab_strsplit(tab);
 	}
 	(*ab)->a_min = (*ab)->min;
