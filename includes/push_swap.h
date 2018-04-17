@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 11:37:19 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/04/16 16:21:58 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/04/17 12:29:07 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,9 @@
 # include <stdio.h> /* A SUPPRIMER */
 # include <stdlib.h>
 # include "ft_printf.h"
+
+# define INT_MINI -2147483648
+# define INT_MAXI  2147483647
 
 typedef struct	s_buf
 {

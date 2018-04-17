@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 17:38:06 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/03/29 14:42:07 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/04/17 12:29:18 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ int		ft_isnumber(char *str)
 			return (0);
 		i++;
 	}
+	if (ft_atointmax(str) < INT_MINI || ft_atointmax(str) > INT_MAXI)
+		return (0);
 	return (1);
 }
 
