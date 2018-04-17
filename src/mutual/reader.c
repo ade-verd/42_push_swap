@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 17:38:06 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/04/17 17:06:45 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/04/17 17:31:52 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,23 @@ int		ft_isnumber(char *str)
 	if (ft_atointmax(str) < INT_MINI || ft_atointmax(str) > INT_MAXI)
 		return (0);
 	return (1);
+}
+
+int		ft_nb_exists(t_stack *a, int nb)
+{
+	t_stack	*cpy;
+
+	if (a)
+	{
+		cpy = a;
+		while (cpy)
+		{
+			if (cpy->nb == nb)
+				return (1);
+			cpy = cpy->next;
+		}
+	}
+	return (0);
 }
 
 void	ft_ab_minmax(t_heaps **ab, int nb)
@@ -66,6 +83,7 @@ int		ft_read_and_fillstack(int ac, char **av, t_heaps **ab)
 			if (ft_isnumber(tab[i]))
 			{
 				nb = ft_atoi(tab[i]);
+				ft_nb_exists((*ab)->a, nb) == 1 ? ft_error(ab, 0) : none;
 				ft_ab_minmax(ab, nb);
 				ft_stackpush(ab, &(*ab)->a, nb, 'a');
 			}
