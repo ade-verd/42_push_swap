@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 11:37:19 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/04/17 12:29:07 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/04/17 18:52:27 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,9 @@ typedef struct	s_heaps
 	int				a_ppos;
 	int				b_pval;
 	int				b_ppos;
-	int				cut;
 	int				option_v;
+	int				option_l;
+	int				option_c;
 }				t_heaps;
 
 /*
