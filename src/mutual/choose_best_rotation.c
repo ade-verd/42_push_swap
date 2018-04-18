@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/11 17:43:25 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/04/16 19:16:31 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/04/18 18:41:22 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,10 +90,11 @@ int			ft_place2(t_heaps **ab, t_stack **work, int toplace_v, int targ_p)
 	{
 		while (r++ && (*work)->nb != toplace_v)
 		{
-			if ((*work)->nb == next)
+			if (ft_issort(*work) && (*work)->nb == next)
 				(*work)->id == 'a' ? ft_push_b(ab, 1) : ft_push_a(ab, 1);
 			//if (ft_find_index(*work, next) == -1 && (*work)->nb == penult)
-			//	(*work)->id == 'a' ? ft_push_b(ab, 1) : ft_push_a(ab, 1);
+			if (ft_issort(*work) && (*work)->nb == penult)
+				(*work)->id == 'a' ? ft_push_b(ab, 1) : ft_push_a(ab, 1);
 			if ((*work)->nb != toplace_v)
 				(*work)->id == 'a' ? ft_rotate_a(ab, 1) : ft_rotate_b(ab, 1);
 		}
@@ -102,10 +103,11 @@ int			ft_place2(t_heaps **ab, t_stack **work, int toplace_v, int targ_p)
 	{
 		while (rr-- && (*work)->nb != toplace_v)
 		{
-			if ((*work)->nb == next)
+			if (ft_issort(*work) && (*work)->nb == next)
 				(*work)->id == 'a' ? ft_push_b(ab, 1) : ft_push_a(ab, 1);
-			//if (ft_find_index(*work, next) == -1 && (*work)->nb == penult)
-			//	(*work)->id == 'a' ? ft_push_b(ab, 1) : ft_push_a(ab, 1);
+		//	if (ft_find_index(*work, next) == -1 && (*work)->nb == penult)
+			if (ft_issort(*work) && (*work)->nb == penult)
+				(*work)->id == 'a' ? ft_push_b(ab, 1) : ft_push_a(ab, 1);
 			if ((*work)->nb != toplace_v)
 				(*work)->id == 'a' ? ft_rrotate_a(ab, 1) : ft_rrotate_b(ab, 1);
 		}
