@@ -36,6 +36,26 @@ SRC_NAME = \
 		   main.c\
 
 SRC_NAME_MUTUAL = \
+		   reader.c\
+		   heaps_manager.c\
+		   stack_manager.c\
+		   buffer_manager.c\
+		   errors_manager.c\
+		   display.c\
+		   \
+		   motion_swap.c\
+		   motion_push.c\
+		   motion_rotate.c\
+		   motion_rrotate.c\
+		   motion_work.c\
+		   \
+		   counter_tools.c\
+		   finder_tools.c\
+		   find_median.c\
+		   placer.c\
+		   \
+		   select_sorter.c\
+		   sorter.c\
 
 OBJ_NAME = $(SRC_NAME:.c=.o)
 OBJ_NAME_MUTUAL = $(SRC_NAME_MUTUAL:.c=.o)
