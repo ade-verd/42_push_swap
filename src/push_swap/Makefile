@@ -41,20 +41,20 @@ SRC_NAME_MUTUAL = \
 		   stack_manager.c\
 		   buffer_manager.c\
 		   errors_manager.c\
+		   display.c\
 		   \
-		   swap_motion.c\
-		   push_motion.c\
-		   rotate_motion.c\
-		   rrotate_motion.c\
-		   reverse_motion.c\
+		   motion_swap.c\
+		   motion_push.c\
+		   motion_rotate.c\
+		   motion_rrotate.c\
+		   motion_work.c\
 		   \
 		   counter_tools.c\
 		   finder_tools.c\
-		   choose_best_rotation.c\
+		   placer.c\
 		   \
-		   simple_sorter.c\
-		   sorter_method4.c\
-#		   pivot_interject_method4.c\
+		   select_sorter.c\
+		   sorter.c\
 
 OBJ_NAME = $(SRC_NAME:.c=.o)
 OBJ_NAME_MUTUAL = $(SRC_NAME_MUTUAL:.c=.o)

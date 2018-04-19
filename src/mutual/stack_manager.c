@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 11:54:35 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/04/12 18:01:34 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/04/19 12:45:05 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,35 +49,6 @@ int		ft_stackpop(t_stack **stack)
 	*stack = (*stack)->next;
 	ft_memdel((void**)&cpy);
 	return (nb);
-}
-
-void	ft_stackdisplay(t_stack **work, int c)
-{
-	t_stack		*cpy;
-	int			next;
-
-	ft_printf("%c:\t", ft_toupper(c));
-	if (*work)
-	{
-		cpy = *work;
-		next = cpy->nb;
-		ft_putstr("(top) ");
-		while (cpy)
-		{
-			if (cpy->sens == 1)
-				cpy->nb < next ? ft_putstr(F_RED) : ft_putstr(F_CYAN);
-			else
-				cpy->nb > next ? ft_putstr(F_RED) : ft_putstr(F_CYAN);
-			if (cpy->nb == *cpy->pval && *cpy->ppos > 0)
-				ft_printf("%s%s", F_BOLD, F_UNDERLINE);
-			ft_printf("%d%s", cpy->nb, F_NO);
-			cpy->next ? ft_putstr(", ") : ft_putstr(" (bottom)\n");
-			next = cpy->nb;
-			cpy = cpy->next;
-		}
-	}
-	else
-		ft_putstr("(null)\n");
 }
 
 int		ft_stacklen(t_stack *stack)

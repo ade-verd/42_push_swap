@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/27 17:28:18 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/04/18 18:37:11 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/04/19 13:24:17 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,7 @@ int		main(int ac, char **av)
 		ft_heaps_init(&ab);
 		if (!(ft_read_and_fillstack(ac, av, &ab)))
 			return (0);
-		//t_heaps_display(&ab, 'a' + 'b', 0);
-		//ft_sorter(&ab, &ab->a, ft_nextpivot(&ab->a, 'N'));
-		//ft_sorter(&ab, &ab->a, ab->a->index);
-		//ft_mergesorter(&ab, &ab->a, 2);
-		//ft_simple_sorter(&ab, &ab->a, 4);
-		//ft_find_median(ab->a);
 		ft_sorter(&ab, &ab->a, &ab->b, ab->a->index);
-		//ft_heaps_display(&ab, 'a' + 'b', 0);
 		ft_displaymoves(&ab, 1);
 		ft_heaps_del(&ab);
 	}
@@ -36,10 +29,3 @@ int		main(int ac, char **av)
 		ft_error(&ab, 0);
 	return (0);
 }
-
-/*
-** To do:
-** - Une seule chaine
-** - Doublons
-** - Int
-*/

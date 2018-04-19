@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rrotate_motion.c                                   :+:      :+:    :+:   */
+/*   motion_rotate.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 17:48:51 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/03/20 15:48:28 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/04/19 13:49:31 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,61 +14,56 @@
 
 static void	ft_adjust_pivot_pos(t_stack *stack, int *ppos)
 {
-	if (*ppos == 1)
-		*ppos = stack->index;
+	if (*ppos == stack->index)
+		*ppos = 1;
 	else
-		(*ppos)--;
+		(*ppos)++;
 }
 
-static int	ft_rrotate_motion(t_stack *stack, int *ppos)
+static int	ft_rotate_motion(t_stack *stack, int *ppos)
 {
-	int		tmp1;
-	int		tmp2;
+	int		first;
 	t_stack	*cpy;
 
 	cpy = stack;
 	if (ft_stacklen(cpy) > 1)
 	{
 		ft_adjust_pivot_pos(stack, ppos);
-		tmp1 = cpy->nb;
-		tmp2 = cpy->next->nb;
-		while (cpy->next->next)
+		first = cpy->nb;
+		while (cpy->next)
 		{
-			cpy->next->nb = tmp1;
-			tmp1 = tmp2;
-			tmp2 = cpy->next->next->nb;
+			cpy->nb = cpy->next->nb;
 			cpy = cpy->next;
 		}
-		cpy->next->nb = tmp1;
-		stack->nb = tmp2;
+		cpy->nb = first;
 		return (1);
 	}
 	return (0);
 }
 
-void		ft_rrotate_a(t_heaps **ab, int apply)
+void		ft_rotate_a(t_heaps **ab, int apply)
 {
-	if (ft_rrotate_motion((*ab)->a, &(*ab)->a_ppos) && apply == 1)
-		ft_moveappend(ab, "rra");
+	if (ft_rotate_motion((*ab)->a, &(*ab)->a_ppos) && apply == 1)
+			ft_moveappend(ab, "ra");
 }
 
-void		ft_rrotate_b(t_heaps **ab, int apply)
+void		ft_rotate_b(t_heaps **ab, int apply)
 {
-	if (ft_rrotate_motion((*ab)->b, &(*ab)->b_ppos) && apply == 1)
-		ft_moveappend(ab, "rrb");
+	if (ft_rotate_motion((*ab)->b, &(*ab)->b_ppos) && apply == 1)
+		ft_moveappend(ab, "rb");
 }
 
-void		ft_rrotate_ab(t_heaps **ab, int apply)
+void		ft_rotate_ab(t_heaps **ab, int apply)
 {
 	int		ret_a;
 	int		ret_b;
 
-	ret_a = ft_rrotate_motion((*ab)->a, &(*ab)->a_ppos);
-	ret_b = ft_rrotate_motion((*ab)->b, &(*ab)->b_ppos);
+	ret_a = ft_rotate_motion((*ab)->a, &(*ab)->a_ppos);
+	ret_b = ft_rotate_motion((*ab)->b, &(*ab)->b_ppos);
 	if (ret_a && ret_b && apply == 1)
-			ft_moveappend(ab, "rrr");
+		ft_moveappend(ab, "rr");
 	else if (ret_a && apply == 1)
-			ft_moveappend(ab, "rra");
+		ft_moveappend(ab, "ra");
 	else if (ret_b && apply == 1)
-		ft_moveappend(ab, "rrb");
+		ft_moveappend(ab, "rb");
 }
