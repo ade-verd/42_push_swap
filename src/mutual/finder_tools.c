@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/03 14:17:05 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/04/19 12:42:41 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/04/19 17:56:31 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,34 +98,4 @@ void	ft_find_minmax(t_stack *stack, int *min, int *max, int n)
 		n--;
 		cpy = cpy->next;
 	}
-}
-
-int		ft_find_median(t_stack *stack)
-{
-	int		i;
-	int		tab[stack->index + 1];
-	t_stack	*cpy;
-
-	if (!stack)
-		return (0);
-	cpy = stack;
-	tab[stack->index] = 0;
-	i = stack->index;
-	tab[i] = 0;
-	while (i)
-	{
-		tab[i - 1] = cpy->nb;
-		cpy = cpy->next;
-		i--;
-	}
-	while (i + 1 < stack->index)
-	{
-		if (tab[i] > tab[i + 1])
-		{
-			ft_swap(&tab[i], &tab[i + 1]);
-			i = -1;
-		}
-		i++;
-	}
-	return (tab[stack->index / 2]);
 }

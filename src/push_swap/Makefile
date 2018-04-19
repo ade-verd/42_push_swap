@@ -51,6 +51,7 @@ SRC_NAME_MUTUAL = \
 		   \
 		   counter_tools.c\
 		   finder_tools.c\
+		   find_median.c\
 		   placer.c\
 		   \
 		   select_sorter.c\
