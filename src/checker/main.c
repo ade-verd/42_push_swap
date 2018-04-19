@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/27 17:28:18 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/04/19 19:15:54 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/04/19 19:27:47 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,12 @@ void	ft_motions_reader(t_heaps **ab)
 	}
 	if (ret < 0)
 		ft_error(ab, "get_next_line");
+}
+
+void	ft_apply_moves(t_heaps **ab)
+{
+
+
 }
 
 int		main(int ac, char **av)
