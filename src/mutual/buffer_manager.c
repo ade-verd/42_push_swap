@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/06 14:35:21 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/04/19 12:51:51 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/04/19 18:20:23 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_moveappend(t_heaps **ab, char *s)
 {
-	int 	i;
+	int		i;
 	t_buf	*new;
 
 	i = 0;
@@ -26,7 +26,7 @@ void	ft_moveappend(t_heaps **ab, char *s)
 		i++;
 	}
 	new->move[i] = '\0';
-	new->prev = NULL; 
+	new->prev = NULL;
 	new->next = (*ab)->buff;
 	if ((*ab)->buff)
 	{

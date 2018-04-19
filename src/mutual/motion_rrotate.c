@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 17:48:51 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/04/19 13:49:42 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/04/19 18:21:09 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,9 +66,9 @@ void		ft_rrotate_ab(t_heaps **ab, int apply)
 	ret_a = ft_rrotate_motion((*ab)->a, &(*ab)->a_ppos);
 	ret_b = ft_rrotate_motion((*ab)->b, &(*ab)->b_ppos);
 	if (ret_a && ret_b && apply == 1)
-			ft_moveappend(ab, "rrr");
+		ft_moveappend(ab, "rrr");
 	else if (ret_a && apply == 1)
-			ft_moveappend(ab, "rra");
+		ft_moveappend(ab, "rra");
 	else if (ret_b && apply == 1)
 		ft_moveappend(ab, "rrb");
 }

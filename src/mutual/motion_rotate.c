@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 17:48:51 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/04/19 13:49:31 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/04/19 18:19:54 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static int	ft_rotate_motion(t_stack *stack, int *ppos)
 void		ft_rotate_a(t_heaps **ab, int apply)
 {
 	if (ft_rotate_motion((*ab)->a, &(*ab)->a_ppos) && apply == 1)
-			ft_moveappend(ab, "ra");
+		ft_moveappend(ab, "ra");
 }
 
 void		ft_rotate_b(t_heaps **ab, int apply)

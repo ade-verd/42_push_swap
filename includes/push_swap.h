@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 11:37:19 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/04/19 17:14:11 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/04/19 18:16:30 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 
 typedef struct	s_buf
 {
-	char 			move[4];
+	char			move[4];
 	int				index;
 	struct s_buf	*next;
 	struct s_buf	*prev;
@@ -47,7 +47,7 @@ typedef struct	s_heaps
 	t_stack			*a;
 	t_stack			*b;
 	t_buf			*buff;
-	int 			count;
+	int				count;
 	int				min;
 	int				max;
 	int				a_min;
@@ -122,7 +122,7 @@ int				none(void);
 ** Sort
 */
 void			ft_select_sorter(t_heaps **ab, t_stack **work, int n);
-void 			ft_sorter(t_heaps **ab, t_stack **a, t_stack **b);
+void			ft_sorter(t_heaps **ab, t_stack **a, t_stack **b);
 int				ft_place(t_heaps **ab, t_stack *wrk, int toplace_v, int targ_p);
 void			ft_place2(t_heaps **ab, t_stack **wrk, int toplacev, int targp);
 
@@ -136,7 +136,6 @@ int				ft_find_index(t_stack *stack, int nb);
 int				ft_find_val(t_stack *stack, int index_tofind);
 int				ft_find_next(t_stack *stack, int ref);
 int				ft_find_prev(t_stack *stack, int ref);
-//int				ft_find_median(t_stack *stack);
 void			ft_find_median(t_stack *stack, int *fst4, int *mdn, int *thd4);
 void			ft_find_minmax(t_stack *stack, int *min, int *max, int n);
 

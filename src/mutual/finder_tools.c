@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/03 14:17:05 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/04/19 17:56:31 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/04/19 18:19:38 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int		ft_find_index(t_stack *stack, int nb)
 {
-	int 	index;
+	int		index;
 	t_stack	*cpy;
 
 	if (!stack)

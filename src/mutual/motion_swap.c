@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   swap_motion.c                                      :+:      :+:    :+:   */
+/*   motion_swap.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 17:48:51 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/04/19 11:46:46 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/04/19 18:23:00 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,9 +59,9 @@ void		ft_swap_ab(t_heaps **ab, int apply)
 	ret_a = ft_swap_motion((*ab)->a, &(*ab)->a_ppos);
 	ret_b = ft_swap_motion((*ab)->b, &(*ab)->b_ppos);
 	if (ret_a && ret_b && apply == 1)
-			ft_moveappend(ab, "ss");
+		ft_moveappend(ab, "ss");
 	else if (ret_a && apply == 1)
-			ft_moveappend(ab, "sa");
+		ft_moveappend(ab, "sa");
 	else if (ret_b && apply == 1)
 		ft_moveappend(ab, "sb");
 }

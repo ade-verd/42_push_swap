@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 17:48:51 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/04/19 13:49:25 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/04/19 18:20:52 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ void	ft_check_minmax(t_stack *dest, t_stack *src)
 	cpy_src = src;
 	while (cpy_src)
 	{
-		*(src->min) = cpy_src->nb < *(src->min) ? cpy_src->nb : *(src->min); 
-		*(src->max) = cpy_src->nb > *(src->max) ? cpy_src->nb : *(src->max); 
+		*(src->min) = cpy_src->nb < *(src->min) ? cpy_src->nb : *(src->min);
+		*(src->max) = cpy_src->nb > *(src->max) ? cpy_src->nb : *(src->max);
 		*(src->min) = *(src->min);
 		*(src->max) = *(src->max);
 		cpy_src = cpy_src->next;

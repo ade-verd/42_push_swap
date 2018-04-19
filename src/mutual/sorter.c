@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/07 13:24:56 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/04/19 18:13:56 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/04/19 18:28:44 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,15 +42,12 @@ void	ft_push_under_median(t_heaps **ab, t_stack **w, t_stack **o)
 
 void	ft_push_above_median(t_heaps **ab, t_stack **w, t_stack **o)
 {
-	while (*o)
-	{
-		ft_place2(ab, o, *(*o)->max, (*o)->index);
-		ft_pushw(ab, o, 1);
-		ft_select_sorter(ab, w, 2);
-	}
+	ft_place2(ab, o, *(*o)->max, (*o)->index);
+	ft_pushw(ab, o, 1);
+	ft_select_sorter(ab, w, 2);
 }
 
-void 	ft_sorter(t_heaps **ab, t_stack **w, t_stack **o)
+void	ft_sorter(t_heaps **ab, t_stack **w, t_stack **o)
 {
 	int		cycle;
 
@@ -72,11 +69,7 @@ void 	ft_sorter(t_heaps **ab, t_stack **w, t_stack **o)
 		}
 		if (*w)
 			ft_select_sorter(ab, w, (*w)->index);
-		while (*o && (*o)->index > 2)
-			ft_push_above_median(ab, w, o);
-		if (*o)
-			ft_select_sorter(ab, o, (*o)->index);
 		while (*o)
-			ft_push_a(ab, 1);
+			ft_push_above_median(ab, w, o);
 	}
 }
