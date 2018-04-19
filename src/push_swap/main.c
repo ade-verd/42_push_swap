@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/27 17:28:18 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/04/19 13:24:17 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/04/19 15:33:10 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int		main(int ac, char **av)
 		ft_heaps_init(&ab);
 		if (!(ft_read_and_fillstack(ac, av, &ab)))
 			return (0);
-		ft_sorter(&ab, &ab->a, &ab->b, ab->a->index);
+		ft_sorter(&ab, &ab->a, &ab->b);
 		ft_displaymoves(&ab, 1);
 		ft_heaps_del(&ab);
 	}
