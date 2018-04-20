@@ -10,6 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
+
 # Binary
 NAME = checker
 
@@ -17,6 +18,7 @@ NAME = checker
 CC = gcc
 
 # Directories
+PROJECT_PATH = ../../
 SRC_PATH = ./
 SRC_PATH_MUTUAL = ../mutual/
 OBJ_PATH = ../../obj/$(NAME)/
@@ -25,6 +27,11 @@ LIBFT_PATH = $(PRINTF_PATH)/libft
 LIB_PATH = $(LIBFT_PATH) $(PRINTF_PATH) 
 INC_PATH = ../../includes \
 		   $(addsuffix /includes/, $(LIB_PATH))
+
+# SDL
+SDL_VERSION = SDL2-2.0.8
+SDL_SOURCE_PATH = $(SDL_VERSION)
+SDL_BUILD_PATH = SDL_build
 
 # Includes & libraries
 CPPFLAGS = $(addprefix -I ,$(INC_PATH))
@@ -132,6 +139,23 @@ $(NAME): libftprintf.a $(OBJ_PATH) $(OBJ)
 
 libftprintf.a:
 	@$(MAKE) $(PRINTF_PATH) $@
+
+SDL2_Darwin:
+  ifndef $(shell brew ls --versions sdl > /dev/null)
+	@echo -e "$(TITLE)setup sdl2$(END_TITLE)"
+	@brew install sdl2
+  endif
+#	if brew ls --versions sdl > /dev/null; then ; else brew install sdl2 ; fi;
+
+libSDL2.a:
+	@if [ -L $(PROJECT_PATH)$@ ]; then make buildSDL; fi;
+
+buildSDL: $(PROJECT_PATH)includes/libSDL2.a
+	@curl -s https://www.libsdl.org/release/$(SDL_VERSION).tar.gz | tar -xz
+	@mkdir -p $(SDL_BUILD_PATH) && cd $(SDL_BUILD_PATH); ../$(SDL_SOURCE_PATH)/configure;
+	@make -s -C $(SDL_BUILD_PATH)
+	@ln -s $(SDL_BUILD_PATH)/build/.libs/libSDL2.a $(PROJECT_PATH)includes/libSDL2.a
+#	cd $(PROJECT_PATH) 
 
 $(OBJ_PATH):
 	@echo -e "$(TITLE)build $(NAME)$(END_TITLE)"

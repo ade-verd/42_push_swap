@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/07 13:24:56 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/04/19 18:28:44 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/04/20 18:26:33 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,5 +71,6 @@ void	ft_sorter(t_heaps **ab, t_stack **w, t_stack **o)
 			ft_select_sorter(ab, w, (*w)->index);
 		while (*o)
 			ft_push_above_median(ab, w, o);
+		ft_place(ab, *w, *(*w)->min, (*w)->index);
 	}
 }
