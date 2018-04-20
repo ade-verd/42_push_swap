@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 17:35:03 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/04/19 18:17:31 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/04/20 11:18:26 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,14 @@
 
 void	ft_error(t_heaps **ab, char *precision)
 {
-	if (precision)
+	if (precision && ft_strcmp(precision, "NO") != 0)
 	{
 		ft_putstr(precision);
 		ft_putstr("() ");
+		ft_putstr("Error\n");
 	}
-	ft_putstr("Error\n");
+	else
+		ft_putstr("Error\n");
 	if ((*ab))
 		ft_heaps_del(ab);
 	exit(0);

@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 11:37:19 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/04/19 18:16:30 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/04/20 11:47:53 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +111,12 @@ void			ft_pushw(t_heaps **ab, t_stack **work, int apply);
 void			ft_swapw(t_heaps **ab, t_stack **work, int apply);
 void			ft_rotatew(t_heaps **ab, t_stack **work, int apply);
 void			ft_rrotatew(t_heaps **ab, t_stack **work, int apply);
+
+typedef struct	s_fct
+{
+	char			move[4];
+	void 			(*f)(t_heaps **ab, int apply);
+} 				t_fct;
 
 /*
 ** Errors
