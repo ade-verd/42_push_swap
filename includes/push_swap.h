@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 11:37:19 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/04/20 11:47:53 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/04/23 13:35:58 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <stdio.h> /* A SUPPRIMER */
 # include <stdlib.h>
+# include "SDL2/SDL.h"
 # include "ft_printf.h"
 
 # define INT_MINI -2147483648
@@ -144,5 +145,11 @@ int				ft_find_next(t_stack *stack, int ref);
 int				ft_find_prev(t_stack *stack, int ref);
 void			ft_find_median(t_stack *stack, int *fst4, int *mdn, int *thd4);
 void			ft_find_minmax(t_stack *stack, int *min, int *max, int n);
+
+/*
+** Viewer
+*/
+void			ft_viewer(t_heaps **ab);
+
 
 #endif

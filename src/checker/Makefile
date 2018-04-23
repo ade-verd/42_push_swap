@@ -5,11 +5,10 @@
 #                                                     +:+ +:+         +:+      #
 #    By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2017/12/05 13:46:57 by ade-verd          #+#    #+#              #
-#    Updated: 2018/03/08 12:59:04 t aThursday, March 08, 19:13by ade-verd         ###   ########.fr        #
+#    Created: 2018/04/23 12:33:34 by ade-verd          #+#    #+#              #
+#    Updated: 2018/04/23 13:32:19 by ade-verd         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
-
 
 # Binary
 NAME = checker
@@ -28,19 +27,17 @@ LIB_PATH = $(LIBFT_PATH) $(PRINTF_PATH)
 INC_PATH = ../../includes \
 		   $(addsuffix /includes/, $(LIB_PATH))
 
-# SDL
-SDL_VERSION = SDL2-2.0.8
-SDL_SOURCE_PATH = $(SDL_VERSION)
-SDL_BUILD_PATH = SDL_build
-
 # Includes & libraries
-CPPFLAGS = $(addprefix -I ,$(INC_PATH))
-LDFLAGS = $(addprefix -L ,$(LIB_PATH))
+SDL2_CLAGS = $(shell sdl2-config --cflags)
+SDL2_LIBS = $(shell sdl2-config --libs)
+CPPFLAGS = $(addprefix -I ,$(INC_PATH)) $(SDL2_CLAGS) #`sdl2-config --cflags`
+LDFLAGS = $(addprefix -L ,$(LIB_PATH)) $(SDL2_LIBS) #`sdl2-config --libs`
 LDLIBS = -lft -lftprintf
 
 # Sources
 SRC_NAME = \
 		   main.c\
+		   viewer.c\
 
 SRC_NAME_MUTUAL = \
 		   reader.c\
@@ -134,7 +131,7 @@ BIN_DEL = "--$(LOG_CLEAR)$(LOG_YELLOW)Binary$(LOG_NOCOLOR) deletion " \
 all: $(NAME)
 
 $(NAME): setup_SDL2 libftprintf.a $(OBJ_PATH) $(OBJ)
-	@$(CC) $(OBJ) $(LDFLAGS) $(LDLIBS) -o $(NAME)
+	$(CC) $(OBJ) $(LDFLAGS) $(LDLIBS) -o $(NAME)
 	@if [ $(COUNTER) -ne 0 ]; then echo -e $(ASSEMBLING); fi;
 
 libftprintf.a:
@@ -149,12 +146,14 @@ SDL2_Darwin:
 		echo -e "$(TITLE)setup sdl2$(END_TITLE)"; \
 		brew install sdl2; \
 	fi;
+#	@sudo chown root:wheel /usr/local/bin/brew; \
+#	@sudo brew link sdl2; \
 
 SDL2_Linux:
 ifndef $(shell sdl2 --version 2>/dev/null)
 	@echo -e "$(TITLE)setup sdl2$(END_TITLE)"
 	@sudo apt-get update
-	@sudo apt-get install sdl2
+	@sudo apt-get install libsdl2-dev
 endif
 
 $(OBJ_PATH):
@@ -164,7 +163,7 @@ $(OBJ_PATH):
 	@mkdir -p $(OBJ_PATH)/$(SRC_PATH_MUTUAL)
 
 $(OBJ_PATH)%.o: $(SRC_PATH)%.c 
-	@$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
 	@echo -e $(LINKING)
 	$(eval COUNTER=$(shell echo $$(($(COUNTER)+1))))
 
