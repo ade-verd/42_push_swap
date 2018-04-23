@@ -133,29 +133,29 @@ BIN_DEL = "--$(LOG_CLEAR)$(LOG_YELLOW)Binary$(LOG_NOCOLOR) deletion " \
 
 all: $(NAME)
 
-$(NAME): libftprintf.a $(OBJ_PATH) $(OBJ)
+$(NAME): setup_SDL2 libftprintf.a $(OBJ_PATH) $(OBJ)
 	@$(CC) $(OBJ) $(LDFLAGS) $(LDLIBS) -o $(NAME)
 	@if [ $(COUNTER) -ne 0 ]; then echo -e $(ASSEMBLING); fi;
 
 libftprintf.a:
 	@$(MAKE) $(PRINTF_PATH) $@
 
+setup_SDL2:
+	@if [ $(OS) = Darwin ]; then make SDL2_Darwin; fi;
+	@if [ $(OS) = Linux ]; then make SDL2_Linux; fi;
+
 SDL2_Darwin:
-  ifndef $(shell brew ls --versions sdl > /dev/null)
+	@if !(brew ls --versions sdl2 > /dev/null); then \
+		echo -e "$(TITLE)setup sdl2$(END_TITLE)"; \
+		brew install sdl2; \
+	fi;
+
+SDL2_Linux:
+ifndef $(shell sdl2 --version 2>/dev/null)
 	@echo -e "$(TITLE)setup sdl2$(END_TITLE)"
-	@brew install sdl2
-  endif
-#	if brew ls --versions sdl > /dev/null; then ; else brew install sdl2 ; fi;
-
-libSDL2.a:
-	@if [ -L $(PROJECT_PATH)$@ ]; then make buildSDL; fi;
-
-buildSDL: $(PROJECT_PATH)includes/libSDL2.a
-	@curl -s https://www.libsdl.org/release/$(SDL_VERSION).tar.gz | tar -xz
-	@mkdir -p $(SDL_BUILD_PATH) && cd $(SDL_BUILD_PATH); ../$(SDL_SOURCE_PATH)/configure;
-	@make -s -C $(SDL_BUILD_PATH)
-	@ln -s $(SDL_BUILD_PATH)/build/.libs/libSDL2.a $(PROJECT_PATH)includes/libSDL2.a
-#	cd $(PROJECT_PATH) 
+	@sudo apt-get update
+	@sudo apt-get install sdl2
+endif
 
 $(OBJ_PATH):
 	@echo -e "$(TITLE)build $(NAME)$(END_TITLE)"
