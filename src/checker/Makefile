@@ -6,7 +6,7 @@
 #    By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/23 12:33:34 by ade-verd          #+#    #+#              #
-#    Updated: 2018/04/23 13:32:19 by ade-verd         ###   ########.fr        #
+#    Updated: 2018/04/23 14:28:40 by ade-verd         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -131,7 +131,7 @@ BIN_DEL = "--$(LOG_CLEAR)$(LOG_YELLOW)Binary$(LOG_NOCOLOR) deletion " \
 all: $(NAME)
 
 $(NAME): setup_SDL2 libftprintf.a $(OBJ_PATH) $(OBJ)
-	$(CC) $(OBJ) $(LDFLAGS) $(LDLIBS) -o $(NAME)
+	@$(CC) $(OBJ) $(LDFLAGS) $(LDLIBS) -o $(NAME)
 	@if [ $(COUNTER) -ne 0 ]; then echo -e $(ASSEMBLING); fi;
 
 libftprintf.a:
@@ -144,7 +144,7 @@ setup_SDL2:
 SDL2_Darwin:
 	@if !(brew ls --versions sdl2 > /dev/null); then \
 		echo -e "$(TITLE)setup sdl2$(END_TITLE)"; \
-		brew install sdl2; \
+		brew update &&dlbrew install sdl2; \
 	fi;
 #	@sudo chown root:wheel /usr/local/bin/brew; \
 #	@sudo brew link sdl2; \
@@ -163,9 +163,9 @@ $(OBJ_PATH):
 	@mkdir -p $(OBJ_PATH)/$(SRC_PATH_MUTUAL)
 
 $(OBJ_PATH)%.o: $(SRC_PATH)%.c 
-	$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
 	@echo -e $(LINKING)
-	$(eval COUNTER=$(shell echo $$(($(COUNTER)+1))))
+	@$(eval COUNTER=$(shell echo $$(($(COUNTER)+1))))
 
 clean:
 	@echo -e "$(TITLE)clean $(NAME)$(END_TITLE)"

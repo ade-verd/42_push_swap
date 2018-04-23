@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 11:37:19 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/04/23 13:35:58 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/04/23 14:25:54 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include <stdio.h> /* A SUPPRIMER */
 # include <stdlib.h>
-# include "SDL2/SDL.h"
+# include "SDL.h"
 # include "ft_printf.h"
 
 # define INT_MINI -2147483648

@@ -5,8 +5,8 @@
 #                                                     +:+ +:+         +:+      #
 #    By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2017/12/05 13:46:57 by ade-verd          #+#    #+#              #
-#    Updated: 2018/03/08 12:59:04 t aThursday, March 08, 19:13by ade-verd         ###   ########.fr        #
+#    Created: 2018/04/23 12:33:34 by ade-verd          #+#    #+#              #
+#    Updated: 2018/04/23 14:28:55 by ade-verd         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,6 +17,7 @@ NAME = push_swap
 CC = gcc
 
 # Directories
+PROJECT_PATH = ../../
 SRC_PATH = ./
 SRC_PATH_MUTUAL = ../mutual/
 OBJ_PATH = ../../obj/$(NAME)/
@@ -27,8 +28,10 @@ INC_PATH = ../../includes \
 		   $(addsuffix /includes/, $(LIB_PATH))
 
 # Includes & libraries
-CPPFLAGS = $(addprefix -I ,$(INC_PATH))
-LDFLAGS = $(addprefix -L ,$(LIB_PATH))
+SDL2_CLAGS = $(shell sdl2-config --cflags)
+SDL2_LIBS = $(shell sdl2-config --libs)
+CPPFLAGS = $(addprefix -I ,$(INC_PATH)) $(SDL2_CLAGS) #`sdl2-config --cflags`
+LDFLAGS = $(addprefix -L ,$(LIB_PATH)) $(SDL2_LIBS) #`sdl2-config --libs`
 LDLIBS = -lft -lftprintf
 
 # Sources
@@ -126,12 +129,31 @@ BIN_DEL = "--$(LOG_CLEAR)$(LOG_YELLOW)Binary$(LOG_NOCOLOR) deletion " \
 
 all: $(NAME)
 
-$(NAME): libftprintf.a $(OBJ_PATH) $(OBJ)
+$(NAME): setup_SDL2 libftprintf.a $(OBJ_PATH) $(OBJ)
 	@$(CC) $(OBJ) $(LDFLAGS) $(LDLIBS) -o $(NAME)
 	@if [ $(COUNTER) -ne 0 ]; then echo -e $(ASSEMBLING); fi;
 
 libftprintf.a:
 	@$(MAKE) $(PRINTF_PATH) $@
+
+setup_SDL2:
+	@if [ $(OS) = Darwin ]; then make SDL2_Darwin; fi;
+	@if [ $(OS) = Linux ]; then make SDL2_Linux; fi;
+
+SDL2_Darwin:
+	@if !(brew ls --versions sdl2 > /dev/null); then \
+		echo -e "$(TITLE)setup sdl2$(END_TITLE)"; \
+		brew update && brew install sdl2; \
+	fi;
+#	@sudo chown root:wheel /usr/local/bin/brew; \
+#	@sudo brew link sdl2; \
+
+SDL2_Linux:
+ifndef $(shell sdl2 --version 2>/dev/null)
+	@echo -e "$(TITLE)setup sdl2$(END_TITLE)"
+	@sudo apt-get update
+	@sudo apt-get install libsdl2-dev
+endif
 
 $(OBJ_PATH):
 	@echo -e "$(TITLE)build $(NAME)$(END_TITLE)"
@@ -142,7 +164,7 @@ $(OBJ_PATH):
 $(OBJ_PATH)%.o: $(SRC_PATH)%.c 
 	@$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
 	@echo -e $(LINKING)
-	$(eval COUNTER=$(shell echo $$(($(COUNTER)+1))))
+	@$(eval COUNTER=$(shell echo $$(($(COUNTER)+1))))
 
 clean:
 	@echo -e "$(TITLE)clean $(NAME)$(END_TITLE)"
