@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/07 13:24:56 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/04/24 13:25:32 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/04/24 15:54:58 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,8 @@ void	ft_insert_sorter(t_heaps **ab, t_stack **w, t_stack **o)
 	int		bestval;
 
 	bestval = ft_find_bestmove(o, w);
-	ft_placetop(ab, *o, bestval);
-	ft_placetop(ab, *w, ft_find_next(*w, bestval));
+	ft_placetop(ab, o, bestval);
+	ft_placetop(ab, w, ft_find_next(*w, bestval));
 	ft_pushw(ab, o, 1);
 }
 
@@ -74,6 +74,6 @@ void	ft_sorter(t_heaps **ab, t_stack **w, t_stack **o)
 			ft_select_sorter(ab, w, (*w)->index);
 		while (*o)
 			ft_insert_sorter(ab, w, o);
-		ft_placetop(ab, *w, *(*w)->min);
+		ft_placetop(ab, w, *(*w)->min);
 	}
 }

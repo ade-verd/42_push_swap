@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/11 17:43:25 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/04/24 13:42:12 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/04/24 16:21:04 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,8 @@ int			ft_find_bestmove(t_stack **w, t_stack **o)
 	bestmove = 0;
 	while (cpy)
 	{
-		count = ft_moves2top(*w, cpy->nb) + ft_moves2next(*o, cpy->nb) + 1;
+		count = ft_abs(ft_moves2top(*w, cpy->nb)) + ft_moves2next(*o, cpy->nb);
+		count++;
 		if ((count < bestmove) || !bestmove)
 		{
 			bestmove = count;
@@ -63,24 +64,22 @@ int			ft_find_bestmove(t_stack **w, t_stack **o)
 	return (bestval);
 }
 
-int			ft_placetop(t_heaps **ab, t_stack *w, int toplace_v)
+int			ft_placetop(t_heaps **ab, t_stack **w, int toplace_v)
 {
 	int		mv;
 	int		tmp;
 	int		top;
+	int		count;
 
 	mv = 0;
-	top = w->index;
-	mv = ft_moves2top(w, ft_find_next(w, toplace_v));
-	printf("mv:%d\ttoplace_v:%d\n", mv, toplace_v);
+	top = (*w)->index;
+	mv = ft_moves2top(*w, toplace_v);
 	tmp = mv;
-	while (mv)
+	count = 0;
+	while (mv && (*w)->nb != toplace_v)
 	{
-		printf("mv:%d\ttoplace_v:%d\n", mv, toplace_v);
-		//if (w->nb != toplace_v)
-			mv < 0 ? ft_rotatew(ab, &w, 1) : ft_rrotatew(ab, &w, 1);
+		mv < 0 ? ft_rotatew(ab, w, 1) : ft_rrotatew(ab, w, 1);
 		mv = mv < 0 ? mv + 1 : mv - 1;
 	}
-	printf("toplace_v:%d\n", toplace_v);
 	return (tmp);
 }
