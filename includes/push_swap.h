@@ -6,16 +6,15 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 11:37:19 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/04/24 17:41:37 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/04/24 18:28:48 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-# include <stdio.h> /* A SUPPRIMER */
 # include <stdlib.h>
-# include "SDL.h"
+# include <SDL.h>
 # include "ft_printf.h"
 
 # define INT_MINI -2147483648
@@ -116,8 +115,8 @@ void			ft_rrotatew(t_heaps **ab, t_stack **work, int apply);
 typedef struct	s_fct
 {
 	char			move[4];
-	void 			(*f)(t_heaps **ab, int apply);
-} 				t_fct;
+	void			(*f)(t_heaps **ab, int apply);
+}				t_fct;
 
 /*
 ** Errors
@@ -132,8 +131,8 @@ int				none(void);
 void			ft_sorter(t_heaps **ab, t_stack **a, t_stack **b);
 int				*ft_bubble_sorter(t_stack *stack, int *tab);
 void			ft_select_sorter(t_heaps **ab, t_stack **work, int n);
-void			ft_quick_sorter(t_heaps **ab, t_stack **w, t_stack **o);
-void			ft_insert_sorter(t_heaps **ab, t_stack **w, t_stack **o);
+void			ft_quick_sorter(t_heaps **ab, t_stack **a, t_stack **b);
+void			ft_insert_sorter(t_heaps **ab, t_stack **a, t_stack **b);
 
 /*
 ** Tools: count, find, issort, place on top ...
@@ -144,7 +143,6 @@ int				ft_countv(t_stack *stack, int val, char *sign);
 int				ft_find_index(t_stack *stack, int nb);
 int				ft_find_val(t_stack *stack, int index_tofind);
 int				ft_find_next(t_stack *stack, int ref);
-int				ft_find_prev(t_stack *stack, int ref);
 void			ft_find_median(t_stack *stack, int *fst4, int *mdn, int *thd4);
 void			ft_find_minmax(t_stack *stack, int *min, int *max, int n);
 int				ft_find_bestmove(t_stack **w, t_stack **o);
@@ -155,6 +153,5 @@ void			ft_placetopboth(t_heaps **ab, int b_val, int a_next);
 ** Viewer
 */
 void			ft_viewer(t_heaps **ab);
-
 
 #endif

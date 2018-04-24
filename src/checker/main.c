@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/27 17:28:18 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/04/24 17:31:46 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/04/24 18:29:32 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void	ft_apply_moves(t_heaps **ab)
 {
 	int			i;
 	t_buf		*buff;
-	const t_fct	tab[] = {{"sa", ft_swap_a},	{"sb", ft_swap_b},
+	const t_fct	tab[] = {{"sa", ft_swap_a}, {"sb", ft_swap_b},
 						{"ss", ft_swap_ab}, {"pa", ft_push_a},
 						{"pb", ft_push_b}, {"ra", ft_rotate_a},
 						{"rb", ft_rotate_b}, {"rra", ft_rrotate_a},
