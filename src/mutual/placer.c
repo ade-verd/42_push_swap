@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/11 17:43:25 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/04/24 16:21:04 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/04/24 17:30:26 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,19 +67,24 @@ int			ft_find_bestmove(t_stack **w, t_stack **o)
 int			ft_placetop(t_heaps **ab, t_stack **w, int toplace_v)
 {
 	int		mv;
-	int		tmp;
-	int		top;
-	int		count;
 
-	mv = 0;
-	top = (*w)->index;
 	mv = ft_moves2top(*w, toplace_v);
-	tmp = mv;
-	count = 0;
 	while (mv && (*w)->nb != toplace_v)
-	{
 		mv < 0 ? ft_rotatew(ab, w, 1) : ft_rrotatew(ab, w, 1);
-		mv = mv < 0 ? mv + 1 : mv - 1;
-	}
-	return (tmp);
+	return (mv);
+}
+
+void		ft_placetopboth(t_heaps **ab, int b_val, int a_next)
+{
+	int		mv_a;
+	int		mv_b;
+	int		min;
+
+	mv_a = !(*ab)->a ? 0 : ft_moves2top((*ab)->a, a_next);
+	mv_b = !(*ab)->b ? 0 : ft_moves2top((*ab)->b, b_val);
+	min = ft_abs(mv_a) < ft_abs(mv_b) ? ft_abs(mv_a) : ft_abs(mv_b);
+	while (min-- && ((mv_a > 0 && mv_b > 0) || (mv_a < 0 && mv_b < 0)))
+		mv_a < 0 ? ft_rotate_ab(ab, 1) : ft_rrotate_ab(ab, 1);
+	ft_placetop(ab, &(*ab)->a, a_next);
+	ft_placetop(ab, &(*ab)->b, b_val);
 }
