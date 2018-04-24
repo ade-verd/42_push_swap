@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/03 14:17:05 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/04/19 18:19:38 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/04/24 17:55:05 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,24 +64,6 @@ int		ft_find_next(t_stack *stack, int ref)
 	return (next_val);
 }
 
-int		ft_find_prev(t_stack *stack, int ref)
-{
-	int		prev_val;
-	t_stack	*cpy;
-
-	if (!stack)
-		return (0);
-	prev_val = *stack->min;
-	cpy = stack;
-	while (cpy)
-	{
-		if (cpy->nb < ref && cpy->nb > prev_val)
-			prev_val = cpy->nb;
-		cpy = cpy->next;
-	}
-	return (prev_val);
-}
-
 void	ft_find_minmax(t_stack *stack, int *min, int *max, int n)
 {
 	t_stack	*cpy;
@@ -98,4 +80,18 @@ void	ft_find_minmax(t_stack *stack, int *min, int *max, int n)
 		n--;
 		cpy = cpy->next;
 	}
+}
+
+void	ft_find_median(t_stack *stack, int *fst_quart, int *mdn, int *thd_quart)
+{
+	int		tab[stack->index + 1];
+	int		i;
+
+	i = 0;
+	ft_bubble_sorter(stack, tab);
+	*fst_quart = tab[stack->index / 4];
+	*thd_quart = tab[stack->index * 3 / 4];
+	*mdn = tab[stack->index / 2];
+	*(stack)->pval = *mdn;
+	*(stack)->ppos = ft_find_index(stack, *mdn);
 }

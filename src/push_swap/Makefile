@@ -6,7 +6,7 @@
 #    By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/23 12:33:34 by ade-verd          #+#    #+#              #
-#    Updated: 2018/04/23 14:28:55 by ade-verd         ###   ########.fr        #
+#    Updated: 2018/04/24 17:47:33 by ade-verd         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,11 +54,11 @@ SRC_NAME_MUTUAL = \
 		   \
 		   counter_tools.c\
 		   finder_tools.c\
-		   find_median.c\
 		   placer.c\
 		   \
-		   select_sorter.c\
 		   sorter.c\
+		   select_sorter.c\
+		   bubble_sorter.c\
 
 OBJ_NAME = $(SRC_NAME:.c=.o)
 OBJ_NAME_MUTUAL = $(SRC_NAME_MUTUAL:.c=.o)

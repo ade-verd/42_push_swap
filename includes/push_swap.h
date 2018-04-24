@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 11:37:19 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/04/24 17:17:01 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/04/24 17:41:37 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,16 +129,14 @@ int				none(void);
 /*
 ** Sort
 */
-void			ft_select_sorter(t_heaps **ab, t_stack **work, int n);
 void			ft_sorter(t_heaps **ab, t_stack **a, t_stack **b);
-//int				ft_place(t_heaps **ab, t_stack *wrk, int toplace_v, int targ_p);
-int				ft_placetop(t_heaps **ab, t_stack **wrk, int toplace_v);
-void			ft_placetopboth(t_heaps **ab, int b_val, int a_next);
-void			ft_place2(t_heaps **ab, t_stack **wrk, int toplacev, int targp);
-int				ft_find_bestmove(t_stack **w, t_stack **o);
+int				*ft_bubble_sorter(t_stack *stack, int *tab);
+void			ft_select_sorter(t_heaps **ab, t_stack **work, int n);
+void			ft_quick_sorter(t_heaps **ab, t_stack **w, t_stack **o);
+void			ft_insert_sorter(t_heaps **ab, t_stack **w, t_stack **o);
 
 /*
-** Tools: count, find, issort, ...
+** Tools: count, find, issort, place on top ...
 */
 int				ft_issort(t_stack *stack);
 int				ft_issortn(t_stack *stack, int n);
@@ -149,6 +147,9 @@ int				ft_find_next(t_stack *stack, int ref);
 int				ft_find_prev(t_stack *stack, int ref);
 void			ft_find_median(t_stack *stack, int *fst4, int *mdn, int *thd4);
 void			ft_find_minmax(t_stack *stack, int *min, int *max, int n);
+int				ft_find_bestmove(t_stack **w, t_stack **o);
+int				ft_placetop(t_heaps **ab, t_stack **wrk, int toplace_v);
+void			ft_placetopboth(t_heaps **ab, int b_val, int a_next);
 
 /*
 ** Viewer

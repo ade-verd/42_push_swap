@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   find_median.c                                      :+:      :+:    :+:   */
+/*   bubble_sorter.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/19 17:55:59 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/04/24 16:55:19 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/04/24 17:38:57 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,18 +39,4 @@ int		*ft_bubble_sorter(t_stack *stack, int *tab)
 		i++;
 	}
 	return (tab);
-}
-
-void	ft_find_median(t_stack *stack, int *fst_quart, int *mdn, int *thd_quart)
-{
-	int		tab[stack->index + 1];
-	int		i;
-
-	i = 0;
-	ft_bubble_sorter(stack, tab);
-	*fst_quart = tab[stack->index / 4];
-	*thd_quart = tab[stack->index * 3 / 4];
-	*mdn = tab[stack->index / 2];
-	*(stack)->pval = *mdn;
-	*(stack)->ppos = ft_find_index(stack, *mdn);
 }
