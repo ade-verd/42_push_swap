@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 11:37:19 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/04/24 11:18:07 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/04/24 13:23:32 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,8 +131,10 @@ int				none(void);
 */
 void			ft_select_sorter(t_heaps **ab, t_stack **work, int n);
 void			ft_sorter(t_heaps **ab, t_stack **a, t_stack **b);
-int				ft_place(t_heaps **ab, t_stack *wrk, int toplace_v, int targ_p);
+//int				ft_place(t_heaps **ab, t_stack *wrk, int toplace_v, int targ_p);
+int				ft_placetop(t_heaps **ab, t_stack *wrk, int toplace_v);
 void			ft_place2(t_heaps **ab, t_stack **wrk, int toplacev, int targp);
+int				ft_find_bestmove(t_stack **w, t_stack **o);
 
 /*
 ** Tools: count, find, issort, ...

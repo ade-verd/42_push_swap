@@ -6,82 +6,81 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/11 17:43:25 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/04/19 14:13:19 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/04/24 13:42:12 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static int	ft_target_r(t_heaps **ab, t_stack *work, int toplace_v, int targ_p)
+static int	ft_moves2top(t_stack *w, int toplace_v)
 {
-	int		count;
+	int		r;
+	int		rr;
+	int		top;
 
-	count = 0;
-	if ((ft_find_index(work, toplace_v)) == -1)
+	if ((ft_find_index(w, toplace_v)) == -1)
 		return (0);
-	while (ft_find_index(work, toplace_v) != targ_p)
-	{
-		ft_rotatew(ab, &work, 0);
-		count--;
-	}
-	return (count);
+	if (w->nb == toplace_v)
+		return (0);
+	top = w->index;
+	r = top - ft_find_index(w, toplace_v);
+	rr = ft_find_index(w, toplace_v);
+	return (r < rr ? -r : rr);
 }
 
-static int	ft_target_rr(t_heaps **ab, t_stack *work, int toplace_v, int targ_p)
+static int	ft_moves2next(t_stack *o, int toplace_v)
 {
-	int		count;
+	int		moves;
 
-	count = 0;
-	if ((ft_find_index(work, toplace_v)) == -1)
+	if (!o)
 		return (0);
-	while (ft_find_index(work, toplace_v) != targ_p)
-	{
-		ft_rrotatew(ab, &work, 0);
-		count++;
-	}
-	return (count);
+	moves = ft_abs(ft_moves2top(o, ft_find_next(o, toplace_v)));
+	return (moves);
 }
 
-int			ft_place(t_heaps **ab, t_stack *w, int toplace_v, int targ_p)
+int			ft_find_bestmove(t_stack **w, t_stack **o)
 {
+	int		bestval;
+	int		bestmove;
+	int		count;
+	t_stack	*cpy;
+
+	if (!*w)
+		return (0);
+	cpy = *w;
+	bestval = cpy->nb;
+	bestmove = 0;
+	while (cpy)
+	{
+		count = ft_moves2top(*w, cpy->nb) + ft_moves2next(*o, cpy->nb) + 1;
+		if ((count < bestmove) || !bestmove)
+		{
+			bestmove = count;
+			bestval = cpy->nb;
+		}
+		cpy = cpy->next;
+	}
+	return (bestval);
+}
+
+int			ft_placetop(t_heaps **ab, t_stack *w, int toplace_v)
+{
+	int		mv;
 	int		tmp;
-	int		r;
-	int		rr;
+	int		top;
 
-	r = 0;
-	rr = 0;
-	tmp = w->nb;
-	r = ft_target_r(ab, w, toplace_v, targ_p);
-	ft_target_rr(ab, w, tmp, w->index);
-	rr = ft_target_rr(ab, w, toplace_v, targ_p);
-	ft_target_r(ab, w, tmp, w->index);
-	tmp = ft_abs(r) < rr ? r : rr;
-	while (r++ && rr--)
-		if (w->nb != toplace_v)
-			ft_abs(r) < rr ? ft_rotatew(ab, &w, 1) : ft_rrotatew(ab, &w, 1);
-	return (tmp);
-}
-
-void		ft_place2(t_heaps **ab, t_stack **w, int v, int targ_p)
-{
-	int		ref;
-	int		r;
-	int		rr;
-	int		next;
-
-	r = 0;
-	rr = 0;
-	ref = (*w)->nb;
-	next = (*w)->id == 'a' ? ft_find_next(*w, v) : ft_find_prev(*w, v);
-	r = ft_target_r(ab, *w, v, targ_p);
-	ft_target_rr(ab, *w, ref, (*w)->index);
-	rr = ft_target_rr(ab, *w, v, targ_p);
-	ft_target_r(ab, *w, ref, (*w)->index);
-	while (r++ && rr-- && (*w)->nb != v)
+	mv = 0;
+	top = w->index;
+	mv = ft_moves2top(w, ft_find_next(w, toplace_v));
+	printf("mv:%d\ttoplace_v:%d\n", mv, toplace_v);
+	tmp = mv;
+	while (mv)
 	{
-		if ((*w)->nb == next)
-			ft_pushw(ab, w, 1);
-		if ((*w)->nb != v)
-			ft_abs(r) < rr ? ft_rotatew(ab, w, 1) : ft_rrotatew(ab, w, 1);
+		printf("mv:%d\ttoplace_v:%d\n", mv, toplace_v);
+		//if (w->nb != toplace_v)
+			mv < 0 ? ft_rotatew(ab, &w, 1) : ft_rrotatew(ab, &w, 1);
+		mv = mv < 0 ? mv + 1 : mv - 1;
 	}
+	printf("toplace_v:%d\n", toplace_v);
+	return (tmp);
 }

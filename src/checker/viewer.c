@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/23 12:36:28 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/04/24 11:19:39 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/04/24 12:46:32 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	ft_viewer(t_heaps **ab)
 	if (!(screen = SDL_CreateRGBSurface(0, 800, 600, 32, 0x00FF0000, 0x0000FF00,
 								  0x000000FF, 0xFF000000)))
 		ft_error_sdl(ab, "SDL_CreateRGBSurface", (char*)SDL_GetError());
-	if (!(*renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED)))
+	if (!(renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED)))
 		ft_error_sdl(ab, "SDL_CreateRenderer", (char*)SDL_GetError());
 	ft_destroy_and_quit(window);
 }

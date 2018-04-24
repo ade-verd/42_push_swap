@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/29 12:34:11 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/04/19 18:26:20 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/04/24 13:24:53 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ static void	ft_n_more_values(t_heaps **ab, t_stack **work, int n)
 	ft_find_minmax(*work, &min, &max, n);
 	top = (*work)->sens == 1 ? min : max;
 	btm = (*work)->sens == 1 ? max : min;
-	c = ft_place(ab, *work, top, (*work)->index);
+	c = ft_placetop(ab, *work, top);
 	if (!ft_issortn(*work, n))
 		(*work)->id == 'a' ? ft_push_b(ab, 1) : ft_push_a(ab, 1);
 	while (c && !ft_issortn(*work, n))
@@ -92,7 +92,7 @@ static void	ft_more_values(t_heaps **ab, t_stack **work)
 		ft_find_minmax(*work, &min, &max, (*work)->index);
 		top = (*work)->sens == 1 ? min : max;
 		btm = (*work)->sens == 1 ? max : min;
-		ft_place(ab, *work, top, (*work)->index);
+		ft_placetop(ab, *work, top);
 		(*work)->id == 'a' ? ft_push_b(ab, 1) : ft_push_a(ab, 1);
 		i++;
 	}
