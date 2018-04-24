@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/07 13:24:56 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/04/24 15:54:58 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/04/24 16:24:57 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,6 @@ void	ft_insert_sorter(t_heaps **ab, t_stack **w, t_stack **o)
 
 void	ft_sorter(t_heaps **ab, t_stack **w, t_stack **o)
 {
-	int		cycle;
-
-	cycle = 0;
 	if (!*w || ft_issort(*w))
 		return ;
 	if ((*w)->index < 6)
@@ -66,9 +63,6 @@ void	ft_sorter(t_heaps **ab, t_stack **w, t_stack **o)
 			if (ft_issort(*w) && *o && *(*w)->min > *(*o)->max)
 				break ;
 			ft_push_under_median(ab, w, o);
-		//	if ((*ab)->count > 200 && cycle == 0)
-		//		ft_push_under_median(ab, o, w);
-			cycle++;
 		}
 		if (*w)
 			ft_select_sorter(ab, w, (*w)->index);
