@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/25 12:02:10 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/04/25 16:54:28 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/04/25 18:59:07 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,14 @@
 
 # include <SDL.h>
 
-# define WINW	800
-# define WINH	600
+# define WINW				800
+# define WINH				600
+# define STATUS_BAR 		030
 
-# define COLOR_BACKGROUND_L	051, 101, 120, 255
-# define COLOR_BACKGROUND_R	000, 146, 162, 255
-# define COLOR_BAR			255, 255, 255, 255
+# define COLOR_STATUS_BAR	000, 000, 000, 255
+# define COLOR_L			051, 101, 120, 255
+# define COLOR_R			000, 146, 162, 255
+# define COLOR_STICK		181, 234, 255, 255
 
 typedef struct	s_env
 {
@@ -28,7 +30,9 @@ typedef struct	s_env
 	SDL_Renderer	*render;
 	SDL_Rect		background_l;
 	SDL_Rect		background_r;
-	SDL_Rect		bar;
+	SDL_Rect		stick;
+	int				min;
+	int				max;
 }				t_env;
 
 void			ft_error_sdl(t_heaps **ab, char *precision, char *precision2);

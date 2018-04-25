@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/23 12:36:28 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/04/25 17:00:09 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/04/25 19:14:39 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,12 +38,12 @@ void	ft_init_backgrounds(t_heaps **ab, t_env *env)
 	if (!env)
 		ft_error_sdl(ab, "ft_init_backgrounds", "!env");
 	env->background_l.x = 0;
-	env->background_l.y = 0;
-	env->background_l.h = WINH;
+	env->background_l.y = 0 + STATUS_BAR;
+	env->background_l.h = WINH - STATUS_BAR;
 	env->background_l.w = WINW / 2;
 	env->background_r.x = WINW / 2;
-	env->background_r.y = 0;
-	env->background_r.h = WINH;
+	env->background_r.y = 0 + STATUS_BAR;
+	env->background_r.h = WINH - STATUS_BAR;
 	env->background_r.w = WINW / 2;
 }
 
@@ -77,29 +77,57 @@ void	ft_destroy_and_quit(t_env *env)
 
 void	ft_setuprenderer(t_env *env)
 {
-	SDL_SetRenderDrawColor(env->render, COLOR_BACKGROUND_L);
+	SDL_SetRenderDrawColor(env->render, COLOR_STATUS_BAR);
 	SDL_RenderClear(env->render);
-
-	SDL_SetRenderDrawColor(env->render, COLOR_BACKGROUND_R);
+	SDL_SetRenderDrawColor(env->render, COLOR_L);
+	SDL_RenderFillRect(env->render, &env->background_l);
+	SDL_SetRenderDrawColor(env->render, COLOR_R);
 	SDL_RenderFillRect(env->render, &env->background_r);
-	SDL_RenderPresent(env->render);
+//	SDL_RenderPresent(env->render);
 }
 
-void	ft_render(t_env *env)
+void	ft_draw_stick(t_stack *stack, t_env *env)
 {
-	SDL_RenderClear(env->render);
-	SDL_RenderPresent(env->render);
+	env->stick.x = stack->id == 'a' ? 0 : WINW / 2;
+	if ((env->stick.w = (stack->nb * (WINW / 2) / (env->max - env->min)) == 0) // A INVERSER 1 - ...
+		env->stick.w = 0.2 * (WINW / 2) / (env->max - env->min);
+	SDL_SetRenderDrawColor(env->render, COLOR_STICK);
+	SDL_RenderFillRect(env->render, &env->stick);
 }
+
+void	ft_draw_stack(t_heaps *ab, t_stack *stack, t_env *env)
+{
+	t_stack	*cpy;
+
+	if (!ab || !stack)
+		return ;
+	cpy = stack;
+	env->min = ab->min;
+	env->max = ab->max;
+	env->stick.h = (WINH - STATUS_BAR) / ab->count;
+	env->stick.y = (env->stick.h);
+	while (cpy && cpy->index > 1)
+		cpy = cpy->next;
+	while (cpy)
+	{
+		ft_printf("y:%d\n", env->stick.y);
+		ft_draw_stick(cpy, env);
+		env->stick.y += env->stick.h;
+		cpy = cpy->prev;
+		//cpy = cpy->next;
+	}
+}
+
 
 void	ft_viewer(t_heaps **ab)
 {
 	t_env	*env;
 
 	ft_initenv(ab, &env);
-
-
 	ft_setuprenderer(env);
-	//ft_render(env);
+	ft_draw_stack(*ab, (*ab)->a, env);
+	ft_draw_stack(*ab, (*ab)->b, env);
+	SDL_RenderPresent(env->render);
 	SDL_Delay(10000);
 	ft_destroy_and_quit(env);
 }
