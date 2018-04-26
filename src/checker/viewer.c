@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/23 12:36:28 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/04/25 19:14:39 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/04/26 11:18:10 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ void	ft_setuprenderer(t_env *env)
 void	ft_draw_stick(t_stack *stack, t_env *env)
 {
 	env->stick.x = stack->id == 'a' ? 0 : WINW / 2;
-	if ((env->stick.w = (stack->nb * (WINW / 2) / (env->max - env->min)) == 0) // A INVERSER 1 - ...
+	if ((env->stick.w = stack->nb * (WINW / 2) / (env->max - env->min)) == 0)
 		env->stick.w = 0.2 * (WINW / 2) / (env->max - env->min);
 	SDL_SetRenderDrawColor(env->render, COLOR_STICK);
 	SDL_RenderFillRect(env->render, &env->stick);
@@ -105,16 +105,19 @@ void	ft_draw_stack(t_heaps *ab, t_stack *stack, t_env *env)
 	env->min = ab->min;
 	env->max = ab->max;
 	env->stick.h = (WINH - STATUS_BAR) / ab->count;
-	env->stick.y = (env->stick.h);
+	env->stick.y = env->stick.h * ab->count;
 	while (cpy && cpy->index > 1)
 		cpy = cpy->next;
 	while (cpy)
 	{
-		ft_printf("y:%d\n", env->stick.y);
 		ft_draw_stick(cpy, env);
-		env->stick.y += env->stick.h;
+		ft_printf("nb:%d\t", cpy->nb);
+		ft_printf("x:%d\t", env->stick.x);
+		ft_printf("y:%d\t", env->stick.y);
+		ft_printf("h:%d\t", env->stick.h);
+		ft_printf("w:%d\n", env->stick.w);
+		env->stick.y -= env->stick.h;
 		cpy = cpy->prev;
-		//cpy = cpy->next;
 	}
 }
 

@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/27 17:28:18 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/04/25 19:04:08 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/04/26 11:07:25 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,7 @@ int		main(int ac, char **av)
 		if (!(ft_read_and_fillstack(ac, av, &ab)))
 			return (0);
 		ft_motions_reader(&ab);
-		ft_apply_moves(&ab);
+		//ft_apply_moves(&ab);
 		ft_result(&ab);
 		//ft_displaymoves(&ab, 1);
 		ft_heaps_display(&ab, 'a' + 'b', 0);
