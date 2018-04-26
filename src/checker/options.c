@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/26 11:39:09 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/04/26 18:50:55 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/04/26 19:29:59 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ void	ft_deal_options_init(t_heaps **ab)
 		ft_heaps_display(ab, 'a' + 'b', 0);
 	if ((*ab)->option_v == 1)
 		ft_viewer_init(ab, &(*ab)->winenv);
+	if ((*ab)->winenv)
+		ft_view(ab);
 }
 
 void	ft_deal_options(t_heaps **ab)

@@ -19,14 +19,13 @@ then
 	echo    # (optional) move to a new line
 	if [[ $REPLY =~ ^[Yy]$ ]]
 	then
-		./push_swap $ARG | ./checkerkh -lv $ARG
+		./push_swap $ARG | ./checker -lv $ARG
 	else
 		./push_swap -v $ARG
-		./push_swap $ARG | ./checkerkh -l $ARG
+		./push_swap $ARG | ./checker -ls $ARG
 	fi
 else
-#	./push_swap $ARG
-	./push_swap $ARG | ./checkerkh -l $ARG
+	./push_swap $ARG | ./checker -l $ARG
 fi
 echo "List: $ARG"
 
