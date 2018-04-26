@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 17:38:06 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/04/17 18:51:58 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/04/26 13:59:37 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,22 +66,28 @@ void	ft_ab_minmax(t_heaps **ab, int nb)
 void	ft_check_n_push(t_heaps **ab, char *str)
 {
 	int		nb;
+	int		isnum;
 
 	nb = 0;
+	isnum = 0;
 	if (ft_isnumber(str))
 	{
+		isnum = 1;
 		nb = ft_atoi(str);
 		ft_nb_exists((*ab)->a, nb) == 1 ? ft_error(ab, 0) : none;
 		ft_ab_minmax(ab, nb);
 		ft_stackpush(ab, &(*ab)->a, nb, 'a');
 	}
-	else if (str[0] == '-' && str[1] == 'v')
-		(*ab)->option_v = 1;
-	else if (str[0] == '-' && str[1] == 'l')
+	if (str[0] == '-' && ft_strchr(str, 'l'))
 		(*ab)->option_l = 1;
-	else if (str[0] == '-' && str[1] == 'c')
+	if (str[0] == '-' && ft_strchr(str, 'v'))
+		(*ab)->option_v = 1;
+	if (str[0] == '-' && ft_strchr(str, 's'))
+		(*ab)->option_s = 1;
+	else if (str[0] == '-' && ft_strchr(str, 'c'))
 		(*ab)->option_c = 1;
-	else
+	if (!isnum && !(*ab)->option_l && !(*ab)->option_v && !(*ab)->option_s
+		&& !(*ab)->option_c)
 		ft_error(ab, 0);
 }
 

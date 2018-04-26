@@ -6,16 +6,17 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 11:37:19 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/04/24 18:28:48 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/04/26 15:58:18 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
 # include <stdlib.h>
-# include <SDL.h>
 # include "ft_printf.h"
+# include "viewer.h"
 
 # define INT_MINI -2147483648
 # define INT_MAXI  2147483647
@@ -59,8 +60,10 @@ typedef struct	s_heaps
 	int				b_pval;
 	int				b_ppos;
 	int				option_v;
+	int				option_s;
 	int				option_l;
 	int				option_c;
+	t_env			*winenv;
 }				t_heaps;
 
 /*
@@ -80,7 +83,7 @@ void			ft_heaps_display(t_heaps **ab, unsigned char c, int context);
 */
 void			ft_moveappend(t_heaps **ab, char *s);
 void			ft_display_lastmove(t_heaps **ab);
-void			ft_displaymoves(t_heaps **ab, int display_number_moves);
+void			ft_displaymoves(t_heaps **ab);
 void			ft_del_lastmove(t_heaps **ab);
 void			ft_del_allmoves(t_heaps **ab);
 
@@ -123,6 +126,7 @@ typedef struct	s_fct
 */
 void			ft_error(t_heaps **ab, char *precision);
 void			ft_error_sdl(t_heaps **ab, char *precision, char *precision2);
+
 int				none(void);
 
 /*
@@ -152,6 +156,11 @@ void			ft_placetopboth(t_heaps **ab, int b_val, int a_next);
 /*
 ** Viewer
 */
-void			ft_viewer(t_heaps **ab);
+void			ft_viewer_init(t_heaps **ab, t_env **env);
+void			ft_view(t_heaps **ab);
+void			ft_viewer_destroy_quit(t_env *env);
+void			ft_deal_options_init(t_heaps **ab);
+void			ft_deal_options(t_heaps **ab);
+void			ft_deal_options_quit(t_heaps **ab);
 
 #endif

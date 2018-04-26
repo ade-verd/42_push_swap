@@ -6,7 +6,7 @@
 #    By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/23 12:33:34 by ade-verd          #+#    #+#              #
-#    Updated: 2018/04/24 17:49:21 by ade-verd         ###   ########.fr        #
+#    Updated: 2018/04/26 16:53:10 by ade-verd         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,6 +37,7 @@ LDLIBS = -lft -lftprintf
 # Sources
 SRC_NAME = \
 		   main.c\
+		   options.c\
 		   viewer.c\
 
 SRC_NAME_MUTUAL = \
@@ -144,7 +145,7 @@ setup_SDL2:
 SDL2_Darwin:
 	@if !(brew ls --versions sdl2 > /dev/null); then \
 		echo -e "$(TITLE)setup sdl2$(END_TITLE)"; \
-		brew update &&dlbrew install sdl2; \
+		brew update && brew install sdl2; \
 	fi;
 #	@sudo chown root:wheel /usr/local/bin/brew; \
 #	@sudo brew link sdl2; \

@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/27 17:28:18 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/04/26 11:07:25 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/04/26 17:11:58 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,40 +65,42 @@ void	ft_motions_reader(t_heaps **ab)
 void	ft_apply_moves(t_heaps **ab)
 {
 	int			i;
-	t_buf		*buff;
-	const t_fct	tab[] = {{"sa", ft_swap_a}, {"sb", ft_swap_b},
-						{"ss", ft_swap_ab}, {"pa", ft_push_a},
-						{"pb", ft_push_b}, {"ra", ft_rotate_a},
-						{"rb", ft_rotate_b}, {"rra", ft_rrotate_a},
-						{"rrb", ft_rrotate_b}, {"rr", ft_rotate_ab},
-						{"rrr", ft_rrotate_ab}, {"", 0}};
+	const t_fct	tab[] = {{"sa", ft_swap_a}, {"sb", ft_swap_b}, 
+					{"ss", ft_swap_ab}, {"pa", ft_push_a}, {"pb", ft_push_b}, 
+					{"ra", ft_rotate_a}, {"rb", ft_rotate_b}, 
+					{"rra", ft_rrotate_a},{"rrb", ft_rrotate_b}, 
+					{"rr", ft_rotate_ab}, {"rrr", ft_rrotate_ab}, {"", 0}};
 
 	if (!*ab || !(*ab)->buff)
 		ft_error(ab, 0);
-	buff = (*ab)->buff;
-	while (buff && buff->index > 1)
-		buff = buff->next;
-	while (buff)
+	while ((*ab)->buff && (*ab)->buff->index > 1)
+		(*ab)->buff = (*ab)->buff->next;
+	while ((*ab)->buff)
 	{
 		i = 0;
 		while (tab[i].move[0])
 		{
-			if (ft_strcmp(tab[i].move, buff->move) == 0)
+			if (ft_strcmp(tab[i].move, (*ab)->buff->move) == 0)
 				tab[i].f(ab, 0);
 			i++;
 		}
-		buff = buff->prev;
+		ft_deal_options(ab);
+		if (!(*ab)->buff->prev)
+			break ;
+		(*ab)->buff = (*ab)->buff->prev;
 	}
 }
 
 void	ft_result(t_heaps **ab)
 {
 	if (ft_issort((*ab)->a) && !(*ab)->b)
+	{
 		ft_printf("OK\n");
+		if ((*ab)->option_l == 1)
+			ft_printf("%d\n", (*ab)->buff->index);
+	}
 	else
 		ft_printf("KO\n");
-	if ((*ab)->option_l == 1)
-		ft_printf("%d\n", (*ab)->buff->index);
 }
 
 int		main(int ac, char **av)
@@ -111,11 +113,12 @@ int		main(int ac, char **av)
 		if (!(ft_read_and_fillstack(ac, av, &ab)))
 			return (0);
 		ft_motions_reader(&ab);
-		//ft_apply_moves(&ab);
+		ft_deal_options_init(&ab);
+		ft_apply_moves(&ab);
 		ft_result(&ab);
 		//ft_displaymoves(&ab, 1);
-		ft_heaps_display(&ab, 'a' + 'b', 0);
-		ft_viewer(&ab);
+		//ft_heaps_display(&ab, 'a' + 'b', 0);
+		ft_deal_options_quit(&ab);
 		ft_heaps_del(&ab);
 	}
 	else

@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/25 12:02:10 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/04/25 18:59:07 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/04/26 13:05:57 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 # define WINW				800
 # define WINH				600
-# define STATUS_BAR 		030
+# define STATUS_BAR			030
 
 # define COLOR_STATUS_BAR	000, 000, 000, 255
 # define COLOR_L			051, 101, 120, 255
@@ -34,7 +34,5 @@ typedef struct	s_env
 	int				min;
 	int				max;
 }				t_env;
-
-void			ft_error_sdl(t_heaps **ab, char *precision, char *precision2);
 
 #endif

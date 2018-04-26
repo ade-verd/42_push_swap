@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 11:54:35 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/04/19 12:45:05 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/04/26 17:29:00 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ int		ft_stackpop(t_stack **stack)
 	cpy = *stack;
 	nb = (*stack)->nb;
 	*stack = (*stack)->next;
+	if (*stack)
+		(*stack)->prev = NULL;
 	ft_memdel((void**)&cpy);
 	return (nb);
 }

@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/23 12:36:28 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/04/26 11:18:10 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/04/26 17:32:17 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,9 @@ void	ft_init_backgrounds(t_heaps **ab, t_env *env)
 	env->background_r.w = WINW / 2;
 }
 
-void	ft_initenv(t_heaps **ab, t_env **env)
+void	ft_viewer_init(t_heaps **ab, t_env **env)
 {
-	if ((SDL_Init(SDL_INIT_VIDEO) == -1))
+	if ((SDL_Init(SDL_INIT_VIDEO | SDL_INIT_EVENTS) == -1))
 		ft_error_sdl(ab, "SDL_Init", (char*)SDL_GetError());
 	if (!(*env = (t_env*)malloc(sizeof(t_env))))
 		ft_error_sdl(ab, "Malloc", "ft_initenv()");
@@ -58,7 +58,7 @@ void	ft_initenv(t_heaps **ab, t_env **env)
 	ft_init_backgrounds(ab, *env);
 }
 
-void	ft_destroy_and_quit(t_env *env)
+void	ft_viewer_destroy_quit(t_env *env)
 {
 	if (env && env->window)
 	{
@@ -79,8 +79,10 @@ void	ft_setuprenderer(t_env *env)
 {
 	SDL_SetRenderDrawColor(env->render, COLOR_STATUS_BAR);
 	SDL_RenderClear(env->render);
+
 	SDL_SetRenderDrawColor(env->render, COLOR_L);
 	SDL_RenderFillRect(env->render, &env->background_l);
+
 	SDL_SetRenderDrawColor(env->render, COLOR_R);
 	SDL_RenderFillRect(env->render, &env->background_r);
 //	SDL_RenderPresent(env->render);
@@ -105,32 +107,35 @@ void	ft_draw_stack(t_heaps *ab, t_stack *stack, t_env *env)
 	env->min = ab->min;
 	env->max = ab->max;
 	env->stick.h = (WINH - STATUS_BAR) / ab->count;
-	env->stick.y = env->stick.h * ab->count;
+	env->stick.y = WINH - env->stick.h;
 	while (cpy && cpy->index > 1)
 		cpy = cpy->next;
 	while (cpy)
 	{
 		ft_draw_stick(cpy, env);
+		/*ft_printf("id:%c\t", cpy->id);
 		ft_printf("nb:%d\t", cpy->nb);
 		ft_printf("x:%d\t", env->stick.x);
 		ft_printf("y:%d\t", env->stick.y);
 		ft_printf("h:%d\t", env->stick.h);
-		ft_printf("w:%d\n", env->stick.w);
+		ft_printf("w:%d\n", env->stick.w);*/
 		env->stick.y -= env->stick.h;
 		cpy = cpy->prev;
 	}
 }
 
-
-void	ft_viewer(t_heaps **ab)
+void	ft_view(t_heaps **ab)
 {
 	t_env	*env;
 
-	ft_initenv(ab, &env);
+	if (!*ab || !(*ab)->winenv)
+		ft_error_sdl(ab, "ft_viewer", "!ab->winenv");
+	env = (*ab)->winenv;
 	ft_setuprenderer(env);
-	ft_draw_stack(*ab, (*ab)->a, env);
-	ft_draw_stack(*ab, (*ab)->b, env);
+	if ((*ab)->a)
+		ft_draw_stack(*ab, (*ab)->a, env);
+	if ((*ab)->b)
+		ft_draw_stack(*ab, (*ab)->b, env);
 	SDL_RenderPresent(env->render);
-	SDL_Delay(10000);
-	ft_destroy_and_quit(env);
+	SDL_Delay(16);
 }
