@@ -6,7 +6,7 @@
 #    By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/23 12:33:34 by ade-verd          #+#    #+#              #
-#    Updated: 2018/04/26 16:53:10 by ade-verd         ###   ########.fr        #
+#    Updated: 2018/04/27 18:18:53 by ade-verd         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,6 +53,7 @@ SRC_NAME_MUTUAL = \
 		   motion_rotate.c\
 		   motion_rrotate.c\
 		   motion_work.c\
+		   motion_apply.c\
 		   \
 		   counter_tools.c\
 		   finder_tools.c\

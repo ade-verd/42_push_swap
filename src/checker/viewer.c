@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/23 12:36:28 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/04/26 19:37:50 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/04/27 17:40:36 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,9 @@ void	ft_viewer_init(t_heaps **ab, t_env **env)
 	ft_createrenderer(ab, env);
 	ft_init_backgrounds(ab, *env);
 	(*env)->play = 0;
+	//(*env)->delay = 16;
+	(*env)->delay = 50;
+	(*env)->back = 0;
 }
 
 void	ft_viewer_destroy_quit(t_env **env)
@@ -150,12 +153,13 @@ void	ft_manage_events(t_heaps **ab, t_env *env)
 	loop = 1;
 	while (loop)
 	{
-		env->play = 0 ? SDL_WaitEvent(&env->event) : SDL_PollEvent(&env->event);
-		SDL_WaitEvent(&env->event);
+		//env->play = 0 ? SDL_WaitEvent(&env->event) : SDL_PollEvent(&env->event);
+		SDL_PollEvent(&env->event);
 		if (env->event.type == SDL_QUIT
 			|| env->event.key.keysym.sym == SDLK_ESCAPE)
 		{
 			loop = 0;
+			env->delay = 0;
 			ft_viewer_destroy_quit(&(*ab)->winenv);
 		}
 		else if (env->event.type == SDL_KEYDOWN)
@@ -167,10 +171,15 @@ void	ft_manage_events(t_heaps **ab, t_env *env)
 			}
 			if (env->event.key.keysym.sym == SDLK_UP)
 				loop = 0;
-			//if (env->event.key.keysym.sym == SDLK_DOWN)
-			//{
-			//	loop = 0;
-			//}
+			if (env->event.key.keysym.sym == SDLK_PAGEUP)
+				env->delay = env->delay > 2 ? env->delay / 2 : env->delay;
+			if (env->event.key.keysym.sym == SDLK_PAGEDOWN)
+				env->delay = env->delay < 256 ? env->delay * 2 : env->delay;
+			if (env->event.key.keysym.sym == SDLK_DOWN)
+			{
+				loop = 0;
+				env->back = 1;
+			}
 		}
 	}
 }
@@ -188,6 +197,8 @@ void	ft_view(t_heaps **ab)
 	if ((*ab)->b)
 		ft_draw_stack(*ab, (*ab)->b, env);
 	SDL_RenderPresent(env->render);
+	ft_printf("%s\t", (*ab)->buff->move);
+	ft_printf("ab->buff->index: %d\n", (*ab)->buff->index);
 	ft_manage_events(ab, env);
-	SDL_Delay(8);
+	SDL_Delay(env->delay);
 }

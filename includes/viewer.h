@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/25 12:02:10 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/04/26 18:09:53 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/04/27 17:02:35 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ typedef struct	s_env
 	int				min;
 	int				max;
 	int				play;
+	int				delay;
+	int				back;
 }				t_env;
 
 #endif
