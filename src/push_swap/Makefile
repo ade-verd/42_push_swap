@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+         #
+#    By: aurelien <aurelien@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/23 12:33:34 by ade-verd          #+#    #+#              #
-#    Updated: 2018/04/24 17:47:33 by ade-verd         ###   ########.fr        #
+#    Updated: 2018/04/29 18:37:26 by aurelien         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -145,15 +145,12 @@ SDL2_Darwin:
 		echo -e "$(TITLE)setup sdl2$(END_TITLE)"; \
 		brew update && brew install sdl2; \
 	fi;
-#	@sudo chown root:wheel /usr/local/bin/brew; \
-#	@sudo brew link sdl2; \
 
 SDL2_Linux:
-ifndef $(shell sdl2 --version 2>/dev/null)
-	@echo -e "$(TITLE)setup sdl2$(END_TITLE)"
-	@sudo apt-get update
-	@sudo apt-get install libsdl2-dev
-endif
+	@if !(dpkg -s libsdl2-dev > /dev/null); then \
+		echo -e "$(TITLE)setup sdl2$(END_TITLE)"; \
+		sudo apt-get install --yes libsdl2-dev; \
+	fi;
 
 $(OBJ_PATH):
 	@echo -e "$(TITLE)build $(NAME)$(END_TITLE)"
