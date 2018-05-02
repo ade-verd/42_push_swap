@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/27 17:28:18 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/04/27 18:19:28 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/05/02 11:05:21 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ void	ft_buffloop_applymoves(t_heaps **ab)
 	while ((*ab)->buff)
 	{
 		ft_apply_move(ab, (*ab)->buff->move);
-		ft_deal_options(ab);
+		//ft_deal_options(ab);
 		if (!(*ab)->buff->prev)
 			break ;
 		(*ab)->buff = (*ab)->buff->prev;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   motion_apply.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aurelien <aurelien@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/15 17:24:17 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/04/29 19:20:22 by aurelien         ###   ########.fr       */
+/*   Updated: 2018/05/02 13:11:12 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,12 @@
 void	ft_apply_move(t_heaps **ab, char *move)
 {
 	int 		i;
-	const t_fct	tab[] = {{ "sa", "sb", ft_swap_a }, { "sb", "sa", ft_swap_b },
-			{ "ss", "ss", ft_swap_ab }, { "pb", "pa", ft_push_b },
-			{ "pa", "pb", ft_push_a }, { "rra", "ra", ft_rrotate_a },
-			{ "rrb", "rb", ft_rrotate_b }, { "rr", "rr", ft_rrotate_ab },
-			{ "ra", "rra", ft_rotate_a }, { "rb", "rrb", ft_rotate_b },
-			{ "rrr", "rrr", ft_rotate_ab }, { "", "", 0 }};
+	const t_fct	tab[] = {{ "sa", ft_swap_a }, { "sb", ft_swap_b },
+			{ "ss", ft_swap_ab }, { "pb", ft_push_b },
+			{ "pa", ft_push_a }, { "rra", ft_rrotate_a },
+			{ "rrb", ft_rrotate_b }, { "rr", ft_rotate_ab },
+			{ "ra", ft_rotate_a }, { "rb", ft_rotate_b },
+			{ "rrr", ft_rrotate_ab }, { "", 0 }};
 
 	i = 0;
 	while (tab[i].move[0])
@@ -37,17 +37,17 @@ void	ft_apply_move(t_heaps **ab, char *move)
 void	ft_apply_rmove(t_heaps **ab, char *move)
 {
 	int 		i;
-	const t_fct	tab[] = {{ "sa", "sb", ft_swap_a }, { "sb", "sa", ft_swap_b },
-			{ "ss", "ss", ft_swap_ab }, { "pb", "pa", ft_push_b },
-			{ "pa", "pb", ft_push_a }, { "rra", "ra", ft_rrotate_a },
-			{ "rrb", "rb", ft_rrotate_b }, { "rr", "rr", ft_rrotate_ab },
-			{ "ra", "rra", ft_rotate_a }, { "rb", "rrb", ft_rotate_b },
-			{ "rrr", "rrr", ft_rotate_ab }, { "", "", 0 }};
+	const t_fct	tab[] = {{ "sb", ft_swap_a }, { "sa", ft_swap_b },
+			{ "ss", ft_swap_ab }, { "pa", ft_push_b },
+			{ "pb", ft_push_a }, { "ra", ft_rrotate_a },
+			{ "rb", ft_rrotate_b }, { "rr", ft_rotate_ab },
+			{ "rra", ft_rotate_a }, { "rrb", ft_rotate_b },
+			{ "rrr", ft_rrotate_ab }, { "", 0 }};
 
 	i = 0;
-	while (tab[i].rmove[0])
+	while (tab[i].move[0])
 	{
-		if (ft_strcmp(tab[i].rmove, move) == 0)
+		if (ft_strcmp(tab[i].move, move) == 0)
 		{
 			tab[i].f(ab, 0);
 			return ;

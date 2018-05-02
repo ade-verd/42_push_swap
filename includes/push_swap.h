@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 11:37:19 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/04/27 18:13:54 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/05/02 13:10:44 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,7 +120,6 @@ void			ft_apply_rmove(t_heaps **ab, char *move);
 typedef struct	s_fct
 {
 	char			move[4];
-	char			rmove[4];
 	void			(*f)(t_heaps **ab, int apply);
 }				t_fct;
 
