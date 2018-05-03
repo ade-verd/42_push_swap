@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/25 12:02:10 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/04/27 17:02:35 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/05/03 17:41:58 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,12 @@ typedef struct	s_env
 	SDL_Rect		stick;
 	int				min;
 	int				max;
+	int				moves;
 	int				play;
 	int				delay;
-	int				back;
+	int				sens;
+	int				end;
 }				t_env;
+
 
 #endif

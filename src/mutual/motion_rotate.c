@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 17:48:51 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/04/19 18:19:54 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/05/03 17:51:44 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static int	ft_rotate_motion(t_stack *stack, int *ppos)
 	t_stack	*cpy;
 
 	cpy = stack;
-	if (ft_stacklen(cpy) > 1)
+	if (cpy && cpy->index > 1)
 	{
 		ft_adjust_pivot_pos(stack, ppos);
 		first = cpy->nb;

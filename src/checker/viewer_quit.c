@@ -1,27 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   options.c                                          :+:      :+:    :+:   */
+/*   viewer_quit.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/04/26 11:39:09 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/05/03 17:37:43 by ade-verd         ###   ########.fr       */
+/*   Created: 2018/05/02 14:49:29 by ade-verd          #+#    #+#             */
+/*   Updated: 2018/05/02 15:27:56 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ft_deal_options_init(t_heaps **ab)
+void	ft_viewer_destroy_quit(t_env **env)
 {
-	if ((*ab)->option_s == 1)
-		ft_heaps_display(ab, 'a' + 'b', 0);
-	if ((*ab)->option_v == 1 && !(*ab)->winenv)
-		ft_viewer_init(ab, &(*ab)->winenv);
-}
-
-void	ft_deal_options_quit(t_heaps **ab)
-{
-	if ((*ab)->option_v == 1 && (*ab)->winenv)
-		ft_viewer_destroy_quit(&(*ab)->winenv);
+	if (*env && (*env)->window)
+	{
+		SDL_DestroyWindow((*env)->window);
+		(*env)->window = NULL;
+	}
+	if (*env && (*env)->render)
+	{
+		SDL_DestroyRenderer((*env)->render);
+		(*env)->render = NULL;
+	}
+	if (*env)
+	{
+		free((void*)*env);
+		*env = NULL;
+	}
+	SDL_Quit();
 }

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: aurelien <aurelien@student.42.fr>          +#+  +:+       +#+         #
+#    By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/23 12:33:34 by ade-verd          #+#    #+#              #
-#    Updated: 2018/04/29 18:37:26 by aurelien         ###   ########.fr        #
+#    Updated: 2018/05/02 14:24:00 by ade-verd         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,7 +44,7 @@ SRC_NAME_MUTUAL = \
 		   stack_manager.c\
 		   buffer_manager.c\
 		   errors_manager.c\
-		   display.c\
+		   terminal_display.c\
 		   \
 		   motion_swap.c\
 		   motion_push.c\

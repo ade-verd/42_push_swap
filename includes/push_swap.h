@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 11:37:19 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/05/02 13:10:44 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/05/02 15:13:17 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,14 +76,11 @@ int				ft_read_and_fillstack(int ac, char **av, t_heaps **ab);
 */
 void			ft_heaps_init(t_heaps **ab);
 void			ft_heaps_del(t_heaps **ab);
-void			ft_heaps_display(t_heaps **ab, unsigned char c, int context);
 
 /*
 ** Print moves in a buffer
 */
 void			ft_moveappend(t_heaps **ab, char *s);
-void			ft_display_lastmove(t_heaps **ab);
-void			ft_displaymoves(t_heaps **ab);
 void			ft_del_lastmove(t_heaps **ab);
 void			ft_del_allmoves(t_heaps **ab);
 
@@ -92,8 +89,6 @@ void			ft_del_allmoves(t_heaps **ab);
 */
 int				ft_stackpush(t_heaps **ab, t_stack **current, int nb, char id);
 int				ft_stackpop(t_stack **stack);
-void			ft_stackdisplay(t_stack **work, int c);
-int				ft_stacklen(t_stack *stack);
 void			ft_stackdel(t_stack **stack);
 
 /*
@@ -156,14 +151,22 @@ int				ft_placetop(t_heaps **ab, t_stack **wrk, int toplace_v);
 void			ft_placetopboth(t_heaps **ab, int b_val, int a_next);
 
 /*
+** Terminal display
+*/
+void			ft_heaps_display(t_heaps **ab, unsigned char c, int context);
+void			ft_stackdisplay(t_stack **work, int c);
+void			ft_display_lastmove(t_heaps **ab);
+void			ft_displaymoves(t_heaps **ab);
+void			ft_display_result(t_heaps **ab);
+
+/*
 ** Viewer
 */
 void			ft_viewer_init(t_heaps **ab, t_env **env);
-void			ft_view(t_heaps **ab);
-void			ft_viewer_destroy_quit(t_env **env);
+void			ft_viewer_draw(t_heaps **ab);
 void			ft_manage_events(t_heaps **ab, t_env *env);
 void			ft_deal_options_init(t_heaps **ab);
-void			ft_deal_options(t_heaps **ab);
 void			ft_deal_options_quit(t_heaps **ab);
+void			ft_viewer_destroy_quit(t_env **env);
 
 #endif

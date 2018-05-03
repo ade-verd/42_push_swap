@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/27 17:28:18 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/05/02 11:05:21 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/05/03 18:42:34 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,20 +62,36 @@ void	ft_motions_reader(t_heaps **ab)
 		ft_error(ab, "get_next_line");
 }
 
-void	ft_buff_prevnext(t_heaps **ab)
+void	ft_applymoves_viewer(t_heaps **ab)
 {
-	if ((*ab)->winenv && (*ab)->winenv->back == 1 && (*ab)->buff->next->index > 1)
-	{
-		//ft_apply_reverse_motion(ab);
-		(*ab)->winenv->back = 0;
-		ft_deal_options(ab);
+//	int		stop_prev;
+	int		*sens;
+
+//	stop_prev = 0;
+	!*ab || !(*ab)->buff || !(*ab)->winenv ? ft_error(ab, 0) : none;
+	while ((*ab)->buff && (*ab)->buff->index > 1)
 		(*ab)->buff = (*ab)->buff->next;
+	ft_viewer_draw(ab);
+	//while ((*ab)->buff && (*ab)->winenv->end != 1)
+	while ((*ab)->winenv->end != 1)
+	{
+		sens = &(*ab)->winenv->sens;
+		if (*sens == 1)// && stop_prev == 0)
+		{
+			ft_apply_move(ab, (*ab)->buff->move);
+			ft_viewer_draw(ab);
+			(*ab)->buff = *sens == 1 ? (*ab)->buff->prev : (*ab)->buff;
+		}
+		else if (*sens == -1 && (*ab)->buff->next)
+		{
+			ft_apply_rmove(ab, (*ab)->buff->move);
+			ft_viewer_draw(ab);
+			(*ab)->buff = *sens == -1 ? (*ab)->buff->next : (*ab)->buff;
+		}
 	}
-	else
-		(*ab)->buff = (*ab)->buff->prev;
 }
 
-void	ft_buffloop_applymoves(t_heaps **ab)
+void	ft_applymoves_classic(t_heaps **ab)
 {
 	!*ab || !(*ab)->buff ? ft_error(ab, 0) : none;
 	while ((*ab)->buff && (*ab)->buff->index > 1)
@@ -83,24 +99,12 @@ void	ft_buffloop_applymoves(t_heaps **ab)
 	while ((*ab)->buff)
 	{
 		ft_apply_move(ab, (*ab)->buff->move);
-		//ft_deal_options(ab);
+		if ((*ab)->option_s == 1)
+			ft_heaps_display(ab, 'a' + 'b', 1);
 		if (!(*ab)->buff->prev)
 			break ;
 		(*ab)->buff = (*ab)->buff->prev;
-		//ft_buff_prevnext(ab);
 	}
-}
-
-void	ft_result(t_heaps **ab)
-{
-	if (ft_issort((*ab)->a) && !(*ab)->b)
-	{
-		ft_printf("OK\n");
-		if ((*ab)->option_l == 1)
-			ft_printf("%d\n", (*ab)->buff->index);
-	}
-	else
-		ft_printf("KO\n");
 }
 
 int		main(int ac, char **av)
@@ -114,8 +118,8 @@ int		main(int ac, char **av)
 			return (0);
 		ft_motions_reader(&ab);
 		ft_deal_options_init(&ab);
-		ft_buffloop_applymoves(&ab);
-		ft_result(&ab);
+		ab->winenv ? ft_applymoves_viewer(&ab) : ft_applymoves_classic(&ab);
+		ft_display_result(&ab);
 		ft_deal_options_quit(&ab);
 		ft_heaps_del(&ab);
 	}
