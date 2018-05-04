@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/27 17:28:18 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/05/04 15:02:57 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/05/04 16:47:22 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,8 @@ void	ft_goto_buffindex(t_heaps **ab, int target_index, int applymove)
 			break ;
 		(*ab)->buff = sns > 0 ? (*ab)->buff->prev : (*ab)->buff->next;
 	}
+	if ((*ab)->buff && applymove == 1 && sns > 0)
+		ft_apply_move(ab, (*ab)->buff->move);
 }
 
 void	ft_applymoves_classic(t_heaps **ab)
@@ -121,7 +123,9 @@ void	ft_applymoves_viewer(t_heaps **ab)
 				(*ab)->buff = (*ab)->buff->next;
 		}
 	}
-	ft_applymoves_classic(ab);
+	ft_goto_buffindex(ab, (*ab)->winenv->moves, 1);
+	ft_heaps_display(ab, 'a' + 'b', 1);
+	//ft_applymoves_classic(ab);
 }
 
 int		main(int ac, char **av)

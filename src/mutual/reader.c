@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 17:38:06 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/04/26 13:59:37 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/05/04 17:17:21 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,8 @@ int		ft_read_and_fillstack(int ac, char **av, t_heaps **ab)
 			ft_check_n_push(ab, tab[i]);
 		ft_freetab_strsplit(tab);
 	}
+	if (!(*ab)->a)
+		ft_error(ab, 0);
 	(*ab)->a_min = (*ab)->min;
 	(*ab)->a_max = (*ab)->max;
 	(*ab)->count = (*ab)->a->index;
