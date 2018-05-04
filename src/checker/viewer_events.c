@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/02 14:32:52 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/05/04 17:27:51 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/05/04 18:32:33 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,27 +20,52 @@ void	ft_sdlquit(t_heaps **ab, t_env *env, int *loop)
 	env->end = 1;
 }
 
+void	ft_sdlkeynum(t_heaps **ab, t_env *env, int *loop, int sdlk)
+{
+	uintmax_t	num;
+	int			target_index;
+	int			min_mv;
+	int			max_mv;
+
+	num = (sdlk - SDLK_0) * 10;
+	min_mv = 1;
+	max_mv = env->moves;
+	if (sdlk == SDLK_HOME)
+		target_index = min_mv;
+	else if (sdlk == SDLK_END)
+		target_index = max_mv;
+	else
+		target_index = min_mv + (num * (max_mv - min_mv) / 100);
+	ft_printf("sdlk:%d\n", sdlk);
+	ft_printf("num:%d\n", num);
+	ft_printf("target:%d\n", target_index);
+	ft_goto_buffindex(ab, target_index, 1);
+	env->sens = target_index > (*ab)->buff->index ? 1 : -1;
+	*loop = 0;
+}
+
 void	ft_sdlkeydown(t_heaps **ab, t_env *env, int *loop)
 {
-	/*if (env->event.key.keysym.sym == SDLK_SPACE)
-	{
-		*loop = 0;
-		env->play = env->play == 0 ? 1 : 0;
-	}*/
-	if (env->event.key.keysym.sym == SDLK_PAGEUP)
+	int		sdlk;
+
+	sdlk = env->event.key.keysym.sym;
+	if (sdlk == SDLK_PAGEUP)
 		env->delay = env->delay > 2 ? env->delay / 2 : env->delay;
-	if (env->event.key.keysym.sym == SDLK_PAGEDOWN)
+	if (sdlk == SDLK_PAGEDOWN)
 		env->delay = env->delay < 256 ? env->delay * 2 : env->delay;
-	if (env->event.key.keysym.sym == SDLK_UP && (*ab)->buff->index < env->moves)
+	if (sdlk == SDLK_UP && (*ab)->buff->index < env->moves)
 	{
 		env->sens = 1;
 		*loop = 0;
 	}
-	if (env->event.key.keysym.sym == SDLK_DOWN && (*ab)->buff->index > 1)
+	if (sdlk == SDLK_DOWN && (*ab)->buff->index > 1)
 	{
 		env->sens = -1;
 		*loop = 0;
 	}
+	if ((sdlk >= SDLK_0 && sdlk <= SDLK_9)
+			|| sdlk == SDLK_HOME || sdlk == SDLK_END)
+		ft_sdlkeynum(ab, env, loop, sdlk);
 }
 
 void	ft_manage_events(t_heaps **ab, t_env *env)

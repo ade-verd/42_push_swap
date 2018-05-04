@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 11:37:19 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/05/04 15:03:17 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/05/04 17:31:46 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,6 +149,7 @@ void			ft_find_minmax(t_stack *stack, int *min, int *max, int n);
 int				ft_find_bestmove(t_stack **w, t_stack **o);
 int				ft_placetop(t_heaps **ab, t_stack **wrk, int toplace_v);
 void			ft_placetopboth(t_heaps **ab, int b_val, int a_next);
+void			ft_goto_buffindex(t_heaps **ab, int target_index, int applymov);
 
 /*
 ** Terminal display
