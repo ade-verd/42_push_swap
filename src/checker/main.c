@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/27 17:28:18 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/05/03 18:42:34 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/05/04 11:25:26 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,22 @@ void	ft_motions_reader(t_heaps **ab)
 		ft_error(ab, "get_next_line");
 }
 
+void	ft_applymoves_classic(t_heaps **ab)
+{
+	!*ab || !(*ab)->buff ? ft_error(ab, 0) : none;
+//	while ((*ab)->buff && (*ab)->buff->index > 1)
+//		(*ab)->buff = (*ab)->buff->next;
+	while ((*ab)->buff)
+	{
+		ft_apply_move(ab, (*ab)->buff->move);
+		if ((*ab)->option_s == 1)
+			ft_heaps_display(ab, 'a' + 'b', 1);
+		if (!(*ab)->buff->prev)
+			break ;
+		(*ab)->buff = (*ab)->buff->prev;
+	}
+}
+
 void	ft_applymoves_viewer(t_heaps **ab)
 {
 //	int		stop_prev;
@@ -89,22 +105,7 @@ void	ft_applymoves_viewer(t_heaps **ab)
 			(*ab)->buff = *sens == -1 ? (*ab)->buff->next : (*ab)->buff;
 		}
 	}
-}
-
-void	ft_applymoves_classic(t_heaps **ab)
-{
-	!*ab || !(*ab)->buff ? ft_error(ab, 0) : none;
-	while ((*ab)->buff && (*ab)->buff->index > 1)
-		(*ab)->buff = (*ab)->buff->next;
-	while ((*ab)->buff)
-	{
-		ft_apply_move(ab, (*ab)->buff->move);
-		if ((*ab)->option_s == 1)
-			ft_heaps_display(ab, 'a' + 'b', 1);
-		if (!(*ab)->buff->prev)
-			break ;
-		(*ab)->buff = (*ab)->buff->prev;
-	}
+	ft_applymoves_classic(ab);
 }
 
 int		main(int ac, char **av)
@@ -118,6 +119,8 @@ int		main(int ac, char **av)
 			return (0);
 		ft_motions_reader(&ab);
 		ft_deal_options_init(&ab);
+		while (ab->buff && ab->buff->index > 1)
+			ab->buff = ab->buff->next;
 		ab->winenv ? ft_applymoves_viewer(&ab) : ft_applymoves_classic(&ab);
 		ft_display_result(&ab);
 		ft_deal_options_quit(&ab);
