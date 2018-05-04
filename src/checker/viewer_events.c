@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/02 14:32:52 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/05/04 12:52:24 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/05/04 17:27:51 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ void	ft_sdlquit(t_heaps **ab, t_env *env, int *loop)
 {
 	*loop = 0;
 	env->delay = 0;
+	env->sens = 1;
 	env->end = 1;
 }
 
