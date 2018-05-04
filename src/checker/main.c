@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/27 17:28:18 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/05/04 11:25:26 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/05/04 13:20:05 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,11 +62,27 @@ void	ft_motions_reader(t_heaps **ab)
 		ft_error(ab, "get_next_line");
 }
 
+void	ft_goto_buffindex(t_heaps **ab, int target_index, int applymove)
+{
+	int		sns;
+
+	!*ab || !(*ab)->buff ? ft_error(ab, 0) : none;
+	sns = target_index > (*ab)->buff->index ? 1 : -1;
+	while ((*ab)->buff && (*ab)->buff->index != target_index)
+	{
+		if (applymove == 1 && sns > 0)
+			ft_apply_move(ab, (*ab)->buff->move);
+		if (applymove == 1 && sns < 0)
+			ft_apply_rmove(ab, (*ab)->buff->move);
+		if ((sns > 0 && !(*ab)->buff->prev) || (sns < 0 && !(*ab)->buff->next))
+			break ;
+		(*ab)->buff = sns > 0 ? (*ab)->buff->prev : (*ab)->buff->next;
+	}
+}
+
 void	ft_applymoves_classic(t_heaps **ab)
 {
-	!*ab || !(*ab)->buff ? ft_error(ab, 0) : none;
-//	while ((*ab)->buff && (*ab)->buff->index > 1)
-//		(*ab)->buff = (*ab)->buff->next;
+	!*ab ? ft_error(ab, 0) : none;
 	while ((*ab)->buff)
 	{
 		ft_apply_move(ab, (*ab)->buff->move);
@@ -80,32 +96,30 @@ void	ft_applymoves_classic(t_heaps **ab)
 
 void	ft_applymoves_viewer(t_heaps **ab)
 {
-//	int		stop_prev;
 	int		*sens;
 
-//	stop_prev = 0;
 	!*ab || !(*ab)->buff || !(*ab)->winenv ? ft_error(ab, 0) : none;
 	while ((*ab)->buff && (*ab)->buff->index > 1)
 		(*ab)->buff = (*ab)->buff->next;
 	ft_viewer_draw(ab);
-	//while ((*ab)->buff && (*ab)->winenv->end != 1)
 	while ((*ab)->winenv->end != 1)
 	{
 		sens = &(*ab)->winenv->sens;
-		if (*sens == 1)// && stop_prev == 0)
+		if (*sens == 1)
 		{
 			ft_apply_move(ab, (*ab)->buff->move);
 			ft_viewer_draw(ab);
 			(*ab)->buff = *sens == 1 ? (*ab)->buff->prev : (*ab)->buff;
 		}
-		else if (*sens == -1 && (*ab)->buff->next)
+		else if (*sens == -1)
 		{
 			ft_apply_rmove(ab, (*ab)->buff->move);
 			ft_viewer_draw(ab);
 			(*ab)->buff = *sens == -1 ? (*ab)->buff->next : (*ab)->buff;
 		}
 	}
-	ft_applymoves_classic(ab);
+	if ((*ab)->buff->index < (*ab)->winenv->moves)
+		ft_applymoves_classic(ab);
 }
 
 int		main(int ac, char **av)
@@ -119,8 +133,7 @@ int		main(int ac, char **av)
 			return (0);
 		ft_motions_reader(&ab);
 		ft_deal_options_init(&ab);
-		while (ab->buff && ab->buff->index > 1)
-			ab->buff = ab->buff->next;
+		ft_goto_buffindex(&ab, 1, 0);
 		ab->winenv ? ft_applymoves_viewer(&ab) : ft_applymoves_classic(&ab);
 		ft_display_result(&ab);
 		ft_deal_options_quit(&ab);
