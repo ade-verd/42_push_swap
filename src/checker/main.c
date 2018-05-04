@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/27 17:28:18 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/05/04 13:20:05 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/05/04 13:58:21 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,17 +109,18 @@ void	ft_applymoves_viewer(t_heaps **ab)
 		{
 			ft_apply_move(ab, (*ab)->buff->move);
 			ft_viewer_draw(ab);
-			(*ab)->buff = *sens == 1 ? (*ab)->buff->prev : (*ab)->buff;
+			if ((*ab)->winenv->end != 1)
+				(*ab)->buff = *sens == 1 ? (*ab)->buff->prev : (*ab)->buff;
 		}
 		else if (*sens == -1)
 		{
 			ft_apply_rmove(ab, (*ab)->buff->move);
 			ft_viewer_draw(ab);
-			(*ab)->buff = *sens == -1 ? (*ab)->buff->next : (*ab)->buff;
+			if ((*ab)->winenv->end != 1)
+				(*ab)->buff = *sens == -1 ? (*ab)->buff->next : (*ab)->buff;
 		}
 	}
-	if ((*ab)->buff->index < (*ab)->winenv->moves)
-		ft_applymoves_classic(ab);
+	ft_applymoves_classic(ab);
 }
 
 int		main(int ac, char **av)
