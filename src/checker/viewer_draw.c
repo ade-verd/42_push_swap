@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/23 12:36:28 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/05/02 16:05:19 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/05/04 14:24:45 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,6 @@ void	ft_viewer_draw(t_heaps **ab)
 	if ((*ab)->b)
 		ft_draw_stack(*ab, (*ab)->b, env);
 	SDL_RenderPresent(env->render);
-	ft_printf("ab->buff->index: %d\n", (*ab)->buff->index);
 	ft_manage_events(ab, env);
 	SDL_Delay(env->delay);
 }

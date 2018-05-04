@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 11:37:19 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/05/02 15:13:17 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/05/04 15:03:17 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -166,6 +166,7 @@ void			ft_viewer_init(t_heaps **ab, t_env **env);
 void			ft_viewer_draw(t_heaps **ab);
 void			ft_manage_events(t_heaps **ab, t_env *env);
 void			ft_deal_options_init(t_heaps **ab);
+void			ft_deal_options_vs(t_heaps **ab);
 void			ft_deal_options_quit(t_heaps **ab);
 void			ft_viewer_destroy_quit(t_env **env);
 

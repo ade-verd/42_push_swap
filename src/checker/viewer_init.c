@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/02 14:27:21 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/05/03 17:40:53 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/05/04 14:48:23 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,7 @@ void	ft_viewer_init(t_heaps **ab, t_env **env)
 	ft_init_backgrounds(ab, *env);
 	(*env)->moves = (*ab)->buff->index;
 	(*env)->play = 0;
-	//(*env)->delay = 16;
-	(*env)->delay = 50;
+	(*env)->delay = 16;
 	(*env)->sens = 1;
 	(*env)->end = 0;
 }

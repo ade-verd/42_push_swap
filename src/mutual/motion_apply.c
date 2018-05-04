@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/15 17:24:17 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/05/02 16:26:52 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/05/04 14:38:34 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ void	ft_apply_move(t_heaps **ab, char *move)
 	{
 		if (ft_strcmp(tab[i].move, move) == 0)
 		{
-			ft_printf("%s\t", (*ab)->buff->move);
 			tab[i].f(ab, 0);
 			return ;
 		}
@@ -52,7 +51,6 @@ void	ft_apply_rmove(t_heaps **ab, char *move)
 	{
 		if (ft_strcmp(tab[i].move, move) == 0)
 		{
-			ft_printf("%s_R\t", (*ab)->buff->move);
 			tab[i].f(ab, 0);
 			return ;
 		}
