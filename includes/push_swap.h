@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 11:37:19 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/05/04 17:31:46 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/05/07 14:11:42 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,7 +158,7 @@ void			ft_heaps_display(t_heaps **ab, unsigned char c, int context);
 void			ft_stackdisplay(t_stack **work, int c);
 void			ft_display_lastmove(t_heaps **ab);
 void			ft_displaymoves(t_heaps **ab);
-void			ft_display_result(t_heaps **ab);
+void			ft_display_result(t_heaps **ab, int nb_moves);
 
 /*
 ** Viewer

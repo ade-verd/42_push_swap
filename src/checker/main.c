@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/27 17:28:18 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/05/04 18:32:55 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/05/07 14:12:09 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,15 @@ int		ft_checkmove(char *line)
 	return (0);
 }
 
-void	ft_motions_reader(t_heaps **ab)
+int		ft_motions_reader(t_heaps **ab)
 {
 	int		ret;
 	char	*move;
 	int		i;
+	int		nb;
 
 	i = 0;
+	nb = 0;
 	while ((ret = get_next_line(0, &move)) > 0)
 	{
 		if (ft_strstr(move, "Error"))
@@ -57,9 +59,11 @@ void	ft_motions_reader(t_heaps **ab)
 			ft_error(ab, 0);
 		ft_moveappend(ab, move);
 		ft_strdel(&move);
+		nb++;
 	}
 	if (ret < 0)
 		ft_error(ab, "get_next_line");
+	return (nb);
 }
 
 void	ft_goto_buffindex(t_heaps **ab, int target_index, int applymove)
@@ -127,17 +131,20 @@ void	ft_applymoves_viewer(t_heaps **ab)
 int		main(int ac, char **av)
 {
 	t_heaps		*ab;
+	int			nb_moves;
 
 	if (ac > 1)
 	{
 		ft_heaps_init(&ab);
 		if (!(ft_read_and_fillstack(ac, av, &ab)))
 			return (0);
-		ft_motions_reader(&ab);
-		ft_deal_options_init(&ab);
-		ft_goto_buffindex(&ab, 1, 0);
-		ab->winenv ? ft_applymoves_viewer(&ab) : ft_applymoves_classic(&ab);
-		ft_display_result(&ab);
+		if ((nb_moves = ft_motions_reader(&ab)))
+		{
+			ft_deal_options_init(&ab);
+			ft_goto_buffindex(&ab, 1, 0);
+			ab->winenv ? ft_applymoves_viewer(&ab) : ft_applymoves_classic(&ab);
+		}
+		ft_display_result(&ab, nb_moves);
 		ft_deal_options_quit(&ab);
 		ft_heaps_del(&ab);
 	}

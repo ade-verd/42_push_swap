@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    analyser.sh                                        :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: aroulin <marvin@42.fr>                     +#+  +:+       +#+         #
+#    By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/07/26 18:08:32 by aroulin           #+#    #+#              #
-#    Updated: 2017/07/26 18:28:17 by aroulin          ###   ########.fr        #
+#    Updated: 2018/05/07 13:54:11 by ade-verd         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -56,6 +56,7 @@ do
 		WELL=$(( $WELL + 1 ));
 	else
 		printf "\033[0;31m▓\033[0;0m"
+		echo "bad:\t"$ARG
 	fi;
 
 	if [ $MAX -lt $NBRCOUP ]

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   display.c                                          :+:      :+:    :+:   */
+/*   terminal_display.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/19 12:41:36 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/05/02 14:19:08 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/05/07 14:11:53 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,13 +89,13 @@ void	ft_display_lastmove(t_heaps **ab)
 	}
 }
 
-void	ft_display_result(t_heaps **ab)
+void	ft_display_result(t_heaps **ab, int nb_moves)
 {
 	if (ft_issort((*ab)->a) && !(*ab)->b)
 	{
 		ft_printf("OK\n");
 		if ((*ab)->option_l == 1)
-			ft_printf("%d\n", (*ab)->buff->index);
+			ft_printf("%d\n", nb_moves);
 	}
 	else
 		ft_printf("KO\n");
