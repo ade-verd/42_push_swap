@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/23 12:36:28 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/05/04 14:24:45 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/05/07 13:37:57 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 
 void	ft_setuprenderer(t_env *env)
 {
-	SDL_SetRenderDrawColor(env->render, COLOR_STATUS_BAR);
-	SDL_RenderClear(env->render);
 	SDL_SetRenderDrawColor(env->render, COLOR_L);
 	SDL_RenderFillRect(env->render, &env->background_l);
 	SDL_SetRenderDrawColor(env->render, COLOR_R);
@@ -24,8 +22,11 @@ void	ft_setuprenderer(t_env *env)
 
 void	ft_draw_stick(t_stack *stack, t_env *env)
 {
+	int		nb;
+
+	nb = stack->nb + ft_abs(env->max - env->min) - env->max;
 	env->stick.x = stack->id == 'a' ? 0 : WINW / 2;
-	if ((env->stick.w = stack->nb * (WINW / 2) / (env->max - env->min)) == 0)
+	if ((env->stick.w = nb * (WINW / 2) / (env->max - env->min)) == 0)
 		env->stick.w = 0.2 * (WINW / 2) / (env->max - env->min);
 	SDL_SetRenderDrawColor(env->render, COLOR_STICK);
 	SDL_RenderFillRect(env->render, &env->stick);

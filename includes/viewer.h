@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/25 12:02:10 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/05/03 17:41:58 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/05/07 13:04:13 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,8 @@
 
 # define WINW				1024
 # define WINH				768
-# define STATUS_BAR			30
+# define STATUS_BAR			0
 
-# define COLOR_STATUS_BAR	000, 000, 000, 255
 # define COLOR_L			051, 101, 120, 255
 # define COLOR_R			000, 146, 162, 255
 # define COLOR_STICK		181, 234, 255, 255
