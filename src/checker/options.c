@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/26 11:39:09 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/05/07 16:12:28 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/05/07 19:30:25 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,15 @@ void	ft_deal_options_init(t_heaps **ab)
 	{
 		if ((*ab)->count > WINH)
 			ft_error_sdl(ab, "ft_deal_options_init",
-				"Too much $ARGS for the viewer");
+				"Too much $ARGS (max 768)");
 		ft_viewer_init(ab, &(*ab)->winenv);
 	}
+}
+
+void	ft_option_f_open(t_heaps **ab, char *path)
+{
+	if (((*ab)->fd = ft_open_fd(path, O_RDONLY, S_IRUSR)) == -1)
+		ft_error(ab, "ft_option_f_open");
 }
 
 void	ft_deal_options_vsc(t_heaps **ab)
@@ -49,4 +55,6 @@ void	ft_deal_options_quit(t_heaps **ab)
 {
 	if ((*ab)->option_v == 1 && (*ab)->winenv)
 		ft_viewer_destroy_quit(&(*ab)->winenv);
+	if ((*ab)->fd > 2 && ft_close_fd((*ab)->fd) == -1)
+		ft_error(ab, "ft_option_f_close");
 }

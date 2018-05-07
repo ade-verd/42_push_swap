@@ -6,13 +6,13 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 17:38:06 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/05/07 17:04:55 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/05/07 19:15:42 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int		ft_isnumber(char *str)
+int		ft_isnumber(char *str, int *nb)
 {
 	int		i;
 
@@ -27,6 +27,7 @@ int		ft_isnumber(char *str)
 	}
 	if (ft_atointmax(str) < INT_MINI || ft_atointmax(str) > INT_MAXI)
 		return (0);
+	*nb = ft_atoi(str);
 	return (1);
 }
 
@@ -70,10 +71,9 @@ void	ft_check_n_push(t_heaps **ab, char *str)
 
 	nb = 0;
 	isnum = 0;
-	if (ft_isnumber(str))
+	if (ft_isnumber(str, &nb))
 	{
 		isnum = 1;
-		nb = ft_atoi(str);
 		ft_nb_exists((*ab)->a, nb) == 1 ? ft_error(ab, 0) : none;
 		ft_ab_minmax(ab, nb);
 		ft_stackpush(ab, &(*ab)->a, nb, 'a');
@@ -93,10 +93,9 @@ void	ft_check_n_push(t_heaps **ab, char *str)
 		ft_error(ab, 0);
 }
 
-int		ft_read_and_fillstack(int ac, char **av, t_heaps **ab)
+void	ft_read_and_fillstack(int ac, char **av, t_heaps **ab, char **tab)
 {
 	int		i;
-	char	**tab;
 
 	if (!(*ab))
 		ft_error(ab, "read_and_fillstack");
@@ -114,5 +113,4 @@ int		ft_read_and_fillstack(int ac, char **av, t_heaps **ab)
 	(*ab)->a_min = (*ab)->min;
 	(*ab)->a_max = (*ab)->max;
 	(*ab)->count = (*ab)->a->index;
-	return (1);
 }

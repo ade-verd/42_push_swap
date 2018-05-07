@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 11:54:35 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/04/26 11:58:24 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/05/07 19:38:44 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,9 @@ void	ft_heaps_init(t_heaps **ab)
 	(*ab)->option_l = 0;
 	(*ab)->option_v = 0;
 	(*ab)->option_c = 0;
+	(*ab)->option_f = 0;
+	(*ab)->fd = 0;
+	(*ab)->path = NULL;
 	(*ab)->winenv = NULL;
 }
 

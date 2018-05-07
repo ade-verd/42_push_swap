@@ -6,65 +6,11 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/27 17:28:18 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/05/07 15:43:47 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/05/07 19:19:16 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-int		ft_checkmove(char *line)
-{
-	if (ft_strcmp(line, "sa") == 0)
-		return (1);
-	if (ft_strcmp(line, "sb") == 0)
-		return (1);
-	if (ft_strcmp(line, "ss") == 0)
-		return (1);
-	if (ft_strcmp(line, "ra") == 0)
-		return (1);
-	if (ft_strcmp(line, "rb") == 0)
-		return (1);
-	if (ft_strcmp(line, "rr") == 0)
-		return (1);
-	if (ft_strcmp(line, "rra") == 0)
-		return (1);
-	if (ft_strcmp(line, "rrb") == 0)
-		return (1);
-	if (ft_strcmp(line, "rrr") == 0)
-		return (1);
-	if (ft_strcmp(line, "pa") == 0)
-		return (1);
-	if (ft_strcmp(line, "pb") == 0)
-		return (1);
-	return (0);
-}
-
-int		ft_motions_reader(t_heaps **ab)
-{
-	int		ret;
-	char	*move;
-	int		i;
-	int		nb;
-
-	i = 0;
-	nb = 0;
-	while ((ret = get_next_line(0, &move)) > 0)
-	{
-		if (ft_strstr(move, "Error"))
-		{
-			ft_printf("%s\n", move);
-			ft_error(ab, "NO");
-		}
-		if (!ft_checkmove(move))
-			ft_error(ab, 0);
-		ft_moveappend(ab, move);
-		ft_strdel(&move);
-		nb++;
-	}
-	if (ret < 0)
-		ft_error(ab, "get_next_line");
-	return (nb);
-}
 
 void	ft_goto_buffindex(t_heaps **ab, int target_index, int applymove)
 {
@@ -88,12 +34,12 @@ int		main(int ac, char **av)
 {
 	t_heaps		*ab;
 	int			nb_moves;
+	char		*tab;
 
 	if (ac > 1)
 	{
 		ft_heaps_init(&ab);
-		if (!(ft_read_and_fillstack(ac, av, &ab)))
-			return (0);
+		ft_read_n_fillstack_chk(ac, av, &ab, &tab);
 		if ((nb_moves = ft_motions_reader(&ab)))
 		{
 			ft_deal_options_init(&ab);
@@ -108,9 +54,3 @@ int		main(int ac, char **av)
 		ft_error(&ab, 0);
 	return (ac);
 }
-
-/*
-** To do :
-** option c
-** option f
-*/
