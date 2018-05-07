@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 11:37:19 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/05/07 15:49:17 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/05/07 17:56:45 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 
 # define INT_MINI -2147483648
 # define INT_MAXI  2147483647
+
+# define OUT_TXT "./out.txt"
 
 typedef struct	s_buf
 {
@@ -62,6 +64,7 @@ typedef struct	s_heaps
 	int				option_s;
 	int				option_l;
 	int				option_c;
+	int				option_f;
 	t_env			*winenv;
 }				t_heaps;
 

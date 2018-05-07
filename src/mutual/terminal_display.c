@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/19 12:41:36 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/05/07 14:11:53 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/05/07 17:59:12 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,17 +66,26 @@ void	ft_stackdisplay(t_stack **work, int c)
 void	ft_displaymoves(t_heaps **ab)
 {
 	t_buf		*current;
+	int			fd;
 
+	fd = 1;
 	if (*ab && (*ab)->buff)
 	{
+		if (((*ab)->option_f == 1) && (fd = ft_open_fd(OUT_TXT,
+					O_RDWR | O_CREAT | O_TRUNC, S_IRUSR | S_IWUSR)) == -1)
+				ft_error(ab, "ft_displaymoves");
 		current = (*ab)->buff;
 		while (current && current->index > 1)
 			current = current->next;
 		while (current && current->index > 0)
 		{
-			ft_printf("%s\n", current->move);
+			ft_dprintf(fd, "%s\n", current->move);
 			current = current->prev;
 		}
+		if (fd != 1)
+			ft_printf("output: %s\n", OUT_TXT);
+		if (fd != 1 && (ft_close_fd(fd)) == -1)
+			ft_error(ab, "ft_displaymoves");
 	}
 }
 

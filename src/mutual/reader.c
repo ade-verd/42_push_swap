@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 17:38:06 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/05/04 17:17:21 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/05/07 17:04:55 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,8 +86,10 @@ void	ft_check_n_push(t_heaps **ab, char *str)
 		(*ab)->option_s = 1;
 	else if (str[0] == '-' && ft_strchr(str, 'c'))
 		(*ab)->option_c = 1;
+	if (str[0] == '-' && ft_strchr(str, 'f'))
+		(*ab)->option_f = 1;
 	if (!isnum && !(*ab)->option_l && !(*ab)->option_v && !(*ab)->option_s
-		&& !(*ab)->option_c)
+		&& !(*ab)->option_c && !(*ab)->option_f)
 		ft_error(ab, 0);
 }
 
