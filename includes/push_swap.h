@@ -6,10 +6,9 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 11:37:19 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/05/07 14:11:42 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/05/07 14:18:49 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
@@ -111,6 +110,8 @@ void			ft_rotatew(t_heaps **ab, t_stack **work, int apply);
 void			ft_rrotatew(t_heaps **ab, t_stack **work, int apply);
 void			ft_apply_move(t_heaps **ab, char *move);
 void			ft_apply_rmove(t_heaps **ab, char *move);
+void			ft_applymoves_classic(t_heaps **ab);
+void			ft_applymoves_viewer(t_heaps **ab);
 
 typedef struct	s_fct
 {

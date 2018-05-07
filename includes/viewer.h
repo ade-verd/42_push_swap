@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/25 12:02:10 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/05/07 13:04:13 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/05/07 14:16:48 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,5 @@ typedef struct	s_env
 	int				sens;
 	int				end;
 }				t_env;
-
 
 #endif

@@ -6,7 +6,7 @@
 #    By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/23 12:33:34 by ade-verd          #+#    #+#              #
-#    Updated: 2018/05/02 14:50:44 by ade-verd         ###   ########.fr        #
+#    Updated: 2018/05/07 14:19:33 by ade-verd         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,6 +38,7 @@ LDLIBS = -lft -lftprintf
 SRC_NAME = \
 		   main.c\
 		   options.c\
+		   motion_apply.c\
 		   \
 		   viewer_init.c\
 		   viewer_draw.c\
@@ -57,7 +58,6 @@ SRC_NAME_MUTUAL = \
 		   motion_rotate.c\
 		   motion_rrotate.c\
 		   motion_work.c\
-		   motion_apply.c\
 		   \
 		   counter_tools.c\
 		   finder_tools.c\
