@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/15 17:24:17 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/05/07 14:20:30 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/05/07 15:49:52 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void	ft_applymoves_classic(t_heaps **ab)
 	while ((*ab)->buff)
 	{
 		ft_apply_move(ab, (*ab)->buff->move);
-		ft_deal_options_vs(ab);
+		ft_deal_options_vsc(ab);
 		if (!(*ab)->buff->prev)
 			break ;
 		(*ab)->buff = (*ab)->buff->prev;
@@ -87,14 +87,14 @@ void	ft_applymoves_viewer(t_heaps **ab)
 		if (*sens == 1)
 		{
 			ft_apply_move(ab, (*ab)->buff->move);
-			ft_deal_options_vs(ab);
+			ft_deal_options_vsc(ab);
 			if ((*ab)->buff->prev && *sens == 1)
 				(*ab)->buff = (*ab)->buff->prev;
 		}
 		else if (*sens == -1)
 		{
 			ft_apply_rmove(ab, (*ab)->buff->move);
-			ft_deal_options_vs(ab);
+			ft_deal_options_vsc(ab);
 			if ((*ab)->buff->next && *sens == -1)
 				(*ab)->buff = (*ab)->buff->next;
 		}

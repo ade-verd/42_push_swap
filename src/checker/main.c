@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/27 17:28:18 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/05/07 14:18:15 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/05/07 15:43:47 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,3 +108,9 @@ int		main(int ac, char **av)
 		ft_error(&ab, 0);
 	return (ac);
 }
+
+/*
+** To do :
+** option c
+** option f
+*/
