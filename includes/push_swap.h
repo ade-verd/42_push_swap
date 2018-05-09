@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 11:37:19 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/05/09 15:32:17 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/05/09 19:23:44 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,11 +132,11 @@ typedef struct	s_fct
 ** Help
 */
 void			ft_help(void);
-typedef struct	s_help
+typedef struct	s_hlp
 {
 	char			*option;
 	char			*details;
-}				t_help;
+}				t_hlp;
 
 /*
 ** Errors

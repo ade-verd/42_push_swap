@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/19 12:41:36 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/05/09 17:05:49 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/05/09 19:26:05 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,8 +89,8 @@ void	ft_displaymoves(t_heaps **ab)
 	{
 		out = (*ab)->path ? (*ab)->path : OUT_TXT;
 		if (((*ab)->option_f == 1) && (fd = ft_open_fd(out,
-					O_RDWR | O_CREAT | O_TRUNC, S_IRUSR | S_IWUSR)) == -1)
-				ft_error(ab, "ft_displaymoves");
+				O_RDWR | O_CREAT | O_TRUNC, S_IRUSR | S_IWUSR)) == -1)
+			ft_error(ab, "ft_displaymoves");
 		current = (*ab)->buff;
 		while (current && current->index > 1)
 			current = current->next;

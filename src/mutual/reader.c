@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 17:38:06 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/05/09 16:56:04 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/05/09 19:25:39 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,7 +135,7 @@ void	ft_read_and_fillstack(int ac, char **av, t_heaps **ab, char **tab)
 		while (--i >= 0)
 			ft_check_n_push(ab, tab[i]);
 		if (ischecker && (*ab)->option_f && (*ab)->path)
-		ft_freetab_strsplit(tab);
+			ft_freetab_strsplit(tab);
 	}
 	if (!(*ab)->a)
 		ft_error(ab, 0);

@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/03 14:17:05 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/05/09 15:56:25 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/05/09 19:26:53 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 /*
 ** int	ft_find_index(t_stack *stack, int nb)
 ** Takes a number and a stack in arguments.
-** Returns the index of this number or -1 if not found. 
+** Returns the index of this number or -1 if not found.
 */
 
 int		ft_find_index(t_stack *stack, int nb)
@@ -39,7 +39,7 @@ int		ft_find_index(t_stack *stack, int nb)
 /*
 ** int	ft_find_val(t_stack *stack, int index_tofind)
 ** Takes an index and a stack in arguments.
-** Returns the value corresponding index or 0 if not found. 
+** Returns the value corresponding index or 0 if not found.
 */
 
 int		ft_find_val(t_stack *stack, int index_tofind)

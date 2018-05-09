@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/15 17:24:17 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/05/09 18:29:11 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/05/09 19:21:18 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 
 void	ft_apply_move(t_heaps **ab, char *move)
 {
-	int		i;
+	int			i;
 	const t_fct	tab[] = {{ "sa", ft_swap_a }, { "sb", ft_swap_b },
 			{ "ss", ft_swap_ab },
 			{ "pa", ft_push_a }, { "pb", ft_push_b },
@@ -47,7 +47,7 @@ void	ft_apply_move(t_heaps **ab, char *move)
 
 void	ft_apply_rmove(t_heaps **ab, char *move)
 {
-	int		i;
+	int			i;
 	const t_fct	tab[] = {{ "sa", ft_swap_a }, { "sb", ft_swap_b },
 			{ "ss", ft_swap_ab },
 			{ "pa", ft_push_b }, { "pb", ft_push_a },

@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/09 17:59:02 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/05/09 18:14:58 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/05/09 19:24:55 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@
 
 void	ft_help_ps(void)
 {
-	int		i;
-	const t_help tab[] = {{ "Usage", "./push_swap [-h] $ARG [-f] [*.txt]" },
+	int			i;
+	const t_hlp	tab[] = {{ "Usage", "./push_swap [-h] $ARG [-f] [*.txt]" },
 		{ "——————", "" },
 		{ "-h", "[Help] displays this help" },
 		{ "-f", "[File] writes movements to *.txt file (if specified)" },
@@ -36,14 +36,14 @@ void	ft_help_ps(void)
 
 void	ft_help_chk(void)
 {
-	int		i;
-	const t_help tab[] = {{ "Usage", "./checker [-h] $ARG [-lscfv] [*.txt]" },
+	int			i;
+	const t_hlp	tab[] = {{ "Usage", "./checker [-h] $ARG [-lscfv] [*.txt]" },
 		{ "——————", "" },
 		{ "-h", "[Help] displays this help" },
 		{ "-l", "[Lines] displays the number of movements" },
 		{ "-s", "[Steps] displays details of each stack" },
 		{ "-c", "[Color] displays only last movement (desactivated with -s)" },
-		{ "-f", "[File] reads movements from a *.txt file (specified in args)" },
+		{ "-f", "[File] reads movements from a *.txt file which is specified" },
 		{ "-v", "[Viewer] displays a graphical viewer" },
 		{ "——————", "" },
 		{ "Viewer", "[KEY_UP] Next move" },
@@ -66,5 +66,5 @@ void	ft_help(void)
 	ft_help_ps();
 	ft_putchar('\n');
 	ft_help_chk();
-	exit (0);
+	exit(0);
 }

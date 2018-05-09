@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 17:38:06 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/05/09 18:36:12 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/05/09 19:20:45 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 
 /*
 ** int	ft_checkmove(char *line)
-** Checks lines readed 
+** Checks lines readed
 */
 
 int		ft_checkmove(char *line)
 {
-	int		i;
+	int			i;
 	const t_fct	mv[] = {{ "sa", 0 }, { "sb", 0 }, { "ss", 0 }, { "pa", 0 },
 			{ "pb", 0 }, { "ra", 0 }, { "rb", 0 }, { "rr", 0 }, { "rra", 0 },
 			{ "rrb", 0 }, { "rrr", 0 }, { "", 0 }};

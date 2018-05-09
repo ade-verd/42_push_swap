@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/26 11:39:09 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/05/09 18:50:02 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/05/09 19:21:42 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	ft_deal_options_vsc(t_heaps **ab)
 	else if ((*ab)->option_c == 1)
 	{
 		ft_printf(" %s%s%s", F_YELLOW, (*ab)->buff->move, F_NO);
-		ft_strlen(move) == 2 ? ft_putchar(' ') : none; 
+		ft_strlen(move) == 2 ? ft_putchar(' ') : none;
 		ft_putstr("\033[4D");
 		if (!(*ab)->buff->prev)
 			ft_putstr("    ");
