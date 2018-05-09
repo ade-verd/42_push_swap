@@ -6,11 +6,16 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 17:48:51 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/05/03 17:50:31 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/05/09 16:50:19 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+/*
+** static void	ft_adjust_pivot_pos(t_stack *stack, int *ppos)
+** Adjusts the position of the pivot
+*/
 
 static void	ft_adjust_pivot_pos(t_stack *stack, int *ppos)
 {
@@ -19,6 +24,11 @@ static void	ft_adjust_pivot_pos(t_stack *stack, int *ppos)
 	else if (*ppos == stack->index - 1)
 		(*ppos)++;
 }
+
+/*
+** static int	ft_swap_motion(t_stack *stack, int *ppos)
+** Swap the first two elements of the stack
+*/
 
 static int	ft_swap_motion(t_stack *stack, int *ppos)
 {
@@ -35,6 +45,11 @@ static int	ft_swap_motion(t_stack *stack, int *ppos)
 	return (0);
 }
 
+/*
+** void		ft_swap_a(t_heaps **ab, int apply)
+** Swap the first two elements of the stack A
+*/
+
 void		ft_swap_a(t_heaps **ab, int apply)
 {
 	if (!ft_issortn((*ab)->b, 2))
@@ -43,6 +58,11 @@ void		ft_swap_a(t_heaps **ab, int apply)
 		ft_moveappend(ab, "sa");
 }
 
+/*
+** void		ft_swap_b(t_heaps **ab, int apply)
+** Swap the first two elements of the stack B
+*/
+
 void		ft_swap_b(t_heaps **ab, int apply)
 {
 	if (!ft_issortn((*ab)->a, 2))
@@ -50,6 +70,11 @@ void		ft_swap_b(t_heaps **ab, int apply)
 	else if (ft_swap_motion((*ab)->b, &(*ab)->b_ppos) && apply == 1)
 		ft_moveappend(ab, "sb");
 }
+
+/*
+** void		ft_swap_ab(t_heaps **ab, int apply)
+** Swap the first two elements of the stack A and the stack B
+*/
 
 void		ft_swap_ab(t_heaps **ab, int apply)
 {

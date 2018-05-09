@@ -6,11 +6,16 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/06 14:35:21 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/04/26 13:21:07 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/05/09 16:27:21 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+/*
+** void	ft_moveappend(t_heaps **ab, char *s)
+** Appends a movement
+*/
 
 void	ft_moveappend(t_heaps **ab, char *s)
 {
@@ -38,6 +43,11 @@ void	ft_moveappend(t_heaps **ab, char *s)
 	(*ab)->buff = new;
 }
 
+/*
+** void	ft_del_lastmove(t_heaps **ab)
+** Deletes a movement
+*/
+
 void	ft_del_lastmove(t_heaps **ab)
 {
 	t_buf	*cpy;
@@ -58,6 +68,11 @@ void	ft_del_lastmove(t_heaps **ab)
 		ft_memdel((void**)&cpy);
 	}
 }
+
+/*
+** void	ft_del_allmoves(t_heaps **ab)
+** Deletes all movements
+*/
 
 void	ft_del_allmoves(t_heaps **ab)
 {

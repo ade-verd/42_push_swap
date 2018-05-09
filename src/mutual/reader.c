@@ -6,11 +6,16 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 17:38:06 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/05/09 13:30:24 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/05/09 16:56:04 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+/*
+** int	ft_isnumber(char *str, int *nb)
+** Checks if str is a number and an integer
+*/
 
 int		ft_isnumber(char *str, int *nb)
 {
@@ -32,6 +37,11 @@ int		ft_isnumber(char *str, int *nb)
 	return (1);
 }
 
+/*
+** int	ft_nb_exists(t_stack *a, int nb)
+** Checks duplicates numbers
+*/
+
 int		ft_nb_exists(t_stack *a, int nb)
 {
 	t_stack	*cpy;
@@ -49,6 +59,11 @@ int		ft_nb_exists(t_stack *a, int nb)
 	return (0);
 }
 
+/*
+** void	ft_ab_minmax(t_heaps **ab, int nb)
+** Actualizes min and max values
+*/
+
 void	ft_ab_minmax(t_heaps **ab, int nb)
 {
 	if (*ab && !(*ab)->a)
@@ -64,6 +79,11 @@ void	ft_ab_minmax(t_heaps **ab, int nb)
 			(*ab)->max = nb;
 	}
 }
+
+/*
+** void	ft_check_n_push(t_heaps **ab, char *str)
+** Checks arguments. Reads and pushe numbers on the stack. Reads options
+*/
 
 void	ft_check_n_push(t_heaps **ab, char *str)
 {
@@ -93,6 +113,11 @@ void	ft_check_n_push(t_heaps **ab, char *str)
 		&& !(*ab)->option_c && !(*ab)->option_f && !(*ab)->path)
 		ft_error(ab, 0);
 }
+
+/*
+** void	ft_read_and_fillstack(int ac, char **av, t_heaps **ab, char **tab)
+** Reads arguments and fill stack
+*/
 
 void	ft_read_and_fillstack(int ac, char **av, t_heaps **ab, char **tab)
 {

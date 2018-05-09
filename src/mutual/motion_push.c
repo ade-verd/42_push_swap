@@ -6,11 +6,16 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 17:48:51 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/04/19 18:20:52 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/05/09 16:40:11 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+/*
+** void	ft_check_minmax(t_stack *dest, t_stack *src)
+** Actualize min and max values
+*/
 
 void	ft_check_minmax(t_stack *dest, t_stack *src)
 {
@@ -38,6 +43,11 @@ void	ft_check_minmax(t_stack *dest, t_stack *src)
 	}
 }
 
+/*
+** void	ft_push_a(t_heaps **ab, int apply)
+** Pushes to stack A
+*/
+
 void	ft_push_a(t_heaps **ab, int apply)
 {
 	if ((*ab)->b)
@@ -54,6 +64,11 @@ void	ft_push_a(t_heaps **ab, int apply)
 			ft_moveappend(ab, "pa");
 	}
 }
+
+/*
+** void	ft_push_b(t_heaps **ab, int apply)
+** Pushes to stack B
+*/
 
 void	ft_push_b(t_heaps **ab, int apply)
 {

@@ -6,11 +6,16 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/19 12:41:36 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/05/09 13:48:11 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/05/09 17:05:49 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+/*
+** void	ft_heaps_display(t_heaps **ab, unsigned char c, int context)
+** Displays stacks A or B or both
+*/
 
 void	ft_heaps_display(t_heaps **ab, unsigned char c, int context)
 {
@@ -33,6 +38,11 @@ void	ft_heaps_display(t_heaps **ab, unsigned char c, int context)
 		ft_putstr("___\n");
 	}
 }
+
+/*
+** void	ft_stackdisplay(t_stack **work, int c)
+** Displays stack
+*/
 
 void	ft_stackdisplay(t_stack **work, int c)
 {
@@ -63,6 +73,11 @@ void	ft_stackdisplay(t_stack **work, int c)
 		ft_putstr("(null)\n");
 }
 
+/*
+** void	ft_displaymoves(t_heaps **ab)
+** Displays all movements
+*/
+
 void	ft_displaymoves(t_heaps **ab)
 {
 	t_buf		*current;
@@ -91,6 +106,11 @@ void	ft_displaymoves(t_heaps **ab)
 	}
 }
 
+/*
+** void	ft_display_lastmove(t_heaps **ab)
+** Displays last move
+*/
+
 void	ft_display_lastmove(t_heaps **ab)
 {
 	if (*ab && (*ab)->buff)
@@ -99,6 +119,12 @@ void	ft_display_lastmove(t_heaps **ab)
 		ft_putchar('\n');
 	}
 }
+
+/*
+** void	ft_display_result(t_heaps **ab, int nb_moves)
+** Displays "OK" or "KO" and eventually the number of movements
+** "OK" : stack A has to be sorted and stack B has to be empty
+*/
 
 void	ft_display_result(t_heaps **ab, int nb_moves)
 {

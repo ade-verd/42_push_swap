@@ -6,11 +6,16 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 11:54:35 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/04/26 17:29:00 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/05/09 16:59:54 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+/*
+** int	ft_stackpush(t_heaps **ab, t_stack **current_link, int new_nb, char id)
+** Add a link on the top of the stack
+*/
 
 int		ft_stackpush(t_heaps **ab, t_stack **current_link, int new_nb, char id)
 {
@@ -37,6 +42,11 @@ int		ft_stackpush(t_heaps **ab, t_stack **current_link, int new_nb, char id)
 	return (0);
 }
 
+/*
+** int	ft_stackpop(t_stack **stack)
+** Deletes the link on the top of the stack
+*/
+
 int		ft_stackpop(t_stack **stack)
 {
 	int			nb;
@@ -53,6 +63,11 @@ int		ft_stackpop(t_stack **stack)
 	return (nb);
 }
 
+/*
+** int	ft_stacklen(t_stack *stack)
+** Returns the length of the stack
+*/
+
 int		ft_stacklen(t_stack *stack)
 {
 	int			i;
@@ -65,6 +80,11 @@ int		ft_stacklen(t_stack *stack)
 	}
 	return (i);
 }
+
+/*
+** void	ft_stackdel(t_stack **stack)
+** Deletes every links of the stack
+*/
 
 void	ft_stackdel(t_stack **stack)
 {

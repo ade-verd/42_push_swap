@@ -6,11 +6,15 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/19 13:40:30 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/04/19 13:56:17 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/05/09 16:51:42 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+/*
+** Executes the movement on the stack work.
+*/
 
 void	ft_pushw(t_heaps **ab, t_stack **work, int apply)
 {

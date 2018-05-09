@@ -6,11 +6,16 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 11:54:35 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/05/07 19:38:44 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/05/09 16:35:14 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+/*
+** void	ft_buffer_init(t_heaps **ab)
+** Initialize t_buf*
+*/
 
 void	ft_buffer_init(t_heaps **ab)
 {
@@ -18,6 +23,11 @@ void	ft_buffer_init(t_heaps **ab)
 		ft_error(ab, "malloc");
 	(*ab)->buff->index = 0;
 }
+
+/*
+** void	ft_heaps_init(t_heaps **ab)
+** Initialize t_heaps*
+*/
 
 void	ft_heaps_init(t_heaps **ab)
 {
@@ -42,6 +52,11 @@ void	ft_heaps_init(t_heaps **ab)
 	(*ab)->path = NULL;
 	(*ab)->winenv = NULL;
 }
+
+/*
+** void	ft_heaps_del(t_heaps **ab)
+** Frees everything properly
+*/
 
 void	ft_heaps_del(t_heaps **ab)
 {
