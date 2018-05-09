@@ -6,39 +6,11 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/26 11:39:09 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/05/09 15:28:16 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/05/09 17:59:40 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-void	ft_help(void)
-{
-	int		i;
-	const t_help tab[] = {{ "Usage", "./checker [-h] $ARG [-lscfv] [*.txt]" },
-		{ "——————", "" },
-		{ "-h", "[Help] displays this help" },
-		{ "-l", "[Lines] displays the number of movements" },
-		{ "-s", "[Steps] displays details of each stack" },
-		{ "-c", "[Color] displays only last movement (desactivated with -s)" },
-		{ "-f", "[File] read movements from a *.txt file (specified in args)" },
-		{ "-v", "[Viewer] displays a graphical viewer" },
-		{ "——————", "" },
-		{ "Viewer", "[KEY_UP] Next move" },
-		{ "Viewer", "[KEY_DOWN] Previous move" },
-		{ "Viewer", "[PAGE_UP] Speed up" },
-		{ "Viewer", "[PAGE_DOWN] Speed down" },
-		{ "Viewer", "[ESC] Quit" },
-		{ 0, 0}};
-
-	i = 0;
-	while (tab[i].option)
-	{
-		ft_printf("%s\t%s\n", tab[i].option, tab[i].details);
-		i++;
-	}
-	exit (0);
-}
 
 void	ft_deal_options_init(t_heaps **ab)
 {

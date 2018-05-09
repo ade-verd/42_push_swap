@@ -6,11 +6,16 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/15 12:25:12 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/04/24 11:46:33 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/05/09 18:18:55 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+/*
+** int	ft_issort(t_stack *stack)
+** Returns 1 if stack is sorted. Else returns 0
+*/
 
 int		ft_issort(t_stack *stack)
 {
@@ -27,6 +32,11 @@ int		ft_issort(t_stack *stack)
 	}
 	return (1);
 }
+
+/*
+** int	ft_issortn(t_stack *stack, int n)
+** Returns 1 if the n first values of the stack are sorted. Else returns 0
+*/
 
 int		ft_issortn(t_stack *stack, int n)
 {
@@ -47,6 +57,11 @@ int		ft_issortn(t_stack *stack, int n)
 	return (1);
 }
 
+/*
+** int	ft_countv(t_stack *stack, int val, char *sign)
+** Returns the nb of values "<", ">", "==", ">=", or "<="" to the integer val.
+*/
+
 int		ft_countv(t_stack *stack, int val, char *sign)
 {
 	int		count;
@@ -60,32 +75,6 @@ int		ft_countv(t_stack *stack, int val, char *sign)
 			count++;
 		else if (ft_strchr(sign, '=') && stack->nb == val)
 			count++;
-		stack = stack->next;
-	}
-	return (count);
-}
-
-int		ft_count_bad(t_stack *stack, int pivot, int pos)
-{
-	int		count;
-
-	count = 0;
-	while (stack)
-	{
-		if (stack->sens == 1)
-		{
-			if (stack->nb > pivot && stack->index > pos)
-				count++;
-			if (stack->nb < pivot && stack->index < pos)
-				count++;
-		}
-		else
-		{
-			if (stack->nb > pivot && stack->index < pos)
-				count++;
-			if (stack->nb < pivot && stack->index > pos)
-				count++;
-		}
 		stack = stack->next;
 	}
 	return (count);

@@ -6,7 +6,7 @@
 #    By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/23 12:33:34 by ade-verd          #+#    #+#              #
-#    Updated: 2018/05/09 14:48:58 by ade-verd         ###   ########.fr        #
+#    Updated: 2018/05/09 18:05:29 by ade-verd         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,9 +50,10 @@ SRC_NAME_MUTUAL = \
 		   heaps_manager.c\
 		   stack_manager.c\
 		   buffer_manager.c\
-		   errors_manager.c\
 		   counter_tools.c\
 		   terminal_display.c\
+		   errors_manager.c\
+		   help.c\
 		   \
 		   motion_swap.c\
 		   motion_push.c\

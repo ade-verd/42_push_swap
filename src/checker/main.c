@@ -6,11 +6,16 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/27 17:28:18 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/05/09 15:22:21 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/05/09 18:01:18 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+/*
+** void	ft_goto_buffindex(t_heaps **ab, int target_index, int applymove)
+** Applies the movements (or rev. movements) until you reach the desired index
+*/
 
 void	ft_goto_buffindex(t_heaps **ab, int target_index, int applymove)
 {
