@@ -6,11 +6,16 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/26 11:39:09 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/05/09 17:59:40 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/05/09 18:50:02 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+/*
+** void	ft_deal_options_init(t_heaps **ab)
+** Initialize option_s and option_v
+*/
 
 void	ft_deal_options_init(t_heaps **ab)
 {
@@ -25,13 +30,27 @@ void	ft_deal_options_init(t_heaps **ab)
 	}
 }
 
+/*
+** void	ft_option_f_open(t_heaps **ab)
+** Checks if -f is activated and if a *.txt file is specified. Then open *.txt
+*/
+
 void	ft_option_f_open(t_heaps **ab)
 {
 	if (!(*ab)->path)
 		ft_error(ab, "-f: no [file].txt specified");
+	if ((*ab)->option_f == 0)
+		ft_error(ab, 0);
 	if (((*ab)->fd = ft_open_fd((*ab)->path, O_RDONLY, S_IRUSR)) == -1)
 		ft_error(ab, "ft_option_f_open");
 }
+
+/*
+** void	ft_deal_options_vsc(t_heaps **ab)
+** -s : Displays stack A and stack B
+** -c : Displays last move
+** -v : Refreshes viewer
+*/
 
 void	ft_deal_options_vsc(t_heaps **ab)
 {
@@ -52,6 +71,12 @@ void	ft_deal_options_vsc(t_heaps **ab)
 	if ((*ab)->option_v == 1 && (*ab)->winenv && (*ab)->winenv->end != 1)
 		ft_viewer_draw(ab);
 }
+
+/*
+** void	ft_deal_options_quit(t_heaps **ab)
+** -v : Quits properly viewer (destroy, free, quit)
+** -f : Quits File Descriptor
+*/
 
 void	ft_deal_options_quit(t_heaps **ab)
 {

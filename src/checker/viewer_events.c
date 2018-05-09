@@ -6,11 +6,16 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/02 14:32:52 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/05/09 14:26:33 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/05/09 18:59:05 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+/*
+** void	ft_sdlquit(t_env *env, int *loop)
+** Changes values before quit
+*/
 
 void	ft_sdlquit(t_env *env, int *loop)
 {
@@ -19,6 +24,12 @@ void	ft_sdlquit(t_env *env, int *loop)
 	env->sens = 1;
 	env->end = 1;
 }
+
+/*
+** void	ft_sdlkeydown(t_heaps **ab, t_env *env, int *loop)
+** Treats SDL_KEYDOWN
+** UP: Next move | DOWN: Previous move || PAGE_UP: Faster | PAGE_DOWN: Slower
+*/
 
 void	ft_sdlkeydown(t_heaps **ab, t_env *env, int *loop)
 {
@@ -40,6 +51,13 @@ void	ft_sdlkeydown(t_heaps **ab, t_env *env, int *loop)
 		*loop = 0;
 	}
 }
+
+/*
+** void	ft_manage_events(t_heaps **ab, t_env *env)
+** Treats events
+** ESC (or red cross): Quit
+** UP, DOWN, PAGE_UP, PAGE_DOWN: see above
+*/
 
 void	ft_manage_events(t_heaps **ab, t_env *env)
 {

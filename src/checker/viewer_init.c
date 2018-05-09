@@ -6,11 +6,16 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/02 14:27:21 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/05/07 13:04:48 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/05/09 19:00:35 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+/*
+** void	ft_createwindow(t_heaps **ab, t_env **env)
+** Creates window
+*/
 
 void	ft_createwindow(t_heaps **ab, t_env **env)
 {
@@ -22,6 +27,11 @@ void	ft_createwindow(t_heaps **ab, t_env **env)
 		ft_error_sdl(ab, "SDL_CreateWindow", (char*)SDL_GetError());
 }
 
+/*
+** void	ft_createrenderer(t_heaps **ab, t_env **env)
+** Create renderer
+*/
+
 void	ft_createrenderer(t_heaps **ab, t_env **env)
 {
 	if (!*env)
@@ -31,6 +41,11 @@ void	ft_createrenderer(t_heaps **ab, t_env **env)
 	if (!(*env)->render)
 		ft_error_sdl(ab, "SDL_CreateRenderer", (char*)SDL_GetError());
 }
+
+/*
+** void	ft_init_backgrounds(t_heaps **ab, t_env *env)
+** Initializes background values
+*/
 
 void	ft_init_backgrounds(t_heaps **ab, t_env *env)
 {
@@ -46,6 +61,11 @@ void	ft_init_backgrounds(t_heaps **ab, t_env *env)
 	env->background_r.w = WINW / 2;
 }
 
+/*
+** void	ft_viewer_init(t_heaps **ab, t_env **env)
+** Initializes SDL, window, renderer and somes values
+*/
+
 void	ft_viewer_init(t_heaps **ab, t_env **env)
 {
 	if ((SDL_Init(SDL_INIT_VIDEO | SDL_INIT_EVENTS) == -1))
@@ -56,7 +76,6 @@ void	ft_viewer_init(t_heaps **ab, t_env **env)
 	ft_createrenderer(ab, env);
 	ft_init_backgrounds(ab, *env);
 	(*env)->moves = (*ab)->buff->index;
-	(*env)->play = 0;
 	(*env)->delay = 16;
 	(*env)->sens = 1;
 	(*env)->end = 0;

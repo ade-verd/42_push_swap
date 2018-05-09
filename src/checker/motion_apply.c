@@ -6,11 +6,16 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/15 17:24:17 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/05/07 15:49:52 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/05/09 18:29:11 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+/*
+** void	ft_apply_move(t_heaps **ab, char *move)
+** Applies move
+*/
 
 void	ft_apply_move(t_heaps **ab, char *move)
 {
@@ -35,6 +40,11 @@ void	ft_apply_move(t_heaps **ab, char *move)
 	}
 }
 
+/*
+** void	ft_apply_rmove(t_heaps **ab, char *move)
+** Applies reverse move
+*/
+
 void	ft_apply_rmove(t_heaps **ab, char *move)
 {
 	int		i;
@@ -58,6 +68,11 @@ void	ft_apply_rmove(t_heaps **ab, char *move)
 	}
 }
 
+/*
+** void	ft_applymoves_classic(t_heaps **ab)
+** Applies every movements of the buffer without viewer and user command
+*/
+
 void	ft_applymoves_classic(t_heaps **ab)
 {
 	!*ab ? ft_error(ab, 0) : none;
@@ -72,6 +87,11 @@ void	ft_applymoves_classic(t_heaps **ab)
 		(*ab)->buff = (*ab)->buff->prev;
 	}
 }
+
+/*
+** void	ft_applymoves_viewer(t_heaps **ab)
+** Applies movements of the buffer with viewer and user command
+*/
 
 void	ft_applymoves_viewer(t_heaps **ab)
 {
