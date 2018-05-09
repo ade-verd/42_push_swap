@@ -6,11 +6,17 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/03 14:17:05 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/04/24 17:55:05 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/05/09 15:56:25 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+/*
+** int	ft_find_index(t_stack *stack, int nb)
+** Takes a number and a stack in arguments.
+** Returns the index of this number or -1 if not found. 
+*/
 
 int		ft_find_index(t_stack *stack, int nb)
 {
@@ -30,6 +36,12 @@ int		ft_find_index(t_stack *stack, int nb)
 	return (-1);
 }
 
+/*
+** int	ft_find_val(t_stack *stack, int index_tofind)
+** Takes an index and a stack in arguments.
+** Returns the value corresponding index or 0 if not found. 
+*/
+
 int		ft_find_val(t_stack *stack, int index_tofind)
 {
 	t_stack	*cpy;
@@ -45,6 +57,11 @@ int		ft_find_val(t_stack *stack, int index_tofind)
 	}
 	return (0);
 }
+
+/*
+** int	ft_find_next(t_stack *stack, int ref)
+** Takes an integer and returns the next integer in the stack.
+*/
 
 int		ft_find_next(t_stack *stack, int ref)
 {
@@ -64,6 +81,11 @@ int		ft_find_next(t_stack *stack, int ref)
 	return (next_val);
 }
 
+/*
+** void	ft_find_minmax(t_stack *stack, int *min, int *max, int n)
+** Completes the min and max values for the first n integers of the stack.
+*/
+
 void	ft_find_minmax(t_stack *stack, int *min, int *max, int n)
 {
 	t_stack	*cpy;
@@ -81,6 +103,11 @@ void	ft_find_minmax(t_stack *stack, int *min, int *max, int n)
 		cpy = cpy->next;
 	}
 }
+
+/*
+** void	ft_find_median(t_stack *stack, int *fst_quart, int *mdn, int *thd_quart)
+** Finds the median, first quartile, and third quartile of the stack.
+*/
 
 void	ft_find_median(t_stack *stack, int *fst_quart, int *mdn, int *thd_quart)
 {

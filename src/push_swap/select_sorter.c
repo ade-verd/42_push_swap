@@ -6,11 +6,16 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/29 12:34:11 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/04/24 15:55:25 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/05/09 16:17:16 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+/*
+** static void	ft_first_three_values(t_heaps **ab, t_stack **work, int n)
+** Sorts the first three integers by the selection sort method.
+*/
 
 static void	ft_first_three_values(t_heaps **ab, t_stack **work, int n)
 {
@@ -34,6 +39,11 @@ static void	ft_first_three_values(t_heaps **ab, t_stack **work, int n)
 		(*work)->id == 'a' ? ft_swap_a(ab, 1) : ft_swap_b(ab, 1);
 }
 
+/*
+** static void	ft_three_values(t_heaps **ab, t_stack **work, int n)
+** Sort three integers by the selection sort method.
+*/
+
 static void	ft_three_values(t_heaps **ab, t_stack **work, int n)
 {
 	int		min;
@@ -51,6 +61,11 @@ static void	ft_three_values(t_heaps **ab, t_stack **work, int n)
 	if (!ft_issort(*work))
 		(*work)->id == 'a' ? ft_swap_a(ab, 1) : ft_swap_b(ab, 1);
 }
+
+/*
+** static void	ft_n_more_values(t_heaps **ab, t_stack **work, int n)
+** Sorts the n first (with n > 3) integers by the selection sort method.
+*/
 
 static void	ft_n_more_values(t_heaps **ab, t_stack **work, int n)
 {
@@ -78,6 +93,11 @@ static void	ft_n_more_values(t_heaps **ab, t_stack **work, int n)
 	(*work)->id == 'a' ? ft_push_a(ab, 1) : ft_push_b(ab, 1);
 }
 
+/*
+** static void	ft_more_values(t_heaps **ab, t_stack **work)
+** Sorts the n (with n > 3) integers by the selection sort method.
+*/
+
 static void	ft_more_values(t_heaps **ab, t_stack **work)
 {
 	int		min;
@@ -100,6 +120,11 @@ static void	ft_more_values(t_heaps **ab, t_stack **work)
 	while (i--)
 		(*work)->id == 'a' ? ft_push_a(ab, 1) : ft_push_b(ab, 1);
 }
+
+/*
+** void	ft_select_sorter(t_heaps **ab, t_stack **work, int n)
+** Sorts the n integers by the selection sort method.
+*/
 
 void		ft_select_sorter(t_heaps **ab, t_stack **work, int n)
 {

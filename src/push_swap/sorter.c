@@ -6,11 +6,17 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/07 13:24:56 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/04/24 17:52:20 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/05/09 16:24:52 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+/*
+** void	ft_quick_sorter(t_heaps **ab, t_stack **a, t_stack **b)
+** First sorting part with the quick sort method until stack A is almost empty.
+** The first quartile is used to start sorting the B stack.
+*/
 
 void	ft_quick_sorter(t_heaps **ab, t_stack **a, t_stack **b)
 {
@@ -40,6 +46,11 @@ void	ft_quick_sorter(t_heaps **ab, t_stack **a, t_stack **b)
 	}
 }
 
+/*
+** void	ft_insert_sorter(t_heaps **ab, t_stack **a, t_stack **b)
+** Second sorting part with the selection sort method.
+*/
+
 void	ft_insert_sorter(t_heaps **ab, t_stack **a, t_stack **b)
 {
 	int		bestval;
@@ -48,6 +59,11 @@ void	ft_insert_sorter(t_heaps **ab, t_stack **a, t_stack **b)
 	ft_placetopboth(ab, bestval, ft_find_next(*a, bestval));
 	ft_pushw(ab, b, 1);
 }
+
+/*
+** void	ft_sorter(t_heaps **ab, t_stack **a, t_stack **b)
+** Sort the stack with the quick sort method and then the selection sort method.
+*/
 
 void	ft_sorter(t_heaps **ab, t_stack **a, t_stack **b)
 {

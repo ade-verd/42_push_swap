@@ -6,11 +6,17 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/11 17:43:25 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/04/24 17:30:26 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/05/09 16:11:35 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+/*
+** static int	ft_moves2top(t_stack *w, int toplace_v)
+** Takes an integer and counts the number of moves it would take to place it
+** at the top of the stack.
+*/
 
 static int	ft_moves2top(t_stack *w, int toplace_v)
 {
@@ -28,6 +34,12 @@ static int	ft_moves2top(t_stack *w, int toplace_v)
 	return (r < rr ? -r : rr);
 }
 
+/*
+** static int	ft_moves2next(t_stack *o, int toplace_v)
+** Takes an integer and counts the number of moves it would take to place
+** THE NEXT INTEGER OF THE OTHER STACK at the top.
+*/
+
 static int	ft_moves2next(t_stack *o, int toplace_v)
 {
 	int		moves;
@@ -37,6 +49,12 @@ static int	ft_moves2next(t_stack *o, int toplace_v)
 	moves = ft_abs(ft_moves2top(o, ft_find_next(o, toplace_v)));
 	return (moves);
 }
+
+/*
+** int	ft_find_bestmove(t_stack **w, t_stack **o)
+** Calculates the number of strokes of each integer using the insert sort method
+** Returns the integer that is more interesting to send to the other stack.
+*/
 
 int			ft_find_bestmove(t_stack **w, t_stack **o)
 {
@@ -64,6 +82,11 @@ int			ft_find_bestmove(t_stack **w, t_stack **o)
 	return (bestval);
 }
 
+/*
+** int	ft_placetop(t_heaps **ab, t_stack **w, int toplace_v)
+** Do the best move on the stack
+*/
+
 int			ft_placetop(t_heaps **ab, t_stack **w, int toplace_v)
 {
 	int		mv;
@@ -73,6 +96,11 @@ int			ft_placetop(t_heaps **ab, t_stack **w, int toplace_v)
 		mv < 0 ? ft_rotatew(ab, w, 1) : ft_rrotatew(ab, w, 1);
 	return (mv);
 }
+
+/*
+** void	ft_placetopboth(t_heaps **ab, int b_val, int a_next)
+** Do the best move using rr & rrr movements
+*/
 
 void		ft_placetopboth(t_heaps **ab, int b_val, int a_next)
 {

@@ -6,11 +6,16 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/19 17:55:59 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/04/24 17:38:57 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/05/09 15:37:24 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+/*
+** int	*ft_bubble_sorter(t_stack *stack, int *tab)
+** Sorts with "bubble sort" method and returns an array of integers.
+*/
 
 int		*ft_bubble_sorter(t_stack *stack, int *tab)
 {
