@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   chk_reader.c                                       :+:      :+:    :+:   */
+/*   motion_reader.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 17:38:06 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/05/07 19:39:14 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/05/09 13:37:22 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ int		ft_motions_reader(t_heaps **ab)
 
 	i = 0;
 	nb = 0;
-	ft_printf("fd:%d\n", (*ab)->fd);
 	while ((ret = get_next_line((*ab)->fd, &move)) > 0)
 	{
 		if (ft_strstr(move, "Error"))
@@ -65,39 +64,4 @@ int		ft_motions_reader(t_heaps **ab)
 	if (ret < 0)
 		ft_error(ab, "get_next_line");
 	return (nb);
-}
-
-/*
-** cf. mutual/reader.c
-*/
-
-void	ft_read_n_fillstack_chk(int ac, char **av, t_heaps **ab, char **tab)
-{
-	int		i;
-
-	if (!(*ab))
-		ft_error(ab, "read_and_fillstack");
-	while (ac > 1)
-	{
-		ac--;
-		i = ft_countwords(av[ac], ' ');
-		tab = ft_strsplit(av[ac], ' ');
-		while (--i >= 0)
-		{
-			ft_printf("%s\n", tab[i]);
-			if ((*ab)->option_f == 1 && ft_strstr(tab[i], ".txt"))
-			{
-				ft_printf("On est là\n");
-				ft_option_f_open(ab, tab[i]);
-			}
-			else
-				ft_check_n_push(ab, tab[i]);
-		}
-		ft_freetab_strsplit(tab);
-	}
-	if (!(*ab)->a)
-		ft_error(ab, 0);
-	(*ab)->a_min = (*ab)->min;
-	(*ab)->a_max = (*ab)->max;
-	(*ab)->count = (*ab)->a->index;
 }

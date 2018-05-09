@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/25 12:02:10 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/05/07 14:16:48 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/05/09 14:33:07 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include <SDL.h>
 
 # define WINW				1024
-# define WINH				768
+# define WINH				1024
 # define STATUS_BAR			0
 
 # define COLOR_L			051, 101, 120, 255

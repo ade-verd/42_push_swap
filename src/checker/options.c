@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/26 11:39:09 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/05/07 19:30:25 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/05/09 14:39:31 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,16 @@ void	ft_deal_options_init(t_heaps **ab)
 	{
 		if ((*ab)->count > WINH)
 			ft_error_sdl(ab, "ft_deal_options_init",
-				"Too much $ARGS (max 768)");
+				"Too much $ARGS (max 1024)");
 		ft_viewer_init(ab, &(*ab)->winenv);
 	}
 }
 
-void	ft_option_f_open(t_heaps **ab, char *path)
+void	ft_option_f_open(t_heaps **ab)
 {
-	if (((*ab)->fd = ft_open_fd(path, O_RDONLY, S_IRUSR)) == -1)
+	if (!(*ab)->path)
+		ft_error(ab, "-f: no [file].txt specified");
+	if (((*ab)->fd = ft_open_fd((*ab)->path, O_RDONLY, S_IRUSR)) == -1)
 		ft_error(ab, "ft_option_f_open");
 }
 

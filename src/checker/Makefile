@@ -6,7 +6,7 @@
 #    By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/23 12:33:34 by ade-verd          #+#    #+#              #
-#    Updated: 2018/05/07 19:22:00 by ade-verd         ###   ########.fr        #
+#    Updated: 2018/05/09 13:31:13 by ade-verd         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,7 @@ LDLIBS = -lft -lftprintf
 # Sources
 SRC_NAME = \
 		   main.c\
-		   chk_reader.c\
+		   motion_reader.c\
 		   motion_apply.c\
 		   \
 		   options.c\

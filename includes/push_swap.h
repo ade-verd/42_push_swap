@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 11:37:19 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/05/07 19:39:56 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/05/09 14:40:34 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,10 +149,6 @@ void			ft_insert_sorter(t_heaps **ab, t_stack **a, t_stack **b);
 /*
 ** Tools: count, find, issort, place on top ...
 */
-void			ft_ab_minmax(t_heaps **ab, int nb);
-int				ft_nb_exists(t_stack *a, int nb);
-int				ft_isnumber(char *str, int *nb);
-void			ft_check_n_push(t_heaps **ab, char *str);
 int				ft_issort(t_stack *stack);
 int				ft_issortn(t_stack *stack, int n);
 int				ft_countv(t_stack *stack, int val, char *sign);
@@ -182,7 +178,7 @@ void			ft_viewer_init(t_heaps **ab, t_env **env);
 void			ft_viewer_draw(t_heaps **ab);
 void			ft_manage_events(t_heaps **ab, t_env *env);
 void			ft_deal_options_init(t_heaps **ab);
-void			ft_option_f_open(t_heaps **ab, char *path);
+void			ft_option_f_open(t_heaps **ab);
 void			ft_deal_options_vsc(t_heaps **ab);
 void			ft_deal_options_quit(t_heaps **ab);
 void			ft_viewer_destroy_quit(t_env **env);

@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/19 12:41:36 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/05/07 17:59:12 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/05/09 13:48:11 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,11 +67,13 @@ void	ft_displaymoves(t_heaps **ab)
 {
 	t_buf		*current;
 	int			fd;
+	char		*out;
 
 	fd = 1;
 	if (*ab && (*ab)->buff)
 	{
-		if (((*ab)->option_f == 1) && (fd = ft_open_fd(OUT_TXT,
+		out = (*ab)->path ? (*ab)->path : OUT_TXT;
+		if (((*ab)->option_f == 1) && (fd = ft_open_fd(out,
 					O_RDWR | O_CREAT | O_TRUNC, S_IRUSR | S_IWUSR)) == -1)
 				ft_error(ab, "ft_displaymoves");
 		current = (*ab)->buff;
@@ -83,7 +85,7 @@ void	ft_displaymoves(t_heaps **ab)
 			current = current->prev;
 		}
 		if (fd != 1)
-			ft_printf("output: %s\n", OUT_TXT);
+			ft_printf("output: %s\n", out);
 		if (fd != 1 && (ft_close_fd(fd)) == -1)
 			ft_error(ab, "ft_displaymoves");
 	}

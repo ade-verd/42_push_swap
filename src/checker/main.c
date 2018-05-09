@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/27 17:28:18 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/05/07 19:19:16 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/05/09 14:37:51 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,9 @@ int		main(int ac, char **av)
 	if (ac > 1)
 	{
 		ft_heaps_init(&ab);
-		ft_read_n_fillstack_chk(ac, av, &ab, &tab);
+		ft_read_and_fillstack(ac, av, &ab, &tab);
+		if (ab->option_f == 1)
+			ft_option_f_open(&ab);
 		if ((nb_moves = ft_motions_reader(&ab)))
 		{
 			ft_deal_options_init(&ab);

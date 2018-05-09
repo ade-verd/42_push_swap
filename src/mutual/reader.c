@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 17:38:06 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/05/07 19:15:42 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/05/09 13:30:24 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ int		ft_isnumber(char *str, int *nb)
 	int		i;
 
 	i = 0;
+	*nb = 0;
 	while (str[i] == '+' || str[i] == '-')
 		i++;
 	while (str[i])
@@ -69,7 +70,6 @@ void	ft_check_n_push(t_heaps **ab, char *str)
 	int		nb;
 	int		isnum;
 
-	nb = 0;
 	isnum = 0;
 	if (ft_isnumber(str, &nb))
 	{
@@ -88,17 +88,20 @@ void	ft_check_n_push(t_heaps **ab, char *str)
 		(*ab)->option_c = 1;
 	if (str[0] == '-' && ft_strchr(str, 'f'))
 		(*ab)->option_f = 1;
+	ft_strstr(str, ".txt") ? (*ab)->path = str : (*ab)->path;
 	if (!isnum && !(*ab)->option_l && !(*ab)->option_v && !(*ab)->option_s
-		&& !(*ab)->option_c && !(*ab)->option_f)
+		&& !(*ab)->option_c && !(*ab)->option_f && !(*ab)->path)
 		ft_error(ab, 0);
 }
 
 void	ft_read_and_fillstack(int ac, char **av, t_heaps **ab, char **tab)
 {
 	int		i;
+	int		ischecker;
 
 	if (!(*ab))
 		ft_error(ab, "read_and_fillstack");
+	ischecker = ft_strcmp(av[0], "checker") == 0 ? 1 : 0;
 	while (ac > 1)
 	{
 		ac--;
@@ -106,6 +109,7 @@ void	ft_read_and_fillstack(int ac, char **av, t_heaps **ab, char **tab)
 		tab = ft_strsplit(av[ac], ' ');
 		while (--i >= 0)
 			ft_check_n_push(ab, tab[i]);
+		if (ischecker && (*ab)->option_f && (*ab)->path)
 		ft_freetab_strsplit(tab);
 	}
 	if (!(*ab)->a)
