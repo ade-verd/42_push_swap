@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 11:37:19 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/05/09 15:22:31 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/05/09 15:32:17 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,6 @@ typedef struct	s_heaps
 ** Read and fill stack or buff
 */
 void			ft_read_and_fillstack(int c, char **av, t_heaps **ab, char **t);
-void			ft_read_n_fillstack_chk(int c, char **v, t_heaps **a, char **t);
 int				ft_motions_reader(t_heaps **ab);
 
 /*
@@ -129,6 +128,10 @@ typedef struct	s_fct
 	void			(*f)(t_heaps **ab, int apply);
 }				t_fct;
 
+/*
+** Help
+*/
+void			ft_help(void);
 typedef struct	s_help
 {
 	char			*option;
@@ -136,9 +139,8 @@ typedef struct	s_help
 }				t_help;
 
 /*
-** Errors, help
+** Errors
 */
-void			ft_help(void);
 void			ft_error(t_heaps **ab, char *precision);
 void			ft_error_sdl(t_heaps **ab, char *precision, char *precision2);
 
