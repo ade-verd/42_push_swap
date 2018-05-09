@@ -6,7 +6,7 @@
 #    By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/23 12:33:34 by ade-verd          #+#    #+#              #
-#    Updated: 2018/05/09 13:31:13 by ade-verd         ###   ########.fr        #
+#    Updated: 2018/05/09 14:49:08 by ade-verd         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,6 +37,7 @@ LDLIBS = -lft -lftprintf
 # Sources
 SRC_NAME = \
 		   main.c\
+		   \
 		   motion_reader.c\
 		   motion_apply.c\
 		   \
@@ -52,6 +53,7 @@ SRC_NAME_MUTUAL = \
 		   stack_manager.c\
 		   buffer_manager.c\
 		   errors_manager.c\
+		   counter_tools.c\
 		   terminal_display.c\
 		   \
 		   motion_swap.c\
@@ -59,14 +61,6 @@ SRC_NAME_MUTUAL = \
 		   motion_rotate.c\
 		   motion_rrotate.c\
 		   motion_work.c\
-		   \
-		   counter_tools.c\
-		   finder_tools.c\
-		   placer.c\
-		   \
-		   sorter.c\
-		   select_sorter.c\
-		   bubble_sorter.c\
 
 OBJ_NAME = $(SRC_NAME:.c=.o)
 OBJ_NAME_MUTUAL = $(SRC_NAME_MUTUAL:.c=.o)

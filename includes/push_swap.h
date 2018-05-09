@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 11:37:19 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/05/09 14:40:34 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/05/09 15:22:31 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,9 +129,16 @@ typedef struct	s_fct
 	void			(*f)(t_heaps **ab, int apply);
 }				t_fct;
 
+typedef struct	s_help
+{
+	char			*option;
+	char			*details;
+}				t_help;
+
 /*
-** Errors
+** Errors, help
 */
+void			ft_help(void);
 void			ft_error(t_heaps **ab, char *precision);
 void			ft_error_sdl(t_heaps **ab, char *precision, char *precision2);
 

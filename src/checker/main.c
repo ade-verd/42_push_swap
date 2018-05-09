@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/27 17:28:18 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/05/09 14:37:51 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/05/09 15:22:21 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ int		main(int ac, char **av)
 
 	if (ac > 1)
 	{
+		if (ft_strcmp(av[1], "-h") == 0)
+			ft_help();
 		ft_heaps_init(&ab);
 		ft_read_and_fillstack(ac, av, &ab, &tab);
 		if (ab->option_f == 1)
