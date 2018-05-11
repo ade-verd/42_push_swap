@@ -1,3 +1,0 @@
-[submodule "libftprintf"]
-	path = libftprintf
-	url = https://github.com/ade-verd/printf.git
