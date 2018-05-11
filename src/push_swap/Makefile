@@ -6,7 +6,7 @@
 #    By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/23 12:33:34 by ade-verd          #+#    #+#              #
-#    Updated: 2018/05/09 20:13:44 by ade-verd         ###   ########.fr        #
+#    Updated: 2018/05/11 10:13:53 by ade-verd         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -164,10 +164,6 @@ $(OBJ_PATH)%.o: $(SRC_PATH)%.c
 	@echo -e $(LINKING)
 	@$(eval COUNTER=$(shell echo $$(($(COUNTER)+1))))
 
-initsub:
-	git submodule init
-	git submodule update
-
 clean:
 	@echo -e "$(TITLE)clean $(NAME)$(END_TITLE)"
 	@echo -e $(OBJECTS_DEL)
@@ -190,6 +186,12 @@ norme:
 
 normadev: 
 	~/Projects/Normadev/normadev.sh **/*.[ch]
+
+submod_init:
+	git submodule update --init --recursive
+
+submod_update:
+	git submodule update --recursive --remote
 
 # **************************************************************************** #
 # Personal notes :                                                             #
