@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 11:54:35 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/05/11 10:26:49 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/05/11 15:11:27 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,8 @@ void	ft_heaps_del(t_heaps **ab)
 		ft_stackdel(&(*ab)->a);
 	if (*ab && (*ab)->b)
 		ft_stackdel(&(*ab)->b);
+	if (*ab && (*ab)->path)
+		ft_strdel(&(*ab)->path);
 	ft_del_allmoves(ab);
 	if (*ab && (*ab)->buff)
 		ft_memdel((void**)&(*ab)->buff);

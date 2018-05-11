@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 17:38:06 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/05/11 10:55:06 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/05/11 15:10:23 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,7 @@ void	ft_check_n_push(t_heaps **ab, char *str)
 		(*ab)->option_c = 1;
 	if (str[0] == '-' && ft_strchr(str, 'f'))
 		(*ab)->option_f = 1;
-	ft_strstr(str, ".txt") ? (*ab)->path = str : (*ab)->path;
+	ft_strstr(str, ".txt") ? (*ab)->path = ft_strdup(str) : (*ab)->path;
 	if (!isnum && !(*ab)->option_l && !(*ab)->option_v && !(*ab)->option_s
 		&& !(*ab)->option_c && !(*ab)->option_f && !(*ab)->path)
 		ft_error(ab, 0);
