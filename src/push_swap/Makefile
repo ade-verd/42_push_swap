@@ -6,7 +6,7 @@
 #    By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/23 12:33:34 by ade-verd          #+#    #+#              #
-#    Updated: 2018/05/11 10:13:53 by ade-verd         ###   ########.fr        #
+#    Updated: 2018/05/11 10:20:21 by ade-verd         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -185,13 +185,7 @@ norme:
 	norminette $(addprefix $(INC_PATH), *.h)
 
 normadev: 
-	~/Projects/Normadev/normadev.sh **/*.[ch]
-
-submod_init:
-	git submodule update --init --recursive
-
-submod_update:
-	git submodule update --recursive --remote
+	norminette **/**.[ch] | grep -B 1 "Error\|Warning" || echo "norme OK"
 
 # **************************************************************************** #
 # Personal notes :                                                             #

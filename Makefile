@@ -6,7 +6,7 @@
 #    By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/05 13:46:57 by ade-verd          #+#    #+#              #
-#    Updated: 2018/04/03 15:36:09 by ade-verd         ###   ########.fr        #
+#    Updated: 2018/05/11 10:20:11 by ade-verd         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -102,8 +102,13 @@ norme:
 	@$(MAKE) $(CHK_PATH) norme
 
 normadev: 
-	sh ~/Projects/support/Normadev/normadev.sh **/*.[ch]
-#	norminette **/*.[ch] | grep -B 1 "Error\|Warning" || echo "norme OK"
+	norminette **/**.[ch] | grep -B 1 "Error\|Warning" || echo "norme OK"
+
+submod_init:
+	git submodule update --init --recursive
+
+submod_update:
+	git submodule update --recursive --remote
 
 # **************************************************************************** #
 # Personal notes :                                                             #

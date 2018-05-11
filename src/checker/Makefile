@@ -6,7 +6,7 @@
 #    By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/23 12:33:34 by ade-verd          #+#    #+#              #
-#    Updated: 2018/05/09 18:05:45 by ade-verd         ###   ########.fr        #
+#    Updated: 2018/05/11 10:20:51 by ade-verd         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -187,7 +187,7 @@ norme:
 	norminette $(addprefix $(INC_PATH), *.h)
 
 normadev: 
-	~/Projects/Normadev/normadev.sh **/*.[ch]
+	norminette **/**.[ch] | grep -B 1 "Error\|Warning" || echo "norme OK"
 
 # **************************************************************************** #
 # Personal notes :                                                             #
