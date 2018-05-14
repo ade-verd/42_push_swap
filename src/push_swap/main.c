@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/27 17:28:18 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/05/14 14:53:23 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/05/14 15:21:51 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,5 @@ int		main(int ac, char **av)
 		ft_displaymoves(&ab);
 		ft_heaps_del(&ab);
 	}
-	else
-		ft_error(&ab, 0);
-	return (EXIT_SUCCESS);
+	return (ac > 1 ? EXIT_SUCCESS : EXIT_FAILURE);
 }
