@@ -75,11 +75,11 @@ Viewer  [ESC] Quit
 2. or run `./analyser.sh` made by @roulinalexandre
 
 ### Performances with analyser.sh
-Random values | Goal            | Performances
---------------|-----------------|-------------
-5 random values | 12 or less    | ![5values](./tests/img/5values.png)
-100 random values | 700 or less | ![100values](./tests/img/100values.png)
-500 random values | 5300 or less | ![500values](./tests/img/500values.png)
+Random values     | Goal            | Performances
+------------------|-----------------|-------------
+5 random values   | ≤ 12            | ![5values](./tests/img/5values.png)
+100 random values | ≤ 700           | ![100values](./tests/img/100values.png)
+500 random values | ≤ 5300          | ![500values](./tests/img/500values.png)
 
 
 
