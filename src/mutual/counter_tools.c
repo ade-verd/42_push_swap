@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/15 12:25:12 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/05/09 18:18:55 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/05/14 15:18:18 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ int		ft_issort(t_stack *stack)
 {
 	int		sens;
 
+	if (!stack)
+		return (0);
 	sens = stack->sens;
 	while (stack && stack->next)
 	{

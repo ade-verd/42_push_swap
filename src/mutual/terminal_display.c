@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/19 12:41:36 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/05/09 19:26:05 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/05/14 15:05:20 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,14 +126,15 @@ void	ft_display_lastmove(t_heaps **ab)
 ** "OK" : stack A has to be sorted and stack B has to be empty
 */
 
-void	ft_display_result(t_heaps **ab, int nb_moves)
+int		ft_display_result(t_heaps **ab, int nb_moves)
 {
 	if (ft_issort((*ab)->a) && !(*ab)->b)
 	{
 		ft_printf("OK\n");
 		if ((*ab)->option_l == 1)
 			ft_printf("%d\n", nb_moves);
+		return (EXIT_SUCCESS);
 	}
-	else
-		ft_printf("KO\n");
+	ft_printf("KO\n");
+	return (EXIT_FAILURE);
 }

@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/27 17:28:18 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/05/14 11:55:10 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/05/14 15:12:42 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,11 @@ int		main(int ac, char **av)
 	t_heaps		*ab;
 	int			nb_moves;
 	char		*tab;
+	int			ret;
 
 	if (ac > 1)
 	{
-		if (ft_strcmp(av[1], "-h") == 0)
-			ft_help();
+		ft_strcmp(av[1], "-h") == 0 ? ft_help() : none();
 		ft_heaps_init(&ab);
 		ft_read_and_fillstack(ac, av, &ab, &tab);
 		if (ab->option_f == 1 || ab->path)
@@ -55,11 +55,9 @@ int		main(int ac, char **av)
 			ft_goto_buffindex(&ab, 1, 0);
 			ab->winenv ? ft_applymoves_viewer(&ab) : ft_applymoves_classic(&ab);
 		}
-		ft_display_result(&ab, nb_moves);
+		ret = ft_display_result(&ab, nb_moves);
 		ft_deal_options_quit(&ab);
 		ft_heaps_del(&ab);
 	}
-	else
-		ft_error(&ab, 0);
-	return (ac);
+	return (ac > 1 ? ret : EXIT_FAILURE);
 }

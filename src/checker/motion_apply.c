@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/15 17:24:17 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/05/09 19:21:18 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/05/14 14:56:19 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,8 +76,6 @@ void	ft_apply_rmove(t_heaps **ab, char *move)
 void	ft_applymoves_classic(t_heaps **ab)
 {
 	!*ab ? ft_error(ab, 0) : none;
-	if (ft_issort((*ab)->a) && !(*ab)->b)
-		return ;
 	while ((*ab)->buff)
 	{
 		ft_apply_move(ab, (*ab)->buff->move);

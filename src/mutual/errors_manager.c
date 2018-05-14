@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 17:35:03 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/05/09 16:31:47 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/05/14 14:53:54 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	ft_error(t_heaps **ab, char *precision)
 		ft_putstr_fd("Error\n", 2);
 	if ((*ab))
 		ft_heaps_del(ab);
-	exit(0);
+	exit(EXIT_FAILURE);
 }
 
 /*
@@ -49,7 +49,7 @@ void	ft_error_sdl(t_heaps **ab, char *precision, char *precision2)
 		ft_putstr_fd("Error\n", 2);
 	if ((*ab))
 		ft_heaps_del(ab);
-	exit(0);
+	exit(EXIT_FAILURE);
 }
 
 /*
