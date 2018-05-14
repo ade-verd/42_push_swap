@@ -5,6 +5,8 @@ Given a set of integers, sort it using a predefined set of instructions using
 two stacks. The instruction set is defined below. This program outputs a program
 in push_swap instructions that sorts the input integers.
 
+![sample](./img/sample.gif)
+
 ## Instruction set
 For the following instructions, if the instruction is not possible, the part of
 it that can't be executed won't.
@@ -77,9 +79,9 @@ Viewer  [ESC] Quit
 ### Performances with analyser.sh
 Random values     | Goal            | Performances
 ------------------|-----------------|-------------
-5 random values   | ≤ 12            | ![5values](./tests/img/5values.png)
-100 random values | ≤ 700           | ![100values](./tests/img/100values.png)
-500 random values | ≤ 5300          | ![500values](./tests/img/500values.png)
+5 random values   | ≤ 12            | ![5values](./img/5values.png)
+100 random values | ≤ 700           | ![100values](./img/100values.png)
+500 random values | ≤ 5300          | ![500values](./img/500values.png)
 
 
 
