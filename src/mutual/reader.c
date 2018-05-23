@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 17:38:06 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/05/11 15:10:23 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/05/23 19:20:38 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int		ft_isnumber(char *str, int *nb)
 
 	i = 0;
 	*nb = 0;
-	while (str[i] == '+' || str[i] == '-')
+	if (str[i] == '+' || str[i] == '-')
 		i++;
 	while (str[i])
 	{
